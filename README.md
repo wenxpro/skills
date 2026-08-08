@@ -9,13 +9,13 @@
 **全局（所有项目可用）**
 
 ```sh
-cp -r skills/docs-audit ~/.agents/skills/
+cp -r docs-audit ~/.agents/skills/
 ```
 
 **项目级（随仓库共享给协作者）**
 
 ```sh
-cp -r skills/docs-audit <project>/.agents/skills/
+cp -r docs-audit <project>/.agents/skills/
 ```
 
 更新：重新执行上面的复制命令覆盖即可；卸载：删除对应目录。
