@@ -84,7 +84,7 @@ description: 实现过程的验收跟踪与偏差记录：查验收基线、按�
 
 - 验收矩阵由 `game-docs` 创建；本 skill 只更新状态与偏差，不重写 `02` / `03`
 - 跨版本规划由 `roadmap-planning` 负责；本 skill 不排期
-- 偏差若改变设计结论，回到 `game-docs` 的 06-maintain 流程，再回写
+- 偏差若改变设计结论，回到 `game-docs/workflow.md` 的「变更与维护」流程，再回写
 
 ## 边界
 

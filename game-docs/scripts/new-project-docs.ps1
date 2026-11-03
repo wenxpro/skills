@@ -54,6 +54,6 @@ Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "1. Fill 01-run-brief.md (one page)"
 Write-Host "2. Fill 02-design-spec.md (behavior rules)"
 Write-Host "3. Fill 03-acceptance.md (P0/P1 cases)"
-Write-Host "4. Run 07-checklists/doc-review.md"
+Write-Host "4. Run 07-checklists/checklists.md"
 Write-Host "5. Hold the review with the review skill + game profile, write 05-reviews/0001-*.md"
 Write-Host "6. Update 00-README.md current status"

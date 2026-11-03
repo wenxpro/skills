@@ -4,7 +4,8 @@
 
 ## Skill 索引
 
-- **game-docs** — 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩记录
+- **docs-core** — 通用文档体系契约：7 个文档槽位、单一事实源、行为变更三件套、状态语义（不绑领域）
+- **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩
 - **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引
 - **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
@@ -16,6 +17,7 @@
 ## Skill 关系
 
 ```text
+docs-core ──槽位契约──▶ game-docs / roadmap-planning / implementation-track
 game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期──▶ implementation-track
     │                                   ▲                         │
     │                                   └────── 05/06 证据 ───────┘
@@ -37,7 +39,7 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 
 ## 共用约定
 
-所有 skill 使用同一套语义，避免同名不同义：
+所有 skill 使用同一套语义，避免同名不同义（槽位与状态语义的完整契约见 `docs-core`）：
 
 | 约定 | 规则 |
 |---|---|
@@ -56,15 +58,17 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 
 ```sh
 mkdir -p ~/.agents/skills
-cp -r game-docs ~/.agents/skills/
+cp -r docs-core game-docs ~/.agents/skills/
 ```
 
 **项目级（随仓库共享给协作者）**
 
 ```sh
 mkdir -p <project>/.agents/skills
-cp -r game-docs <project>/.agents/skills/
+cp -r docs-core game-docs <project>/.agents/skills/
 ```
+
+> `game-docs` 依赖 `docs-core`，需一并安装：两个目录都要在 `.agents/skills/` 下。其他 skill 可单独安装。
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。
 

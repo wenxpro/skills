@@ -79,13 +79,14 @@ ID | 条件/行动 | 负责人 | 写入位置 | 截止
 
 ## 9. 更新索引
 
-- active 评审写入 `05-reviews/README.md`
+- active 评审写入评审目录的 README 索引（game profile 为 `05-reviews/README.md`；software profile 按项目约定）
 - 被取代的评审移入 `archive/`，标 `Superseded`
 - 关闭的条件从 active 行动项里移除或标完成
 
 ## 10. 检查
 
 ```powershell
+# game profile 路径示例；其他 profile 换成项目的评审目录
 .\scripts\check-review.ps1 -ReviewPath "<target>\docs\05-reviews"
 ```
 
