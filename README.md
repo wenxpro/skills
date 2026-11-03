@@ -1,6 +1,6 @@
 # Skills
 
-个人 Zed / OpenCode agent skills 仓库。每个 skill 是独立目录，含 `SKILL.md`（入口）及可选的引用文件（规范、模板等）。
+个人 agent skills 仓库。每个 skill 是独立目录，含 `SKILL.md`（入口）及可选的引用文件（规范、模板等）。
 
 ## Skill 索引
 
@@ -47,7 +47,7 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 
 ## 安装
 
-把 skill 目录复制到对应位置，Zed 会在下次对话自动发现；OpenCode V2 也兼容 `.agents/skills`：
+把 skill 目录复制到对应位置，支持 `.agents/skills` 的 agent 会自动发现：
 
 **全局（所有项目可用）**
 
