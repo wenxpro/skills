@@ -9,18 +9,15 @@
 - 代码注释：中文
 - 正式版本地化：另开里程碑，不混进当前灰盒
 
-## 6 人面板
+## 评审
 
-固定角色：
+评审流程不在本 skill 内重复，使用 `review` skill：
 
-1. 目标玩家
-2. 游戏设计师
-3. 技术负责人
-4. 美术 / UX
-5. 制作人
-6. QA
+- 流程：`review/references/workflow.md`
+- 游戏角色：`review/profiles/game.md`
+- 模板：`review/templates/review.md`
 
-每个角色必须给出：认可 / 条件 / 否决理由。结论只能是：通过 / 有条件通过 / 否决。
+结论只能是：通过 / 有条件通过 / 否决；每个角色必须给出认可 / 条件 / 否决理由。
 
 ## 优先级
 
@@ -74,6 +71,7 @@ P0 未全过，不进入下一里程碑。
 
 ## 相关 skill
 
+- `review`：通用评审流程；游戏使用 `profiles/game.md`
 - `docs-audit`：文档集审核，可在评审前跑
 - `roadmap-planning`：里程碑后的分期规划
 - `implementation-track`：实现阶段的验收跟踪

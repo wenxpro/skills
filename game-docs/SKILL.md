@@ -1,6 +1,6 @@
 ---
 name: game-docs
-description: 建立、维护和评审游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、6 人评审、试玩记录。适用于新游戏立项、写/重构 GDD 或行为规范、定义验收标准、设计评审、记录试玩；不适用于纯代码修复、已有文档集的交叉引用审核（用 docs-audit）、跨版本规划（用 roadmap-planning）或实现状态跟踪（用 implementation-track）。Game docs / GDD / spec / acceptance / design review / playtest.
+description: 建立、维护游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩记录。适用于新游戏立项、写/重构 GDD 或行为规范、定义验收标准、记录试玩；评审使用 review skill 的 game profile。不适用于纯代码修复、已有文档集的交叉引用审核（用 docs-audit）、跨版本规划（用 roadmap-planning）或实现状态跟踪（用 implementation-track）。Game docs / GDD / spec / acceptance / playtest.
 ---
 
 # Game Docs
@@ -14,7 +14,7 @@ It does **not** invent the game for the user. It asks the questions, provides th
 - Starting a new game project and need a Run Brief / GDD / spec
 - Refactoring an existing design document into a testable form
 - Defining acceptance criteria or a QA matrix
-- Running a 6-role design review
+- Running a design review (use the `review` skill with the game profile)
 - Recording and analyzing playtests
 - Changing existing behavior without letting the spec drift
 
@@ -31,7 +31,7 @@ It does **not** invent the game for the user. It asks the questions, provides th
 2. **Only document the current milestone.** Never pre-write 8-minute modes, bosses, or extra characters while the current loop is unproven.
 3. **Behavior change = Spec + Acceptance + Changelog.** Never change only one of the three.
 4. **Every P0 rule has an acceptance case.** If it cannot be tested, it is not a rule.
-5. **6-role review at every milestone.** Target player, designer, tech lead, art/UX, producer, QA.
+5. **Review at every milestone.** Use the `review` skill with `profiles/game.md`; game-specific roles live there.
 6. **Never copy another project's content.** Templates are structure; content is project-specific.
 7. **Write into the target project's `docs/`, never into this skill directory.**
 
@@ -44,15 +44,15 @@ Read only the workflow needed for the current request. Do not load all reference
 | Start docs for a new project / refactor docs | `references/workflows/01-init.md` |
 | Write or refresh the Design Spec | `references/workflows/02-spec.md` |
 | Define or update acceptance criteria | `references/workflows/03-acceptance.md` |
-| Run a 6-role review | `references/workflows/04-review.md` |
+| Run a review | `review` skill: `profiles/game.md` + `references/workflow.md` |
 | Run or record a playtest | `references/workflows/05-playtest.md` |
 | Change existing behavior/docs | `references/workflows/06-maintain.md` |
 
 ## Resources
 
-- `standards.md` — 个人/团队偏好：文档语言、6 人角色、P0/P1、脚本环境
+- `standards.md` — 个人/团队偏好：文档语言、P0/P1、脚本环境；评审流程见 `review` skill
 - `references/templates/` — 00~07 文档模板
-- `references/templates/00-README.md` — numbering, roles, statuses, change flow, 6-role panel
+- `references/templates/00-README.md` — numbering, statuses, change flow; review 指向 `review` skill
 - `references/examples.md` — reference implementation (do not copy its content)
 - `scripts/new-project-docs.ps1` — scaffold a docs folder
 - `scripts/check-docs.ps1` — check required files, numbering, links, placeholders
@@ -61,7 +61,8 @@ Read only the workflow needed for the current request. Do not load all reference
 
 | Skill | 关系 |
 |---|---|
-| `docs-audit` | 文档集深度审核；可在 04-review 前作为可选自检 |
+| `review` | 通用评审流程；游戏使用 `profiles/game.md` |
+| `docs-audit` | 文档集深度审核；可在评审前作为可选自检 |
 | `roadmap-planning` | 当前里程碑通过后，规划 MVP / V1 / V2 |
 | `implementation-track` | Spec / Acceptance 确定后，跟踪实现与验收状态 |
 | `code-digest` | 需要把代码现状写进设计文档时，作为输入 |
