@@ -4,7 +4,8 @@
 
 ## Skill 索引
 
-- **game-docs** — 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、6 人评审、试玩记录
+- **game-docs** — 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩记录
+- **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引
 - **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
 - **topic-research** — 课题调研：生态全景、多入口交叉验证、证据分级，支撑外部结论写进文档
@@ -18,6 +19,7 @@
 game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期──▶ implementation-track
     │                                   ▲                         │
     │                                   └────── 05/06 证据 ───────┘
+    ├──▶ review（里程碑 / 方案评审）
     ├──▶ docs-audit（文档集审核）
     ├──▶ code-digest（代码现状输入）
     └──▶ topic-research（外部调研输入）
@@ -26,6 +28,7 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 | 问题 | 用哪个 |
 |---|---|
 | 当前里程碑做什么、行为规则、怎么验收 | **game-docs** |
+| 这个方案能不能过、附带什么条件 | **review** |
 | 文档集有没有矛盾、过时、重复 | **docs-audit** |
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
 | 验收项做到哪了、偏差怎么记 | **implementation-track** |
@@ -38,7 +41,7 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 
 | 约定 | 规则 |
 |---|---|
-| 文档 profile | `game-docs` 00~07 用 **game**；PRD + 各包 DESIGN.md 用 **software** |
+| 文档 profile | `game-docs` 00~07 用 **game**；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下同名 profile |
 | P0 / P1 | 只表示**验收优先级**：P0 阻断，P1 可后置 |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
