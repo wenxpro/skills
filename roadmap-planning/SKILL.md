@@ -1,6 +1,6 @@
 ---
 name: roadmap-planning
-description: 从设计结论生成演进规划：把设计文档的验证清单、观察落点、开放问题按依赖链归入 MVP/V1/V2 分期，定优先级、标落点（结论写进哪个文档），输出可执行的分期计划与下一步。适用于「接下来做什么」「X 排进哪一期」「里程碑怎么拆」的规划问题；不适用于单个任务的实现跟踪（用 implementation-track）。
+description: 从设计结论生成跨版本演进规划：把验证清单、开放问题按依赖链归入 MVP/V1/V2（软件 profile）或 M0/M1/M2（game-docs profile），定优先级、标落点，输出分期计划与下一步。支持 game-docs 00~07 与软件 PRD/DESIGN.md 两种文档 profile。适用于「接下来做什么」「X 排进哪一期」「MVP/V1/V2 怎么拆」；不适用于当前里程碑内的 Spec/验收（用 game-docs）与单任务实现跟踪（用 implementation-track）。
 ---
 
 # 演进规划
@@ -9,6 +9,18 @@ description: 从设计结论生成演进规划：把设计文档的验证清单�
 
 > 个人/团队偏好（分期定义、验收项来源、落点约定）在 `standards.md`。
 
+## 文档 profile
+
+先判断项目使用哪套文档，不要混用：
+
+| 文档结构 | profile | 读 `standards.md` 的 |
+|---|---|---|
+| `docs/00-README.md` + 00~07 | **game** | 「Game profile」 |
+| PRD + 各包 `DESIGN.md` | **software** | 「Software profile」 |
+| 不确定 | — | 先问用户，不要猜 |
+
+本 skill 只读设计结论，不重写 Spec / Acceptance。
+
 ## 何时使用
 
 - 「接下来做什么」「V1/V2 范围是什么」
@@ -16,7 +28,7 @@ description: 从设计结论生成演进规划：把设计文档的验证清单�
 - 里程碑拆解（验证清单按阶段归组）
 - 观察条目的「落点」汇总成计划
 
-不适用：单个任务实现中的验收与偏差记录（用 `implementation-track`）、文档集审核（用 `docs-audit`）。
+不适用：当前里程碑内的 Spec / 验收（用 `game-docs`）、单个任务实现中的验收与偏差记录（用 `implementation-track`）、文档集审核（用 `docs-audit`）。
 
 ## 操作顺序
 
@@ -39,7 +51,7 @@ description: 从设计结论生成演进规划：把设计文档的验证清单�
 3. 验证清单（各论证文档末尾，验收标准的来源）
 4. 观察/结论里已写明的「落点」（如「可进 V1 的权限钩子示例集」）
 5. 开放问题与预测（标注验证状态 = 预测的项，规划时保持标注）
-6. 各包 DESIGN.md 里已标的分期（包内优先级 P0/P1，定义见 `standards.md`）
+6. 功能/包优先级（`High / Medium / Low`；P0/P1 只用于验收优先级，定义见 `standards.md`）
 
 ## 第三步：归位与排序
 
@@ -62,6 +74,12 @@ description: 从设计结论生成演进规划：把设计文档的验证清单�
 3. **待决问题**：排不进当前分期或需要设计讨论的项
 
 输出先给用户确认，再写入文档。写完后回读一遍，确认与既有编号（验收项、决策编号）不冲突。
+
+## 交接
+
+- 输入：`game-docs` 的 `01 / 02 / 03 / 05 / 06`，或软件 profile 的 PRD / DESIGN.md / 验证清单
+- 输出：分期表、下一步、待决问题；**不改** `02` 的行为规则，也**不改** `03` 的验收判定
+- 完成后交给 `implementation-track` 跟踪验收状态
 
 ## 边界
 
