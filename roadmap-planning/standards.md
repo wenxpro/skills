@@ -1,6 +1,6 @@
 # 演进规划规范（个人/团队风格标准）
 
-本文件包含两个 profile。按项目文档结构选择，不要混用：`docs/00-README.md` + 00~07 用 Game profile；PRD + 各包 DESIGN.md 用 Software profile。
+本文件包含两个 profile。按项目文档结构选择，不要混用：`docs/00-README.md` + 00~05、07 用 Game profile；PRD + 各包 DESIGN.md 用 Software profile。
 
 ## Software profile
 
@@ -35,15 +35,14 @@
 
 ## Game profile
 
-适用于 `game-docs` 的 00~07 文档结构。
+适用于 `game-docs` 的 `00~05、07` 文档结构（`06` 可选）。
 
 ### 输入
 
 - `01-run-brief.md`：单局目标、范围、止损条件、后置内容
 - `02-design-spec.md`：行为规则、开放问题
 - `03-acceptance.md`：`AC-*` 用例、P0/P1、验收跟踪、偏差记录
-- `05-reviews/`：6 人评审条件与行动项
-- `06-playtests/`：试玩证据
+- `05-reviews/`：6 人评审条件、行动项与试玩结论
 
 ### 分期定义
 
@@ -58,7 +57,7 @@
 
 - `03-acceptance.md` 的 `AC-<类别>-<序号>`
 - `02-design-spec.md` 的 P0/P1 规则
-- `05-reviews/` 的条件、`06-playtests/` 的止损结论
+- `05-reviews/` 的条件与试玩止损结论
 
 ### 落点约定
 

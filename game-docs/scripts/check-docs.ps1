@@ -20,7 +20,6 @@ $required = @(
     "03-acceptance.md",
     "04-adr",
     "05-reviews",
-    "06-playtests",
     "07-checklists"
 )
 

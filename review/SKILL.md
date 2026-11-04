@@ -34,6 +34,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 6. **当前有效 vs 历史归档分开。** 废案、被取代的方案移出 active 评审，不留在当前约束里。
 7. **评审记录 1~2 页。** 角色意见用表格，不写长篇独白。
 8. **不替用户拍板。** 评审可以建议，最终结论由决策人确认。
+9. **设计提案先缓冲。** 评审中提出的新方向、范围变化、取舍先留在评审/待决列表，不直接写进契约或 ADR；负责人确认后再落文档。
 
 ## Workflow router
 

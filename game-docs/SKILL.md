@@ -22,13 +22,15 @@ description: 建立、维护游戏项目文档体系（Run Brief、Design Spec�
 1. **先短后长**：循环没被验证前，Run Brief 保持一页；需要实现和验收时，才写精确的 Design Spec。
 2. **只写当前里程碑**：当前循环未验证前，不提前写 8 分钟模式、Boss、角色。
 3. **每条 P0 规则都有验收用例**：无法测试就不是规则。
-4. **每个里程碑评审**：用 `review` skill 的 `profiles/game.md`。
+4. **每个里程碑评审**：用 `review` skill 的 `profiles/game.md`；设计模式对照 `references/design-patterns.md`。
 5. **不复制其他项目的内容**：模板只给结构，内容必须项目自己填。
 6. **写进目标项目的 `docs/`**，不写进 skill 目录。
 
 ## 文档结构
 
-编号与槽位映射见 `docs-core/standards.md` 的 Game 表（00~07）。模板在 `references/templates/`：填法见各模板开头，完整流程见 `workflow.md`，完成检查见 `references/templates/07-checklists/checklists.md`。
+编号与槽位映射见 `docs-core/standards.md` 的 Game 表（00~05、07；06 可选）。模板在 `references/templates/`：填法见各模板开头，完整流程见 `workflow.md`，完成检查见 `references/templates/07-checklists/checklists.md`。
+
+跨项目的游戏设计模式见 `references/design-patterns.md`：单局结构、决策密度、威胁-成长、空间-胜负、变换契约、证据阶梯、可归因失败、表现-规则分离。写 Spec 或评审时先对一遍，不要把模式当项目规则。
 
 ## 脚本（可选）
 

@@ -4,25 +4,25 @@
 
 ## Skill 索引
 
-- **docs-core** — 通用文档体系契约：7 个文档槽位、单一事实源、行为变更三件套、状态语义（不绑领域）
-- **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩
-- **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引
-- **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对
+- **docs-core** — 通用文档体系契约：7 个文档槽位（可裁剪，06 可选）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
+- **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
+- **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引；设计提案先缓冲
+- **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
 - **topic-research** — 课题调研：生态全景、多入口交叉验证、证据分级，支撑外部结论写进文档
 - **code-digest** — 代码库梳理：演进时间线 + 技术细节，防遗漏防过时、编号决策核对
-- **roadmap-planning** — 演进规划：把设计结论按依赖链归入 MVP/V1/V2（或 M0/M1/M2），定优先级与落点
-- **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写
+- **roadmap-planning** — 演进规划：把设计结论按依赖链归入 MVP/V1/V2（或 M0/M1/M2），定优先级与落点；含 M/W 两层映射
+- **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写；含证据阶梯与最小 fake 契约
 - **execution-loop** — 连续执行闭环：一次确认目标，批量执行、自测、提交、更新跟踪，只在真实阻塞时停
-- **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、边界违规与第一个可执行修正
+- **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根减脂与行为保持重构
 
 ## Skill 关系
 
 ```text
 docs-core ──槽位契约──▶ game-docs / roadmap-planning / implementation-track
-game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期──▶ execution-loop
+game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──▶ execution-loop
     │                                   ▲                         │
-    │                                   └────── 05/06 证据 ───────┘
+    │                                   └────── 05 证据 ──────────┘
     ├──▶ review（里程碑 / 方案评审）
     ├──▶ docs-audit（文档集审核）
     ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
@@ -47,12 +47,12 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 
 | 约定 | 规则 |
 |---|---|
-| 文档 profile | `game-docs` 00~07 用 **game**；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下同名 profile |
+| 文档 profile | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下同名 profile |
 | P0 / P1 | 只表示**验收优先级**：P0 阻断，P1 可后置 |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
-| 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review/Playtest；规划只排期，跟踪只更新状态 |
+| 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review（试玩结论可并入）；规划只排期，跟踪只更新状态 |
 
 ## 安装
 

@@ -2,7 +2,7 @@
 
 本文件把 7 个槽位映射到具体编号/文件。其他团队可整体替换，`SKILL.md` 不受影响。
 
-## Game（00~07，配合 game-docs）
+## Game（00~05、07；06 为可选遗留槽位，配合 game-docs）
 
 | 槽位 | 文件 |
 |---|---|
@@ -11,7 +11,7 @@
 | 契约 | `02-design-spec.md` |
 | 验收 | `03-acceptance.md` |
 | 决策 | `04-adr/` |
-| 证据 | `05-reviews/`、`06-playtests/` |
+| 证据 | `05-reviews/`（试玩结论并入评审；`06-playtests/` 可选） |
 | 检查 | `07-checklists/` |
 
 ## Software（cheese/pi-agent 文档集）
