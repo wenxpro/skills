@@ -13,17 +13,19 @@
 - **code-digest** — 代码库梳理：演进时间线 + 技术细节，防遗漏防过时、编号决策核对
 - **roadmap-planning** — 演进规划：把设计结论按依赖链归入 MVP/V1/V2（或 M0/M1/M2），定优先级与落点
 - **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写
+- **execution-loop** — 连续执行闭环：一次确认目标，批量执行、自测、提交、更新跟踪，只在真实阻塞时停
+- **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、边界违规与第一个可执行修正
 
 ## Skill 关系
 
 ```text
 docs-core ──槽位契约──▶ game-docs / roadmap-planning / implementation-track
-game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期──▶ implementation-track
+game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期──▶ execution-loop
     │                                   ▲                         │
     │                                   └────── 05/06 证据 ───────┘
     ├──▶ review（里程碑 / 方案评审）
     ├──▶ docs-audit（文档集审核）
-    ├──▶ code-digest（代码现状输入）
+    ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
     └──▶ topic-research（外部调研输入）
 ```
 
@@ -33,6 +35,8 @@ game-docs ──产出 01/02/03/05/06──▶ roadmap-planning ──分期─�
 | 这个方案能不能过、附带什么条件 | **review** |
 | 文档集有没有矛盾、过时、重复 | **docs-audit** |
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
+| 怎么连续做到底、别每步问 | **execution-loop** |
+| 模块职责怎么划、依赖怎么管、先修哪条 | **responsibility-design** |
 | 验收项做到哪了、偏差怎么记 | **implementation-track** |
 | 代码现在是什么样 | **code-digest** |
 | 外部生态 / 竞品 / 技术选型 | **topic-research** |
@@ -69,6 +73,12 @@ cp -r docs-core game-docs <project>/.agents/skills/
 ```
 
 > `game-docs` 依赖 `docs-core`，需一并安装：两个目录都要在 `.agents/skills/` 下。其他 skill 可单独安装。
+
+连续执行与边界设计可按需安装：
+
+```sh
+cp -r execution-loop responsibility-design ~/.agents/skills/
+```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。
 
