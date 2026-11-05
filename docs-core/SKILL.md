@@ -71,6 +71,19 @@ ADR 不是写完就结束。实施后补一行/一节：
 - 评审结论：`通过 / 有条件通过 / 否决`（归档：`Superseded / Archived`）
 - 优先级：P0/P1 只用于验收；功能/包优先级用 `High / Medium / Low`
 
+## 不适用
+
+- 创建或维护具体项目文档（游戏用 `game-docs`，软件项目按仓库约定）
+- 多角色评审（用 `review`）
+- 文档集一致性审核（用 `docs-audit`）
+- 排期与状态跟踪（用 `roadmap-planning` / `implementation-track`）
+
+## 边界
+
+- 不提供模板与领域规则；模板由领域 skill 提供
+- 不改项目内容，只定义契约
+- 不替代 Spec / 验收；同一事实不能出现在两个槽位
+
 ## 导航
 
 - 游戏项目文档模板 → `game-docs`
