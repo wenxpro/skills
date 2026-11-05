@@ -9,8 +9,10 @@
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
-| 「评审一下这个方案，能不能过」 | review | docs-audit |
-| 「审核一下这套文档，有没有矛盾过时」 | docs-audit | review |
+| 「评审一下这个方案，能不能过」 | review | docs-audit、code-review |
+| 「审一下这次改动有没有坑」 | code-review | review、docs-audit |
+| 「合并前该跑哪些验证」 | code-review | execution-loop |
+| 「审核一下这套文档，有没有矛盾过时」 | docs-audit | review、code-review |
 
 ## 文档与代码
 

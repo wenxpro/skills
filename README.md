@@ -7,6 +7,7 @@
 - **docs-core** — 通用文档体系契约：7 个文档槽位（可裁剪，06 可选）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引；设计提案先缓冲
+- **code-review** — 代码审查与变更门禁：分级发现、变更类型 → 必跑证据、测试质量、修复复验；含 game/software/service profile
 - **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
 - **topic-research** — 课题调研：生态全景、多入口交叉验证、证据分级，支撑外部结论写进文档
@@ -29,6 +30,8 @@ game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──�
     ├──▶ docs-audit（文档集审核）
     ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
     └──▶ topic-research（外部调研输入）
+
+execution-loop ──代码审查/变更门禁──▶ code-review ──修复复验──▶ execution-loop
 ```
 
 | 问题 | 用哪个 |
@@ -38,6 +41,7 @@ game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──�
 | 文档集有没有矛盾、过时、重复 | **docs-audit** |
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
 | 怎么连续做到底、别每步问 | **execution-loop** |
+| 这次改动有没有坑、该跑哪些验证 | **code-review** |
 | 模块职责怎么划、依赖怎么管、先修哪条 | **responsibility-design** |
 | 验收项做到哪了、偏差怎么记 | **implementation-track** |
 | 代码现在是什么样 | **code-digest** |
@@ -51,6 +55,7 @@ game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──�
 |---|---|
 | 文档 profile | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下同名 profile |
 | P0 / P1 | 只表示**验收优先级**：P0 阻断，P1 可后置 |
+| 代码审查级别 | `阻断 / 重要 / 建议`，不要用 P0/P1 表示代码问题 |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
@@ -85,7 +90,7 @@ cp -r docs-core game-docs <project>/.agents/skills/
 连续执行与边界设计可按需安装：
 
 ```sh
-cp -r execution-loop responsibility-design ~/.agents/skills/
+cp -r execution-loop responsibility-design code-review ~/.agents/skills/
 ```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。

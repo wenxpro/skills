@@ -19,6 +19,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 ## When not to use
 
 - 纯代码修复，没有设计/行为变化
+- 代码审查 / 变更门禁 → `code-review`
 - 只需要一个简短的设计问答
 - 文档集交叉引用审核 → `docs-audit`
 - 跨版本排期 → `roadmap-planning`
@@ -73,6 +74,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 | Skill | 关系 |
 |---|---|
 | `game-docs` | 游戏文档体系；评审时使用 `profiles/game.md` |
+| `code-review` | 代码审查与变更门禁；本 skill 不审代码实现 |
 | `docs-audit` | 评审前可选的文档集审核 |
 | `roadmap-planning` | 评审通过后排期 |
 | `implementation-track` | 评审后跟踪行动项与验收 |
