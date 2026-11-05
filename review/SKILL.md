@@ -1,6 +1,6 @@
 ---
 name: review
-description: 通用多角色评审工作流：对游戏设计、软件方案、文档体系、架构决策做一次可签字的设计评审，输出结论、条件、行动项和证据。适用于里程碑评审、方案评审、ADR 决策、上线前检查；不适用于纯代码修复、文档集审核（用 docs-audit）、路线图规划（用 roadmap-planning）或实现状态跟踪（用 implementation-track）。Review / design review / decision record.
+description: 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引。适用于里程碑/方案/文档/架构评审与 ADR 决策；不适用于文档集审核（docs-audit）、规划（roadmap-planning）、实现跟踪（implementation-track）。Review / design review.
 ---
 
 # Review

@@ -1,6 +1,6 @@
 ---
 name: code-digest
-description: 把本地代码库与演进历史整理成可写进文档的结论。梳理项目演进（git 历史 + 语义记录建时间线、识别阶段、对比旧文档）与代码技术细节（文档先行、按模块读源码、测试契约确认行为），防遗漏、防过时与决策核对（编号决策逐条核验三态），输出带证据等级与出处的事实清单和未确认项。适用于把代码/演进写进文档、新成员理解代码库、核对文档与代码现状时；不适用于外部生态/竞品调研（用 topic-research）、文档集交叉引用审核（用 docs-audit）、分期规划（用 roadmap-planning）与实现跟踪（用 implementation-track）。
+description: 代码库梳理：git 历史 + 语义记录建演进时间线，文档先行读源码，防遗漏防过时，编号决策核对。适用于把代码/演进写进文档、核对文档与代码现状；不适用于外部调研（topic-research）、文档审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。
 ---
 
 # 代码库梳理（演进 + 技术细节）

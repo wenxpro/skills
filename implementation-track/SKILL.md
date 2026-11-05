@@ -1,6 +1,6 @@
 ---
 name: implementation-track
-description: 实现过程的验收跟踪与偏差记录：查验收基线、按验收项实现与测试、更新验收状态（◻/🔄/✅/❌）、记录偏差（现象/判断/修复/回写）；含证据阶梯、可观测性与最小 fake 契约。支持 game-docs 00~05、07 与软件 PRD/DESIGN.md 两种文档 profile。适用于 MVP / M1 及后续版本的实现推进与进度汇报；不适用于当前 Spec / 验收的创建（用 game-docs）、跨版本规划（用 roadmap-planning）与代码库梳理（用 code-digest）。
+description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段式偏差、证据阶梯、最小 fake 契约。适用于 MVP/M1 的实现推进与进度汇报；不适用于 Spec/验收创建（game-docs）、规划（roadmap-planning）、连续执行（execution-loop）。
 ---
 
 # 实现跟踪（验收 + 偏差）

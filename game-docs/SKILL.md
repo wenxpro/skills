@@ -1,6 +1,6 @@
 ---
 name: game-docs
-description: 建立、维护游戏项目文档体系（Run Brief、Design Spec、验收矩阵、ADR、试玩）。游戏特化约定：M0/M1/M2 里程碑、P0/P1 验收语义、Run Brief 一页纸、试玩证据；槽位契约见 docs-core。适用于新游戏立项、写/重构 GDD 或行为规范、定义验收、记录试玩；不适用于纯代码修复、文档集审核（用 docs-audit）、跨版本规划（用 roadmap-planning）、实现跟踪（用 implementation-track）。Game docs / GDD / spec / acceptance / playtest.
+description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位契约见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
 ---
 
 # Game Docs

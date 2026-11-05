@@ -1,6 +1,6 @@
 ---
 name: skill-audit
-description: 审核 skills 仓库自身：抽象分层（通用契约 / 领域 profile / 示例三层是否混用）、目录与 frontmatter 结构、description 触发边界、standards 可替换性、skill 间交叉引用与职责重叠。适用于新增或修改 skill 后、仓库发布前；不适用于项目文档集审核（用 docs-audit）与 skill 内容的多角色评审（用 review 的 docs profile）。
+description: Skills 仓库审核：抽象分层、结构、触发边界、交叉引用与职责重叠。适用于新增/修改 skill 后、仓库发布前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
 ---
 
 # Skill 仓库审核
@@ -41,6 +41,8 @@ description: 审核 skills 仓库自身：抽象分层（通用契约 / 领域 p
 - `standards.md` 可整体替换：通用流程不依赖其具体条款
 - 无本机绝对路径；示例用 `<target>`、`<project>`
 
+改过 `description` 后，按 `references/trigger-cases.md` 跑触发回归。
+
 ## 第二步：抽象分层扫描（核心）
 
 按三层判据判定每段内容：
@@ -57,7 +59,7 @@ description: 审核 skills 仓库自身：抽象分层（通用契约 / 领域 p
 扫描种子（grep）：
 
 - 具体数值与阈值：`\d+\s*(FPS|ms|秒|分钟|人|%)`
-- 本机路径与环境：`~/`、`/Volumes/`、用户目录
+- 本机路径与环境（扫描模式）：`~/`、`/Volumes/`、用户目录
 - 文件格式与引擎概念：`.tres`、`.tscn`、Godot / Unity / Unreal
 - 项目专有名词：具体包名、孤立编号（如 `09`）、功能名（HUD、升级表、奖励发放）
 - 专属工具名：`check-docs`、`check-review`（保留时加「如」或移到 standards）

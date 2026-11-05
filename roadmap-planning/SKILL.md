@@ -1,6 +1,6 @@
 ---
 name: roadmap-planning
-description: 从设计结论生成跨版本演进规划：把验证清单、开放问题按依赖链归入 MVP/V1/V2（软件 profile）或 M0/M1/M2（game-docs profile），定优先级、标落点，输出分期计划与下一步；含 M/W 两层映射。支持 game-docs 00~05、07 与软件 PRD/DESIGN.md 两种文档 profile。适用于「接下来做什么」「X 排进哪一期」「MVP/V1/V2 怎么拆」；不适用于当前里程碑内的 Spec/验收（用 game-docs）与单任务实现跟踪（用 implementation-track）。
+description: 跨版本演进规划：设计结论按依赖链归入 MVP/V1/V2 或 M0/M1/M2，含 M/W 两层映射，定优先级与落点。适用于「接下来做什么」「X 排哪一期」；不适用于当前 Spec/验收（game-docs）、执行（execution-loop）、跟踪（implementation-track）。
 ---
 
 # 演进规划

@@ -1,6 +1,6 @@
 ---
 name: git-commit
-description: 为工作区变更生成规范的 git 提交信息并直接提交推送。分析未提交变更（git status/diff），按性质分类，生成 Conventional Commits 格式的 message（规范见 standards.md），排除无关文件后执行 git add、git commit 与推送。设计/方案确认后属于执行阶段，不逐次确认。适用于完成功能、修复、重构、文档等需要提交时。
+description: Git 提交：按 Conventional Commits 生成 message，直接提交推送（设计确认后属执行阶段）。适用于完成功能/修复/重构/文档后的提交；不适用于设计决策、文档内容审核（docs-audit）、改写历史（先问）。
 ---
 
 # Git 提交
