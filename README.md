@@ -8,7 +8,7 @@
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引；设计提案先缓冲
 - **code-review** — 代码审查与合并前检查：必须修/建议修/可选分级、改动类型 → 必跑检查、测试质量、修复复跑；含游戏/软件/服务检查清单
-- **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
+- **docs-audit** — 文档集审核：交叉引用、术语一致性、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
 - **topic-research** — 课题调研：生态全景、多入口交叉验证、证据分级，支撑外部结论写进文档
 - **code-digest** — 代码库梳理：演进时间线 + 技术细节，防遗漏防过时、编号决策核对
@@ -16,7 +16,7 @@
 - **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写；含证据阶梯与最小 fake 接口
 - **execution-loop** — 连续执行闭环：一次确认目标，批量执行、自测、提交、更新跟踪，只在真实阻塞时停
 - **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根拆分与行为保持重构
-- **skill-audit** — Skill 仓库审核：抽象分层、结构与触发边界、交叉引用与职责重叠
+- **skill-audit** — Skill 仓库审核：抽象分层、结构与触发边界、术语一致性、交叉引用与职责重叠
 
 ## Skill 关系
 
@@ -56,6 +56,7 @@ execution-loop ──高风险改动──▶ code-review ──检查结果/基
 | 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
 | P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
 | 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
+| 术语 | 统一用「规则 / 合并前检查 / 必须修 / 基准值」；词表与废弃词扫描见 `skill-audit/references/terminology.md` |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
@@ -105,5 +106,6 @@ cp -r execution-loop responsibility-design code-review ~/.agents/skills/
 - 目录内必须有 `SKILL.md`，以 YAML frontmatter 开头，`name` 必须与目录名一致，`description` 写清触发场景（何时用、何时不用）
 - 若设置 `disable-model-invocation: true`，agent 不会自动加载该 skill，只能通过 `/` 命令菜单手动调用
 - 个人/团队偏好（风格、术语、环境约定）放引用文件，`SKILL.md` 中只保留通用流程：这样其他团队/项目只需整体替换 `standards.md`，通用流程无需改动
+- 仓库统一术语见 `skill-audit/references/terminology.md`；改完跑 `scripts/check-skills.sh`，废弃词零命中
 - 引用文件用相对路径，如 `standards.md`、`templates/foo.md`
 - 不要写死本机绝对路径；示例用 `<target>`、`<project>`

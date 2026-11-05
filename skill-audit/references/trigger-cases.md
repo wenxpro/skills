@@ -25,6 +25,8 @@
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
 | 「提交并推送」 | git-commit | execution-loop |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
+| 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |
+| 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
 ## 使用方式
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# CI 检查：skill 结构、frontmatter、本机路径、相对链接。
+# CI 检查：skill 结构、frontmatter、本机路径、相对链接、废弃术语。
 set -uo pipefail
 
 cd "$(dirname "$0")/.."
@@ -44,6 +44,16 @@ check_links() {
 for f in README.md */SKILL.md */standards.md; do
   [ -f "$f" ] && check_links "$f"
 done
+
+# 4. 废弃术语扫描（词表见 skill-audit/references/terminology.md）
+# 允许术语表自身、明确标注的迁移说明/历史原文；其他命中一律失败。
+while IFS= read -r line; do
+  [ -n "$line" ] && err "deprecated term: $line"
+done < <(
+  grep -rn -E '契约|门禁|阻断' --include='*.md' --exclude-dir=.git . 2>/dev/null \
+    | grep -v 'skill-audit/references/terminology.md' \
+    | grep -v -E '旧词|原词|迁移|替代|不要写|反例'
+)
 
 if [ "$fail" -ne 0 ]; then
   echo "skills check failed"
