@@ -92,7 +92,7 @@ description: 从设计结论生成跨版本演进规划：把验证清单、开�
 
 - 输入：`game-docs` 的 `01 / 02 / 03 / 05 / 06`，或软件 profile 的 PRD / DESIGN.md / 验证清单
 - 输出：分期表、下一步、待决问题；**不改** `02` 的行为规则，也**不改** `03` 的验收判定
-- 完成后交给 `implementation-track` 跟踪验收状态
+- 执行交给 `execution-loop` 连续推进；验收状态由 `implementation-track` 记录
 
 ## 边界
 

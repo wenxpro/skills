@@ -4,8 +4,9 @@
 
 ## 上下文命名
 
+示例（游戏）：`Run`、`Combat`、`Arsenal`、`Progression`、`Encounter`、`Presentation`、`Content`；换成其他领域时按业务职责命名。
+
 - 用业务/职责命名，不用技术层命名。
-- 好：`Run`、`Combat`、`Arsenal`、`Progression`、`Encounter`、`Presentation`、`Content`
 - 差：`models`、`services`、`utils`、`helpers`、`common`
 
 ## 默认依赖方向
