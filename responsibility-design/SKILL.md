@@ -154,12 +154,12 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 - 目标与分期：`roadmap-planning`
 - 连续执行：`execution-loop`
 - 验收状态：`implementation-track`
-- 文档契约：`docs-core` / `game-docs`
+- 规则文档：`docs-core` / `game-docs`
 - 收尾评审：`review`
 
 ## 边界
 
 - 本 skill 只定义职责与依赖，不写具体业务行为规则。
-- 不替代 Spec / 验收；行为结论仍回项目契约文档。
+- 不替代 Spec / 验收；行为结论仍回项目规则文档。
 - 不强制完整 DDD；轻量方案优先。
 - 边界修正必须先能测试，再动手。

@@ -12,7 +12,7 @@
 |---|---|---|---|
 | 00 | 文档体系 | `00-README.md` | 索引、状态、流程 |
 | 01 | 单局简报 | `01-run-brief.md` | 一页纸假设 |
-| 02 | 设计规范 | `02-design-spec.md` | 行为契约 |
+| 02 | 设计规范 | `02-design-spec.md` | 行为规则 |
 | 03 | 验收矩阵 | `03-acceptance.md` | 可执行验收 |
 | 04 | 决策记录 | `04-adr/` | 为什么这么选 |
 | 05 | 评审记录 | `05-reviews/` | review skill + game profile；试玩结论默认写这里 |
@@ -42,7 +42,7 @@
 **一句话：**
 
 - Run Brief = 假设
-- Design Spec = 契约
+- Design Spec = 规则
 - Acceptance = 证据标准
 - ADR = 决策
 - Review = 签字

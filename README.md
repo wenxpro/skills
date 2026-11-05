@@ -4,16 +4,16 @@
 
 ## Skill 索引
 
-- **docs-core** — 通用文档体系契约：7 个文档槽位（可裁剪，06 可选）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
+- **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引；设计提案先缓冲
-- **code-review** — 代码审查与变更门禁：分级发现、变更类型 → 必跑证据、测试质量、修复复验；含 game/software/service profile
+- **code-review** — 代码审查与合并前检查：必须修/建议修/可选分级、改动类型 → 必跑检查、测试质量、修复复跑；含游戏/软件/服务检查清单
 - **docs-audit** — 文档集审核：交叉引用、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
 - **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
 - **topic-research** — 课题调研：生态全景、多入口交叉验证、证据分级，支撑外部结论写进文档
 - **code-digest** — 代码库梳理：演进时间线 + 技术细节，防遗漏防过时、编号决策核对
 - **roadmap-planning** — 演进规划：把设计结论按依赖链归入 MVP/V1/V2（或 M0/M1/M2），定优先级与落点；含 M/W 两层映射
-- **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写；含证据阶梯与最小 fake 契约
+- **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写；含证据阶梯与最小 fake 接口
 - **execution-loop** — 连续执行闭环：一次确认目标，批量执行、自测、提交、更新跟踪，只在真实阻塞时停
 - **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根拆分与行为保持重构
 - **skill-audit** — Skill 仓库审核：抽象分层、结构与触发边界、交叉引用与职责重叠
@@ -21,7 +21,7 @@
 ## Skill 关系
 
 ```text
-docs-core ──槽位契约──▶ game-docs / roadmap-planning / implementation-track
+docs-core ──槽位定义──▶ game-docs / roadmap-planning / implementation-track
 skill-audit ──审核──▶ 所有 skill（新增 / 修改后）
 game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──▶ execution-loop
     │                                   ▲                         │
@@ -31,7 +31,7 @@ game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──�
     ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
     └──▶ topic-research（外部调研输入）
 
-execution-loop ──高风险改动──▶ code-review ──证据/基线──▶ docs-core / implementation-track
+execution-loop ──高风险改动──▶ code-review ──检查结果/基准值──▶ docs-core / implementation-track
 ```
 
 | 问题 | 用哪个 |
@@ -41,7 +41,7 @@ execution-loop ──高风险改动──▶ code-review ──证据/基线─
 | 文档集有没有矛盾、过时、重复 | **docs-audit** |
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
 | 怎么连续做到底、别每步问 | **execution-loop** |
-| 这次改动有没有坑、该跑哪些验证 | **code-review** |
+| 这次改动有没有问题、合并前该跑哪些检查 | **code-review** |
 | 模块职责怎么划、依赖怎么管、先修哪条 | **responsibility-design** |
 | 验收项做到哪了、偏差怎么记 | **implementation-track** |
 | 代码现在是什么样 | **code-digest** |
@@ -49,13 +49,13 @@ execution-loop ──高风险改动──▶ code-review ──证据/基线─
 
 ## 共用约定
 
-所有 skill 使用同一套语义，避免同名不同义（槽位与状态语义的完整契约见 `docs-core`）：
+所有 skill 使用同一套语义，避免同名不同义（槽位与状态语义的完整定义见 `docs-core`）：
 
 | 约定 | 规则 |
 |---|---|
-| 文档 profile | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下同名 profile |
-| P0 / P1 | 只表示**验收优先级**：P0 阻断，P1 可后置 |
-| 代码审查级别 | `阻断 / 重要 / 建议`，不要用 P0/P1 表示代码问题 |
+| 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
+| P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
+| 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
@@ -65,7 +65,7 @@ execution-loop ──高风险改动──▶ code-review ──证据/基线─
 
 ## Skill 抽象边界
 
-写 skill 时强制区分三层：通用契约 / 领域 profile / 示例。判据、扫描种子与检查清单见 `skill-audit`；新增或修改 skill 后跑一次。
+写 skill 时强制区分三层：通用规则 / 领域差异 / 示例。判据、扫描种子与检查清单见 `skill-audit`；新增或修改 skill 后跑一次。
 
 ## 安装
 

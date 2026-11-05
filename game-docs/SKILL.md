@@ -1,6 +1,6 @@
 ---
 name: game-docs
-description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位契约见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
+description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位定义见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
 ---
 
 # Game Docs
@@ -30,7 +30,7 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 
 编号与槽位映射见 `docs-core/standards.md` 的 Game 表（00~05、07；06 可选）。模板在 `references/templates/`：填法见各模板开头，完整流程见 `workflow.md`，完成检查见 `references/templates/07-checklists/checklists.md`。
 
-跨项目的游戏设计模式见 `references/design-patterns.md`：单局结构、决策密度、威胁-成长、空间-胜负、变换契约、证据阶梯、可归因失败、表现-规则分离。写 Spec 或评审时先对一遍，不要把模式当项目规则。
+跨项目的游戏设计模式见 `references/design-patterns.md`：单局结构、决策密度、威胁-成长、空间-胜负、变换规则、证据阶梯、可归因失败、表现-规则分离、平衡基准值。写 Spec 或评审时先对一遍，不要把模式当项目规则。
 
 ## 脚本（可选）
 
