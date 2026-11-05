@@ -1,6 +1,6 @@
 ---
 name: responsibility-design
-description: 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根减脂、行为保持重构；轻量 DDD，不默认聚合根/仓储/事件总线。适用于架构重构、模块拆分、依赖治理；不适用于 Spec/验收（game-docs）、实现跟踪（implementation-track）、文档审核（docs-audit）。
+description: 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根拆分、行为保持重构；轻量 DDD，不默认聚合根/仓储/事件总线。适用于架构重构、模块拆分、依赖治理；不适用于 Spec/验收（game-docs）、实现跟踪（implementation-track）、文档审核（docs-audit）。
 ---
 
 # 职责驱动设计
@@ -135,7 +135,7 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 | ADR 记录边界决策 | 为每个内容类型建 Repository |
 | 先修一条最痛边界 | 一次性重写全部模块 |
 
-组合根减脂与行为保持重构的方法、安全门见 `references/refactor-playbook.md`。
+拆分组合根与行为保持重构的方法、安全门见 `references/refactor-playbook.md`。
 
 
 

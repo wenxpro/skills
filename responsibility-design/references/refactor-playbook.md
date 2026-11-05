@@ -1,8 +1,10 @@
 # 重构操作手册
 
-## 组合根减脂（god object / 组合根）
+## 拆分组合根（Split Composition Root）
 
-适用：组合根同时承担装配、流程、输入、日志、ViewModel、内容规则。
+适用：组合根（Composition Root，应用启动时唯一的依赖装配入口）同时承担装配与业务逻辑，退化为 god object。
+
+手法：Extract Function / Extract Class（提炼）→ Move Function（搬移）→ 旧入口保留 Delegation（行为保持）。
 
 分两阶段，先低风险后高风险：
 
