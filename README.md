@@ -31,7 +31,7 @@ game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──�
     ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
     └──▶ topic-research（外部调研输入）
 
-execution-loop ──代码审查/变更门禁──▶ code-review ──修复复验──▶ execution-loop
+execution-loop ──高风险改动──▶ code-review ──证据/基线──▶ docs-core / implementation-track
 ```
 
 | 问题 | 用哪个 |
