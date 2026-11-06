@@ -1,6 +1,6 @@
 ---
 name: multi-repo-commit
-description: 单会话多仓库提交：按仓库分组变更、分别提交推送、记录部分失败与跨仓库一致性。适用于一次任务改了多个独立仓库、不同域名/凭据、需要分别汇报提交状态；不适用于单仓库提交（git-commit）、同仓库多 worktree（parallel-worktree）、代码审查（code-review）。
+description: 单会话多仓库提交：按仓库分组变更、分别提交推送、记录部分失败与跨仓库一致性。适用于一次任务改了多个独立仓库、不同域名/凭据、需要分别汇报提交状态；不适用于单仓库提交（git-commit）、同仓库多 worktree（worktree-workflow）、代码审查（code-review）。
 ---
 
 # 单会话多仓库提交
@@ -17,7 +17,7 @@ description: 单会话多仓库提交：按仓库分组变更、分别提交推�
 不适用：
 
 - 单仓库提交 → `git-commit`
-- 同仓库多个 worktree → `parallel-worktree`
+- 同仓库多个 worktree → `worktree-workflow`
 - 代码审查 → `code-review`
 - 设计/范围决策 → `review` / `design-stage`
 
@@ -28,6 +28,7 @@ description: 单会话多仓库提交：按仓库分组变更、分别提交推�
 - 先按仓库分组，再逐仓库提交；部分成功是正常结果。
 - 不把 A 仓库的变更混进 B 仓库。
 - 不替用户提交未确认的脏工作区。
+- 每个仓库的写任务默认在自己的 worktree 内完成；本 skill 只负责按仓库提交和推送。
 
 ## 0. 预检
 
@@ -130,7 +131,7 @@ ssh -T git@<host>
 | Skill | 关系 |
 |---|---|
 | `git-commit` | 单仓库提交规范；本 skill 负责多仓库编排 |
-| `parallel-worktree` | 同仓库多 worktree 隔离 |
+| `worktree-workflow` | 同仓库读写分流与多 worktree 隔离 |
 | `session-handoff` | 会话边界与工作记忆 |
 | `code-review` | 合并前检查 |
 | `delivery-stage` | 交付阶段入口 |

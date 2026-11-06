@@ -2,6 +2,16 @@
 
 改过任何 skill 的 `description` 后，用这些句子验证触发是否正确。
 
+## 读写分流
+
+| 输入 | 期望 | 不期望 |
+|---|---|---|
+| 「先只读讨论/调研，不要改文件」 | 留在主工作区 | 创建 worktree/分支 |
+| 「只读审查这个 diff」 | 留在主工作区 | 主动创建 worktree |
+| 「讨论完了，开始改文档/代码」 | 先建独立 worktree，再落盘 | 直接在主工作区编辑 |
+| 「这次只改一个文档，也要开 worktree 吗」 | 要；判据是是否写，不是改动大小 | 以改动小为由跳过 |
+| 「要改文件但还没建 worktree」 | 先建 worktree，再编辑 | 直接编辑 |
+
 ## 阶段与执行
 
 | 输入 | 期望触发 | 不应触发 |
@@ -14,15 +24,17 @@
 | 「交付阶段该拆哪些工作包、跑哪些检查」 | delivery-stage | code-review、execution-loop |
 | 「试玩/测试完了，怎么回流到规划或设计」 | feedback-stage | delivery-stage、execution-loop |
 | 「验收失败/文档过时，下一步怎么处理」 | feedback-stage | implementation-track、docs-audit |
-| 「这个会话太长了，要不要开新窗口」 | session-handoff | execution-loop、parallel-worktree、feedback-stage |
-| 「怎么把当前状态交接给新会话」 | session-handoff | docs-core、execution-loop、parallel-worktree |
-| 「两个会话同时改这个仓库，怎么隔离」 | parallel-worktree | session-handoff、git-commit |
-| 「开个 worktree 并行做两套方案」 | parallel-worktree | execution-loop、git-commit |
-| 「多个 worktree 怎么合并」 | parallel-worktree | git-commit、multi-repo-commit、code-review |
-| 「一个分支能不能开两个会话写」 | parallel-worktree | session-handoff、execution-loop |
+| 「这个会话太长了，要不要开新窗口」 | session-handoff | execution-loop、worktree-workflow、feedback-stage |
+| 「怎么把当前状态交接给新会话」 | session-handoff | docs-core、execution-loop、worktree-workflow |
+| 「要改代码/文档/配置，先做什么」 | worktree-workflow | git-commit、code-review |
+| 「讨论完了开始写，什么时候建 worktree」 | worktree-workflow | session-handoff、git-commit |
+| 「两个会话同时改这个仓库，怎么隔离」 | worktree-workflow | session-handoff、git-commit |
+| 「开个 worktree 并行做两套方案」 | worktree-workflow | execution-loop、git-commit |
+| 「多个 worktree 怎么合并」 | worktree-workflow | git-commit、multi-repo-commit、code-review |
+| 「一个分支能不能开两个会话写」 | worktree-workflow | session-handoff、execution-loop |
 | 「一次任务改了多个仓库怎么提交」 | multi-repo-commit | git-commit、session-handoff |
-| 「skills 和项目仓库都要提交」 | multi-repo-commit | git-commit、parallel-worktree |
-| 「不同域名/凭据的仓库一起推」 | multi-repo-commit | parallel-worktree、git-commit |
+| 「skills 和项目仓库都要提交」 | multi-repo-commit | git-commit、worktree-workflow |
+| 「不同域名/凭据的仓库一起推」 | multi-repo-commit | worktree-workflow、git-commit |
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning、delivery-stage、session-handoff |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
@@ -45,7 +57,7 @@
 | 「动态对象由谁创建/注册/清理」 | responsibility-design | docs-audit、delivery-stage |
 | 「上下文地图为什么没发现生命周期问题」 | responsibility-design | docs-audit、code-review |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
-| 「提交并推送」 | git-commit | execution-loop、parallel-worktree、multi-repo-commit |
+| 「提交并推送」 | git-commit | execution-loop、worktree-workflow、multi-repo-commit |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
 | 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
@@ -61,6 +73,9 @@
 | skill 每轮都主动提示 | 视为缺陷：检查频率/拒绝后/边界 |
 | 信息不足时直接建议新开/提交 | 视为缺陷：应先继续或补状态 |
 | 提示后用户拒绝，下一轮又提示 | 视为缺陷：拒绝后应停止直到边界 |
+| 只读讨论中用户说「开始改」 | 先建 worktree，再编辑；不继续在主工作区写 |
+| 用户说「只改一点/很快」 | 仍按写任务建 worktree；不按改动大小例外 |
+| 用户明确要求「就在主工作区改」 | 先说明影响，再遵从并记录例外 |
 | 连续多轮无新证据 | 停止循环，升级为阻塞或换策略 |
 
 ## 使用方式

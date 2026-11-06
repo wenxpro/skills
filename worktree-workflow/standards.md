@@ -1,20 +1,22 @@
-# 并行工作树偏好
+# 工作树偏好
 
-本文件存放 `parallel-worktree` 中依赖个人/团队习惯的部分，可整体替换；`SKILL.md` 不依赖具体命名。
+本文件存放 `worktree-workflow` 中依赖个人/团队习惯的部分，可整体替换；`SKILL.md` 不依赖具体命名。
 
 ## 分支命名
 
 - `feat/<slug>`：功能
 - `fix/<slug>`：修复
 - `docs/<slug>`：文档
+- `chore/<slug>`：维护、配置、脚本
 - `exp/<slug>`：实验/方案对比
-- `review/<slug>`：评审或只读对比
+- `review/<slug>`：需要落盘评审记录时
 
 规则：
 
 - slug 用小写连字符，例如 `audio-mixer`、`hud-split`
 - 一个分支只做一件事
 - 不把日期、人名、版本号写进 slug；需要追溯时放提交或 handoff
+- 纯只读评审不建分支；需要写评审记录时才建
 
 ## worktree 位置
 
@@ -27,21 +29,21 @@
 
 默认：
 
-- 主工作区始终留在 `main`
-- 单分支按顺序 `merge --no-ff` 回 `main`
-- 同批多分支先进 `integration/<topic>`，整体检查后再回 `main`
+- 主工作区始终停在集成分支（默认 `main`）
+- 单分支按顺序 `merge --no-ff` 回集成分支
+- 同批多分支先进 `integration/<topic>`，整体检查后再回集成分支
 - 合并后主工作区复跑检查
 
 可选：
 
-- 单人追求线性历史：特性分支 rebase `main` 后 fast-forward
+- 单人追求线性历史：特性分支 rebase 后 fast-forward
 - 需要评审：push 分支，走 PR/MR
 - 需要保留分支粒度：`merge --no-ff`
 - 需要单提交：squash merge
 
 禁止：
 
-- rebase 共享 `main`
+- rebase 共享的集成分支
 - force push 共享分支
 - 未跑检查直接合并
 - 自动解决语义冲突

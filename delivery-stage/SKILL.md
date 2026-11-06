@@ -14,7 +14,8 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 1. 验收项、工作包范围与完成标准清楚
 2. 依赖与前置项已完成
 3. 需要跑的检查/测试已列出
-4. 回滚或失败处理明确（如适用）
+4. 写任务已进入独立 worktree；不在主工作区直接编辑
+5. 回滚或失败处理明确（如适用）
 
 任一不满足：回 `design-stage` / `review` / `roadmap-planning`，不用实现掩盖设计问题。
 
@@ -67,5 +68,5 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 - 下一阶段：`feedback-stage`
 - 执行与检查：`execution-loop` → `code-review` → `git-commit` → `implementation-track`
 - 会话切换/交接：`session-handoff`
-- 并行写/分支隔离：`parallel-worktree`
+- 工作区/读写分流（写任务默认 worktree）：`worktree-workflow`
 - 多仓库提交：`multi-repo-commit`
