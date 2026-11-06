@@ -48,4 +48,4 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 - 不猜项目名 / 类型 / 核心动词 / 里程碑
 - 不把项目内容写进 skill（skill 只读）
 - 结构变更后跑 `check-docs.ps1` 并报告结果
-- 阶段路由：设计阶段用 `stage-router`；评审 `review`；规划 `roadmap-planning`
+- 设计阶段：`design-stage`；评审 `review`；规划 `roadmap-planning`

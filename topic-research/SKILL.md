@@ -110,7 +110,7 @@ description: 外部课题调研：生态全景、多入口交叉验证、假设�
 
 ## 交接
 
-- 阶段路由：设计输入用 `stage-router`
+- 设计输入：`design-stage`
 - 决策：`review`
 - 规划：`roadmap-planning`
 - 文档落点：`docs-core` / 项目规范

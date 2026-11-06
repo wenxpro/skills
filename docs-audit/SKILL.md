@@ -107,7 +107,7 @@ description: 文档集审核：交叉引用、术语一致性、翻译腔、版�
 
 ## 交接
 
-- 阶段路由：设计输入与结果回流用 `stage-router`
+- 设计输入：`design-stage`；结果回流：`feedback-stage`
 - 文档槽位与规则：`docs-core` / `game-docs`
 - 设计问题：`review`
 

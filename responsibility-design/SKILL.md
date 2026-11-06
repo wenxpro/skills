@@ -151,7 +151,7 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 
 ## 交接
 
-- 阶段路由：设计/交付阶段用 `stage-router`
+- 设计阶段：`design-stage`；重构交付：`delivery-stage`
 - 代码现状：`code-digest`
 - 目标与分期：`roadmap-planning`
 - 连续执行：`execution-loop`

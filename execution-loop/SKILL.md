@@ -112,7 +112,7 @@ description: 连续执行闭环：一次确认目标/DoD/约束，之后连续�
 
 ## 交接
 
-- 阶段路由：交付阶段由 `stage-router` 组织
+- 交付阶段：由 `delivery-stage` 组织
 - 目标/分期：`roadmap-planning`
 - 验收状态/偏差：`implementation-track`
 - 规则文档与 Spec：`docs-core` / `game-docs`

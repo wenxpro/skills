@@ -81,7 +81,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、术语
 - 各 skill 的「不适用」「交接」指向的 skill 都存在
 - 同一检查项不在多个 skill 重复维护（重复时确认是引用关系）
 - 职责边界：两个 skill 的对象/触发是否冲突（如文档审核 vs 仓库审核；代码过时 vs 文档漂移）
-- 阶段路由 skill（如 `stage-router`）只做阶段判断、检查与交接；不复制具体方法，避免和底层 skill 双重维护
+- 阶段 playbook skill（如 `design-stage`）只写本阶段入口、检查、出口与交接；不复制生命周期表或具体方法，避免和底层 skill 双重维护
 - 关系图与交接文字一致（如 roadmap 的下一步是否在两边都写了 execution-loop）
 
 ## 第五步：输出报告

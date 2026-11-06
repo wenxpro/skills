@@ -4,7 +4,9 @@
 
 ## Skill 索引
 
-- **stage-router** — 项目阶段路由：设计/交付/反馈三段的生命周期、入口/出口与 skill 路由；只做路由，不替代具体方法
+- **design-stage** — 设计阶段 playbook：输入选择 → 体验架构/职责设计/文档规则 → 评审 → 规划；只写本阶段入口、检查与出口
+- **delivery-stage** — 交付阶段 playbook：入口确认 → 工作包执行 → 代码审查与改动检查 → 提交 → 验收状态
+- **feedback-stage** — 反馈阶段 playbook：证据收集与分类 → 状态/文档更新 → 评审/规划/设计回流
 - **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期、入口/退出与延后项；新增表面前的触发门
@@ -22,51 +24,30 @@
 
 ## Skill 关系
 
-### 阶段路由
-
-`stage-router` 是唯一的生命周期入口：先判断当前在设计、交付还是反馈，再转给对应专业 skill。
-
-| 阶段 | 核心问题 | 主要 skill | 出口 |
-|---|---|---|---|
-| **设计** | 做什么、边界在哪、谁拥有什么、怎么验收 | `experience-architecture` / `responsibility-design` / `game-docs` / `docs-core` | `review` → `roadmap-planning` |
-| **交付** | 怎么实现、怎么检查、怎么提交 | `execution-loop` / `code-review` / `git-commit` / `implementation-track` | 可提交/可合并 |
-| **反馈** | 结果说明什么、下一步去哪 | `implementation-track` / `docs-audit` / `review` / `roadmap-planning` | 回流设计、规划或修复 |
-
 ```text
-设计 ──▶ 交付 ──▶ 反馈
-  ▲                 │
-  └─────────────────┘
-```
-
-### 三条链
-
-```text
-设计链：
-topic-research / code-digest / docs-audit / implementation-track
-  → experience-architecture / responsibility-design / game-docs / docs-core
-  → review
-  → roadmap-planning
-
-交付链：
-roadmap-planning
-  → execution-loop
-  → code-review
-  → git-commit
-
-反馈链：
-execution-loop / code-review
-  → implementation-track
-  → docs-audit / review / roadmap-planning / stage-router（回设计）
+设计 design-stage
+  输入   topic-research / code-digest / docs-audit / implementation-track
+  方法   experience-architecture / responsibility-design / game-docs / docs-core
+  出口   review → roadmap-planning
+              │
+              ▼
+交付 delivery-stage
+  roadmap-planning → execution-loop → code-review → git-commit → implementation-track
+              │
+              ▼
+反馈 feedback-stage
+  证据 → implementation-track / docs-audit / review / roadmap-planning
+  回流 → design-stage（重新设计） / delivery-stage（修复）
 ```
 
 `docs-core` 是文档槽位基础；`skill-audit` 是 skill 仓库级审核，不进入项目交付流。
 
 | 问题 | 用哪个 |
 |---|---|
-| 现在在设计/交付/反馈哪一段、下一步用哪个 skill | **stage-router** |
-| 新功能/新模块/新游戏怎么设计、先定什么 | **stage-router**（转设计轨道） |
-| 设计确认后怎么实现、审查、提交 | **stage-router**（转交付轨道） |
-| 做完/试玩/测试后怎么回流到规划或设计 | **stage-router**（转反馈轨道） |
+| 现在在设计、交付还是反馈 | **design-stage** / **delivery-stage** / **feedback-stage** |
+| 新功能/新模块/新系统怎么设计、先定什么 | **design-stage** |
+| 设计确认后怎么实现、审查、提交 | **delivery-stage** |
+| 做完/试玩/测试后怎么回流到规划或设计 | **feedback-stage** |
 | 当前里程碑做什么、行为规则、怎么验收 | **game-docs** |
 | 产品有哪些屏幕、怎么导航、状态归谁管 | **experience-architecture** |
 | 新增模式/设置/结算页，壳层要不要改 | **experience-architecture** |
@@ -88,7 +69,7 @@ execution-loop / code-review
 
 | 约定 | 规则 |
 |---|---|
-| 阶段路由 | `stage-router` 只做阶段判断、入口检查与 skill 路由；具体方法由专业 skill 执行，不重复维护规则 |
+| 阶段 playbook | `design-stage` / `delivery-stage` / `feedback-stage` 只写本阶段入口、检查、出口与交接；生命周期图只在 README 维护 |
 | 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
 | P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
 | 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
@@ -125,10 +106,10 @@ cp -r docs-core game-docs <project>/.agents/skills/
 
 > `game-docs` 依赖 `docs-core`，需一并安装：两个目录都要在 `.agents/skills/` 下。其他 skill 可单独安装。
 
-连续执行与边界设计可按需安装：
+阶段 playbook、连续执行与边界设计可按需安装：
 
 ```sh
-cp -r execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。

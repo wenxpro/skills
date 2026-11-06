@@ -81,7 +81,7 @@ description: 产品体验架构：用一页 Experience Map 定义屏幕、导航
 
 | Skill | 关系 |
 |---|---|
-| `stage-router` | 阶段路由；本 skill 是设计阶段的体验架构轨道 |
+| `design-stage` | 设计阶段 playbook；本 skill 是体验架构轨道 |
 | `game-docs` | 游戏内容、规则与验收；本 skill 定产品表面与流程 |
 | `docs-core` | 文档槽位与单一事实源；Experience Map 作为入口/决策/验收附件 |
 | `responsibility-design` | 代码模块与依赖；本 skill 定产品级状态所有权 |

@@ -75,7 +75,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 
 | Skill | 关系 |
 |---|---|
-| `stage-router` | 阶段路由；评审是设计出口，结论转交付/反馈 |
+| `design-stage` / `delivery-stage` / `feedback-stage` | 阶段 playbook；评审是设计出口，结论转交付/反馈 |
 | `game-docs` | 游戏文档体系；评审时使用 `profiles/game.md` |
 | `experience-architecture` | 产品表面、导航、状态所有权；评审时使用 `profiles/experience.md` |
 | `code-review` | 代码审查与合并前检查；本 skill 不审代码实现 |

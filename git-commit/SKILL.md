@@ -30,7 +30,7 @@ description: Git 提交：按 Conventional Commits 生成 message，直接提交
 
 ## 交接
 
-- 阶段路由：交付阶段由 `stage-router` 组织
+- 交付阶段：由 `delivery-stage` 组织
 - 提交前置：`code-review` 通过
 - 验收状态：`implementation-track`
-- 反馈：交付结果交 `stage-router`
+- 反馈：交付结果交 `feedback-stage`

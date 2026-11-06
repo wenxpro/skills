@@ -81,7 +81,7 @@ description: 代码库梳理：git 历史 + 语义记录建演进时间线，文
 
 ## 交接
 
-- 阶段路由：设计输入与结果回流用 `stage-router`
+- 设计输入：`design-stage`；结果回流：`feedback-stage`
 - 职责边界：`responsibility-design`
 - 规划：`roadmap-planning`
 - 文档：`docs-core` / `docs-audit`

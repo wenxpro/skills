@@ -102,7 +102,7 @@ description: 代码审查与合并前检查：审查 diff/实现，输出必须�
 
 | Skill | 关系 |
 |---|---|
-| `stage-router` | 阶段路由；本 skill 是交付前的合并检查 |
+| `delivery-stage` | 交付阶段 playbook；本 skill 是合并前检查 |
 | `review` | 设计/方案评审；本 skill 只审代码和测试结果 |
 | `docs-core` | 行为变更要同步规则文档、验收和变更记录 |
 | `execution-loop` | 修复和复跑纳入工作包闭环 |

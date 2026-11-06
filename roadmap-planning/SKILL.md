@@ -90,7 +90,7 @@ description: 跨版本演进规划：设计结论按依赖链归入 MVP/V1/V2 �
 
 ## 交接
 
-- 阶段路由：设计输入与交付结果/证据用 `stage-router`
+- 设计输入：`design-stage`；交付结果与证据：`feedback-stage`
 - 输入：`game-docs` 的 `01 / 02 / 03 / 05 / 06`，或软件 profile 的 PRD / DESIGN.md / 验证清单
 - 输出：分期表、下一步、待决问题；**不改** `02` 的行为规则，也**不改** `03` 的验收判定
 - 执行交给 `execution-loop` 连续推进；验收状态由 `implementation-track` 记录
