@@ -1,6 +1,6 @@
 ---
 name: review
-description: 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引。适用于里程碑/方案/文档/架构评审与 ADR 决策；不适用于文档集审核（docs-audit）、规划（roadmap-planning）、实现跟踪（implementation-track）。Review / design review.
+description: 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引。适用于里程碑/方案/体验架构/文档/架构评审与 ADR 决策；不适用于文档集审核（docs-audit）、规划（roadmap-planning）、实现跟踪（implementation-track）。Review / design review.
 ---
 
 # Review
@@ -13,6 +13,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 
 - 里程碑评审：Spec + Acceptance 完成，准备进入实现或下一阶段
 - 方案评审：架构、数据、接口、上线方案
+- 体验架构评审：屏幕、导航、状态所有权、暂停/结算/重试流程（用 `profiles/experience.md`）
 - 文档评审：文档体系、规范、ADR 提案
 - 有争议的方向，需要多视角压力测试
 
@@ -55,6 +56,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 | `software` | 软件产品、API、平台 | 用户/客户、产品、技术负责人、UX、PM、QA/安全 |
 | `docs` | 文档体系、规范、教程 | 目标读者、领域专家、技术写作、维护者、PM、QA |
 | `architecture` | 架构、基础设施、上线 | 业务负责人、架构师、安全、运维、开发、QA |
+| `experience` | 产品表面、导航、App Shell | 新用户、回访用户、UX、技术负责人、QA |
 
 没有合适 profile 时，先定义一个最小角色集，不要直接套游戏角色。
 
@@ -74,6 +76,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 | Skill | 关系 |
 |---|---|
 | `game-docs` | 游戏文档体系；评审时使用 `profiles/game.md` |
+| `experience-architecture` | 产品表面、导航、状态所有权；评审时使用 `profiles/experience.md` |
 | `code-review` | 代码审查与合并前检查；本 skill 不审代码实现 |
 | `docs-audit` | 评审前可选的文档集审核 |
 | `roadmap-planning` | 评审通过后排期 |

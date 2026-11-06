@@ -1,6 +1,6 @@
 ---
 name: game-docs
-description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位定义见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
+description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位定义见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、多屏幕体验架构（experience-architecture）、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
 ---
 
 # Game Docs
@@ -25,6 +25,7 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 4. **每个里程碑评审**：用 `review` skill 的 `profiles/game.md`；设计模式对照 `references/design-patterns.md`。
 5. **不复制其他项目的内容**：模板只给结构，内容必须项目自己填。
 6. **写进目标项目的 `docs/`**，不写进 skill 目录。
+7. **多屏幕/入口先画体验架构。** 涉及 Home、Setup、Pause、Result、Settings、Trial 等产品表面时，先用 `experience-architecture` 写一页 Experience Map；游戏内容仍由本 skill 负责。
 
 ## 文档结构
 

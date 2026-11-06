@@ -59,6 +59,7 @@ P0 未全过，不进入下一里程碑。功能 / 包优先级用 `High / Mediu
 ## 相关 skill
 
 - `docs-core`：槽位定义与编号映射
+- `experience-architecture`：产品表面、导航、状态所有权与生命周期
 - `review`：通用评审流程；游戏使用 `profiles/game.md`
 - `docs-audit`：文档集审核，可在评审前跑
 - `roadmap-planning`：里程碑后的分期规划

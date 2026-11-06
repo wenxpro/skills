@@ -6,6 +6,7 @@
 
 - **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
+- **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期、入口/退出与延后项；新增表面前的触发门
 - **review** — 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引；设计提案先缓冲
 - **code-review** — 代码审查与合并前检查：必须修/建议修/可选分级、改动类型 → 必跑检查、测试质量、修复复跑；含游戏/软件/服务检查清单
 - **docs-audit** — 文档集审核：交叉引用、术语一致性、翻译腔、版本锚点、图表覆盖、重复与数字核对；含实现后漂移扫描与 ID 覆盖矩阵
@@ -26,17 +27,21 @@ skill-audit ──审核──▶ 所有 skill（新增 / 修改后）
 game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──▶ execution-loop
     │                                   ▲                         │
     │                                   └────── 05 证据 ──────────┘
+    ├──▶ experience-architecture（产品表面 / 导航 / 状态所有权）
     ├──▶ review（里程碑 / 方案评审）
     ├──▶ docs-audit（文档集审核）
     ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
     └──▶ topic-research（外部调研输入）
 
+game-docs ──产品表面──▶ experience-architecture ──状态边界──▶ responsibility-design
 execution-loop ──高风险改动──▶ code-review ──检查结果/基准值──▶ docs-core / implementation-track
 ```
 
 | 问题 | 用哪个 |
 |---|---|
 | 当前里程碑做什么、行为规则、怎么验收 | **game-docs** |
+| 产品有哪些屏幕、怎么导航、状态归谁管 | **experience-architecture** |
+| 新增模式/设置/结算页，壳层要不要改 | **experience-architecture** |
 | 这个方案能不能过、附带什么条件 | **review** |
 | 文档集有没有矛盾、过时、重复 | **docs-audit** |
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
@@ -57,6 +62,7 @@ execution-loop ──高风险改动──▶ code-review ──检查结果/基
 | P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
 | 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
 | 术语 | 统一用「规则 / 合并前检查 / 必须修 / 基准值」；词表与废弃词扫描见 `skill-audit/references/terminology.md` |
+| 体验架构 | 一页 Experience Map；产品状态与局内/会话状态分离；延后项必须有触发器 |
 | 功能 / 包优先级 | `High / Medium / Low`，不要写成 P0/P1 |
 | 状态标记 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
@@ -91,7 +97,7 @@ cp -r docs-core game-docs <project>/.agents/skills/
 连续执行与边界设计可按需安装：
 
 ```sh
-cp -r execution-loop responsibility-design code-review ~/.agents/skills/
+cp -r execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。

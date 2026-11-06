@@ -9,7 +9,7 @@
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
-| 「评审一下这个方案，能不能过」 | review | docs-audit、code-review |
+| 「评审一下这个方案，能不能过」 | review | docs-audit、code-review、experience-architecture |
 | 「审一下这次改动有没有坑」 | code-review | review、docs-audit |
 | 「合并前该跑哪些验证」 | code-review | execution-loop |
 | 「审核一下这套文档，有没有矛盾过时」 | docs-audit | review、code-review |
@@ -18,10 +18,12 @@
 
 | 输入 | 期望触发 | 不应触发 |
 |---|---|---|
-| 「给新游戏建一套设计文档」 | game-docs | docs-core、docs-audit |
-| 「什么内容该写进哪篇文档」 | docs-core | game-docs |
+| 「给新游戏建一套设计文档」 | game-docs | docs-core、docs-audit、experience-architecture |
+| 「什么内容该写进哪篇文档」 | docs-core | game-docs、experience-architecture |
+| 「产品有哪些屏幕、怎么导航、状态归谁管」 | experience-architecture | game-docs、docs-core |
+| 「新增试炼场/设置/结算页，壳层要不要改」 | experience-architecture | game-docs、responsibility-design |
 | 「梳理一下这个项目的演进和模块细节」 | code-digest | responsibility-design、topic-research |
-| 「模块边界太乱，先修哪条依赖」 | responsibility-design | code-digest |
+| 「模块边界太乱，先修哪条依赖」 | responsibility-design | code-digest、experience-architecture |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
 | 「提交并推送」 | git-commit | execution-loop |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
