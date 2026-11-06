@@ -127,7 +127,8 @@ description: 并行会话与 Git 工作树：用独立 worktree + 短分支隔�
 | Skill | 关系 |
 |---|---|
 | `session-handoff` | 会话边界与工作记忆；本 skill 负责工作区隔离 |
-| `git-commit` | 提交与推送；本 skill 负责分支/worktree 生命周期 |
+| `git-commit` | 单仓库提交与推送；本 skill 负责分支/worktree 生命周期 |
+| `multi-repo-commit` | 跨多个独立仓库的提交编排 |
 | `code-review` | 合并前检查 |
 | `execution-loop` | 工作包执行 |
 | `delivery-stage` | 交付阶段入口 |

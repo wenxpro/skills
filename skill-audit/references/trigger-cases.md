@@ -16,8 +16,11 @@
 | 「怎么把当前状态交接给新会话」 | session-handoff | docs-core、execution-loop、parallel-worktree |
 | 「两个会话同时改这个仓库，怎么隔离」 | parallel-worktree | session-handoff、git-commit |
 | 「开个 worktree 并行做两套方案」 | parallel-worktree | execution-loop、git-commit |
-| 「多个 worktree 怎么合并」 | parallel-worktree | git-commit、code-review |
+| 「多个 worktree 怎么合并」 | parallel-worktree | git-commit、multi-repo-commit、code-review |
 | 「一个分支能不能开两个会话写」 | parallel-worktree | session-handoff、execution-loop |
+| 「一次任务改了多个仓库怎么提交」 | multi-repo-commit | git-commit、session-handoff |
+| 「skills 和项目仓库都要提交」 | multi-repo-commit | git-commit、parallel-worktree |
+| 「不同域名/凭据的仓库一起推」 | multi-repo-commit | parallel-worktree、git-commit |
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning、delivery-stage、session-handoff |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
@@ -38,7 +41,7 @@
 | 「模块边界太乱，先修哪条依赖」 | responsibility-design | code-digest、experience-architecture |
 | 「新模块的职责边界和依赖方向怎么定」 | responsibility-design | code-digest、design-stage |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
-| 「提交并推送」 | git-commit | execution-loop、parallel-worktree |
+| 「提交并推送」 | git-commit | execution-loop、parallel-worktree、multi-repo-commit |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
 | 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
