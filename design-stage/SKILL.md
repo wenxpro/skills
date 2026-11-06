@@ -81,3 +81,4 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 上一阶段：`feedback-stage`（重新设计）或无
 - 下一阶段：`delivery-stage`；排期 `roadmap-planning`
 - 评审：`review`
+- 会话切换/交接：`session-handoff`

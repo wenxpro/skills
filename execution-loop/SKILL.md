@@ -114,6 +114,7 @@ description: 连续执行闭环：一次确认目标/DoD/约束，之后连续�
 
 - 交付阶段：由 `delivery-stage` 组织
 - 阶段/交付流程：`delivery-stage`
+- 会话边界/交接：`session-handoff`
 - 目标/分期：`roadmap-planning`
 - 验收状态/偏差：`implementation-track`
 - 规则文档与 Spec：`docs-core` / `game-docs`

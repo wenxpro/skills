@@ -87,6 +87,7 @@ description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段
 - 代码审查/合并前检查结果由 `code-review` 产出；本 skill 只更新状态与偏差
 - 连续执行到目标用 `execution-loop`；本 skill 负责状态与偏差
 - 结果分类/回流用 `feedback-stage`；本 skill 只更新状态与偏差
+- 跨会话交接用 `session-handoff`；本 skill 提供状态与偏差作为事实源
 - 跨版本规划由 `roadmap-planning` 负责；本 skill 不排期
 - 偏差若改变设计结论，回到 `game-docs/workflow.md` 的「变更与维护」流程，再回写
 

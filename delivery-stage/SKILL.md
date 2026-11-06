@@ -66,3 +66,4 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 - 上一阶段：`design-stage` / `roadmap-planning`
 - 下一阶段：`feedback-stage`
 - 执行与检查：`execution-loop` → `code-review` → `git-commit` → `implementation-track`
+- 会话切换/交接：`session-handoff`

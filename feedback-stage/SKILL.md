@@ -59,3 +59,4 @@ description: 反馈阶段 playbook：收集测试、试玩、审查与文档证�
 
 - 上一阶段：`delivery-stage`
 - 下一阶段：`design-stage` / `roadmap-planning` / `delivery-stage`
+- 会话切换/交接：`session-handoff`
