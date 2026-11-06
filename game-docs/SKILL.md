@@ -20,12 +20,12 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 ## 核心规则
 
 1. **先短后长**：循环没被验证前，Run Brief 保持一页；需要实现和验收时，才写精确的 Design Spec。
-2. **只写当前里程碑**：当前循环未验证前，不提前写 8 分钟模式、Boss、角色。
+2. **只写当前里程碑**：当前循环未验证前，不提前写更长的单局模式、Boss、多角色。
 3. **每条 P0 规则都有验收用例**：无法测试就不是规则。
 4. **每个里程碑评审**：用 `review` skill 的 `profiles/game.md`；设计模式对照 `references/design-patterns.md`。
 5. **不复制其他项目的内容**：模板只给结构，内容必须项目自己填。
 6. **写进目标项目的 `docs/`**，不写进 skill 目录。
-7. **多屏幕/入口先画体验架构。** 涉及 Home、Setup、Pause、Result、Settings、Trial 等产品表面时，先用 `experience-architecture` 写一页 Experience Map；游戏内容仍由本 skill 负责。
+7. **多屏幕/入口先画体验架构。** 涉及首页、配置、暂停、结算、设置、试炼等产品表面时，先用 `experience-architecture` 写一页 Experience Map；游戏内容仍由本 skill 负责。
 
 ## 文档结构
 
@@ -48,3 +48,4 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 - 不猜项目名 / 类型 / 核心动词 / 里程碑
 - 不把项目内容写进 skill（skill 只读）
 - 结构变更后跑 `check-docs.ps1` 并报告结果
+- 阶段路由：设计阶段用 `stage-router`；评审 `review`；规划 `roadmap-planning`

@@ -6,6 +6,10 @@
 
 | 输入 | 期望触发 | 不应触发 |
 |---|---|---|
+| 「这个项目现在该进入设计还是交付」 | stage-router | code-review、implementation-track |
+| 「新模块/新系统怎么设计，先定什么」 | stage-router | code-review、implementation-track |
+| 「设计确认了，怎么组织实现、审查和提交」 | stage-router | review、code-review |
+| 「试玩/测试完了，怎么回流到规划或设计」 | stage-router | execution-loop、implementation-track |
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
@@ -24,6 +28,7 @@
 | 「新增试炼场/设置/结算页，壳层要不要改」 | experience-architecture | game-docs、responsibility-design |
 | 「梳理一下这个项目的演进和模块细节」 | code-digest | responsibility-design、topic-research |
 | 「模块边界太乱，先修哪条依赖」 | responsibility-design | code-digest、experience-architecture |
+| 「新模块的职责边界和依赖方向怎么定」 | responsibility-design | code-digest、stage-router |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
 | 「提交并推送」 | git-commit | execution-loop |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |

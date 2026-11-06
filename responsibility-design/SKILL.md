@@ -1,6 +1,6 @@
 ---
 name: responsibility-design
-description: 职责驱动设计：上下文地图、所有权、依赖方向、边界违规、组合根拆分、行为保持重构；轻量 DDD，不默认聚合根/仓储/事件总线。适用于架构重构、模块拆分、依赖治理；不适用于 Spec/验收（game-docs）、产品表面/导航（experience-architecture）、实现跟踪（implementation-track）、文档审核（docs-audit）。
+description: 职责驱动设计：设计阶段定义上下文、模块所有权、依赖方向、接口与状态边界；实现/重构阶段识别边界违规、组合根膨胀与行为保持重构；轻量 DDD，不默认聚合根/仓储/事件总线。适用于新模块/新系统设计、架构重构、模块拆分、依赖治理；不适用于 Spec/验收（game-docs）、产品表面/导航（experience-architecture）、实现跟踪（implementation-track）、文档审核（docs-audit）。
 ---
 
 # 职责驱动设计
@@ -11,8 +11,9 @@ description: 职责驱动设计：上下文地图、所有权、依赖方向、�
 
 ## 何时使用
 
+- 设计阶段：新模块/新系统/新平台/新存储，先定上下文、所有权、依赖方向与接口
 - 项目能跑，但模块边界靠感觉，`main`/`core` 越来越大
-- 准备加新模块、新平台、新存储，担心继续耦合
+- 现有代码出现边界违规、双向依赖、组合根膨胀
 - 想把一个项目里的架构经验抽象成团队规范
 - 需要判断「要不要上 DDD / 六边形 / 模块化」
 
@@ -150,6 +151,7 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 
 ## 交接
 
+- 阶段路由：设计/交付阶段用 `stage-router`
 - 代码现状：`code-digest`
 - 目标与分期：`roadmap-planning`
 - 连续执行：`execution-loop`

@@ -1,11 +1,11 @@
 # 课题调研规范（个人/团队风格标准）
 
-本文件存放 `topic-research` 中依赖具体项目习惯的部分。本仓库（cheese/pi-agent 项目文档集）的约定如下，其他团队可整体替换。
+本文件存放 `topic-research` 中依赖具体项目习惯的部分。以下为默认偏好，其他团队可整体替换。
 
 ## 调研入口偏好
 
 - GitHub API（api.github.com）优先于 github.com 页面：contents 接口拿目录/文件结构，search 接口按 star 排序看生态（`https://api.github.com/search/repositories?q=topic:<主题>&sort=stars&order=desc`），单文件优先 raw.githubusercontent.com，失败时退回 api 的 base64 内容字段
-- 需要读真实实现时本地 clone（/Volumes/BAK/work 下），clone 前先确认目录不存在、不污染项目工作区
+- 需要读真实实现时先 clone 到本地临时或工作目录，clone 前确认目录不存在、不污染项目工作区
 - 第三方依赖声明（package.json / Cargo.toml）是技术栈判定的第一证据
 - 本地能装能跑的产品优先行为观察（B 级），安装验证用临时目录隔离配置，不落真实 key
 

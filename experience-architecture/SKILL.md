@@ -27,7 +27,7 @@ description: 产品体验架构：用一页 Experience Map 定义屏幕、导航
 ## 核心不变量
 
 1. **一个根入口，最多两层导航。** 根 → 分类 → 详情；详情回分类，分类回根。
-2. **产品状态与业务状态分离。** 屏幕/导航状态（AppState）不等于局内/会话状态（RunState / SessionState）。
+2. **产品状态与业务状态分离。** 屏幕/导航状态（如 AppState）不等于局内/会话状态（如 RunState / SessionState）。
 3. **每个表面都有入口、退出、返回和 owner。** 不允许死链、不可返回、返回点不一致。
 4. **每个模式都有完整闭环。** Setup → Run → Result → Retry/Exit，或等价流程。
 5. **暂停作用域显式。** 写清暂停谁、不暂停谁；菜单不能被业务暂停冻结。
@@ -81,6 +81,7 @@ description: 产品体验架构：用一页 Experience Map 定义屏幕、导航
 
 | Skill | 关系 |
 |---|---|
+| `stage-router` | 阶段路由；本 skill 是设计阶段的体验架构轨道 |
 | `game-docs` | 游戏内容、规则与验收；本 skill 定产品表面与流程 |
 | `docs-core` | 文档槽位与单一事实源；Experience Map 作为入口/决策/验收附件 |
 | `responsibility-design` | 代码模块与依赖；本 skill 定产品级状态所有权 |

@@ -27,3 +27,10 @@ description: Git 提交：按 Conventional Commits 生成 message，直接提交
 - 设计 / 方案确认后，提交与推送属于执行动作，直接做到目标，不逐次询问
 - 仅在 message 有歧义、变更混入用户未提交的工作、或需要不可逆操作（force push、删分支）时询问
 - 提交失败（pre-commit 钩子、lint 失败等）时报告错误，不擅自绕过
+
+## 交接
+
+- 阶段路由：交付阶段由 `stage-router` 组织
+- 提交前置：`code-review` 通过
+- 验收状态：`implementation-track`
+- 反馈：交付结果交 `stage-router`

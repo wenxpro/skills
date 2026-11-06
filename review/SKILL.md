@@ -29,7 +29,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 ## Core rules
 
 1. **一个评审只回答一个决策问题。** 不把多个无关议题塞进一份记录。
-2. **角色来自 profile。** 游戏、软件、文档、架构的角色不同，不要复制游戏 6 角色到所有领域。
+2. **角色来自 profile。** 游戏、软件、文档、架构的角色不同，不要把一个 profile 的角色集复制到所有领域。
 3. **每个角色必须给出：通过 / 有条件通过 / 否决 + 理由。** 「大家觉得不错」不是结论。
 4. **条件必须可执行。** 每条条件有 ID、负责人、写入位置、截止时间。
 5. **证据优先。** Spec、验收、ADR、测试、试玩、监控数据；没有证据就不算通过。
@@ -75,6 +75,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 
 | Skill | 关系 |
 |---|---|
+| `stage-router` | 阶段路由；评审是设计出口，结论转交付/反馈 |
 | `game-docs` | 游戏文档体系；评审时使用 `profiles/game.md` |
 | `experience-architecture` | 产品表面、导航、状态所有权；评审时使用 `profiles/experience.md` |
 | `code-review` | 代码审查与合并前检查；本 skill 不审代码实现 |

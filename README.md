@@ -4,6 +4,7 @@
 
 ## Skill 索引
 
+- **stage-router** — 项目阶段路由：设计/交付/反馈三段的生命周期、入口/出口与 skill 路由；只做路由，不替代具体方法
 - **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期、入口/退出与延后项；新增表面前的触发门
@@ -21,24 +22,51 @@
 
 ## Skill 关系
 
-```text
-docs-core ──槽位定义──▶ game-docs / roadmap-planning / implementation-track
-skill-audit ──审核──▶ 所有 skill（新增 / 修改后）
-game-docs ──产出 01/02/03/05──▶ roadmap-planning ──分期──▶ execution-loop
-    │                                   ▲                         │
-    │                                   └────── 05 证据 ──────────┘
-    ├──▶ experience-architecture（产品表面 / 导航 / 状态所有权）
-    ├──▶ review（里程碑 / 方案评审）
-    ├──▶ docs-audit（文档集审核）
-    ├──▶ code-digest（代码现状输入）──▶ responsibility-design ──首个修正──▶ execution-loop
-    └──▶ topic-research（外部调研输入）
+### 阶段路由
 
-game-docs ──产品表面──▶ experience-architecture ──状态边界──▶ responsibility-design
-execution-loop ──高风险改动──▶ code-review ──检查结果/基准值──▶ docs-core / implementation-track
+`stage-router` 是唯一的生命周期入口：先判断当前在设计、交付还是反馈，再转给对应专业 skill。
+
+| 阶段 | 核心问题 | 主要 skill | 出口 |
+|---|---|---|---|
+| **设计** | 做什么、边界在哪、谁拥有什么、怎么验收 | `experience-architecture` / `responsibility-design` / `game-docs` / `docs-core` | `review` → `roadmap-planning` |
+| **交付** | 怎么实现、怎么检查、怎么提交 | `execution-loop` / `code-review` / `git-commit` / `implementation-track` | 可提交/可合并 |
+| **反馈** | 结果说明什么、下一步去哪 | `implementation-track` / `docs-audit` / `review` / `roadmap-planning` | 回流设计、规划或修复 |
+
+```text
+设计 ──▶ 交付 ──▶ 反馈
+  ▲                 │
+  └─────────────────┘
 ```
+
+### 三条链
+
+```text
+设计链：
+topic-research / code-digest / docs-audit / implementation-track
+  → experience-architecture / responsibility-design / game-docs / docs-core
+  → review
+  → roadmap-planning
+
+交付链：
+roadmap-planning
+  → execution-loop
+  → code-review
+  → git-commit
+
+反馈链：
+execution-loop / code-review
+  → implementation-track
+  → docs-audit / review / roadmap-planning / stage-router（回设计）
+```
+
+`docs-core` 是文档槽位基础；`skill-audit` 是 skill 仓库级审核，不进入项目交付流。
 
 | 问题 | 用哪个 |
 |---|---|
+| 现在在设计/交付/反馈哪一段、下一步用哪个 skill | **stage-router** |
+| 新功能/新模块/新游戏怎么设计、先定什么 | **stage-router**（转设计轨道） |
+| 设计确认后怎么实现、审查、提交 | **stage-router**（转交付轨道） |
+| 做完/试玩/测试后怎么回流到规划或设计 | **stage-router**（转反馈轨道） |
 | 当前里程碑做什么、行为规则、怎么验收 | **game-docs** |
 | 产品有哪些屏幕、怎么导航、状态归谁管 | **experience-architecture** |
 | 新增模式/设置/结算页，壳层要不要改 | **experience-architecture** |
@@ -47,10 +75,12 @@ execution-loop ──高风险改动──▶ code-review ──检查结果/基
 | 哪些进 MVP / V1 / V2，先做哪个 | **roadmap-planning** |
 | 怎么连续做到底、别每步问 | **execution-loop** |
 | 这次改动有没有问题、合并前该跑哪些检查 | **code-review** |
-| 模块职责怎么划、依赖怎么管、先修哪条 | **responsibility-design** |
+| 模块职责怎么划、依赖怎么管、先修哪条 | **responsibility-design**（设计阶段或重构阶段） |
 | 验收项做到哪了、偏差怎么记 | **implementation-track** |
 | 代码现在是什么样 | **code-digest** |
 | 外部生态 / 竞品 / 技术选型 | **topic-research** |
+| 提交并推送 | **git-commit** |
+| 审 skills 仓库的抽象分层/术语 | **skill-audit** |
 
 ## 共用约定
 
@@ -58,6 +88,7 @@ execution-loop ──高风险改动──▶ code-review ──检查结果/基
 
 | 约定 | 规则 |
 |---|---|
+| 阶段路由 | `stage-router` 只做阶段判断、入口检查与 skill 路由；具体方法由专业 skill 执行，不重复维护规则 |
 | 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
 | P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
 | 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
