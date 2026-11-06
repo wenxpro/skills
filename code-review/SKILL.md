@@ -103,6 +103,7 @@ description: 代码审查与合并前检查：审查 diff/实现，输出必须�
 | Skill | 关系 |
 |---|---|
 | `delivery-stage` | 交付阶段 playbook；本 skill 是合并前检查 |
+| `parallel-worktree` | 在特性 worktree 内审查；合并后主分支复跑 |
 | `review` | 设计/方案评审；本 skill 只审代码和测试结果 |
 | `docs-core` | 行为变更要同步规则文档、验收和变更记录 |
 | `execution-loop` | 修复和复跑纳入工作包闭环 |

@@ -27,11 +27,13 @@ description: Git 提交：按 Conventional Commits 生成 message，直接提交
 - 设计 / 方案确认后，提交与推送属于执行动作，直接做到目标，不逐次询问
 - 仅在 message 有歧义、变更混入用户未提交的工作、或需要不可逆操作（force push、删分支）时询问
 - 提交失败（pre-commit 钩子、lint 失败等）时报告错误，不擅自绕过
+- 分支/worktree 的创建、合并、清理见 `parallel-worktree`；本 skill 只负责提交与推送
 - 提交后需要跨会话交接时，用 `session-handoff`；提交是 handoff 的事实源之一
 
 ## 交接
 
 - 交付阶段：由 `delivery-stage` 组织
 - 提交前置：`code-review` 通过
+- 并行工作区：`parallel-worktree`
 - 验收状态：`implementation-track`
 - 反馈：交付结果交 `feedback-stage`

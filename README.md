@@ -8,6 +8,7 @@
 - **delivery-stage** — 交付阶段 playbook：入口确认 → 工作包执行 → 代码审查与改动检查 → 提交 → 验收状态
 - **feedback-stage** — 反馈阶段 playbook：证据收集与分类 → 状态/文档更新 → 评审/规划/设计回流
 - **session-handoff** — 会话边界与外部记忆：继续/新开判断、一页 handoff、记忆分层、并行/模型切换；不替代 execution-loop
+- **parallel-worktree** — 并行会话与 Git 工作树：独立 worktree + 短分支、合并顺序、冲突与清理；只做工作区隔离，不替代 git-commit/code-review
 - **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期、入口/退出与延后项；新增表面前的触发门
@@ -41,6 +42,7 @@
   回流 → design-stage（重新设计） / delivery-stage（修复）
 
 任一段的会话边界 ──▶ session-handoff（外部工作记忆）
+任一段的并行写   ──▶ parallel-worktree（独立 worktree + 分支）
 ```
 
 `docs-core` 是文档槽位基础；`skill-audit` 是 skill 仓库级审核，不进入项目交付流。
@@ -53,6 +55,9 @@
 | 做完/试玩/测试后怎么回流到规划或设计 | **feedback-stage** |
 | 这个会话太长了，要不要开新窗口 | **session-handoff** |
 | 怎么把当前状态交接给新会话 | **session-handoff** |
+| 多个会话同时改一个仓库怎么隔离 | **parallel-worktree** |
+| 开 worktree/分支并行做两套方案 | **parallel-worktree** |
+| 多个 worktree/分支怎么合并 | **parallel-worktree** |
 | 当前里程碑做什么、行为规则、怎么验收 | **game-docs** |
 | 产品有哪些屏幕、怎么导航、状态归谁管 | **experience-architecture** |
 | 新增模式/设置/结算页，壳层要不要改 | **experience-architecture** |
@@ -76,6 +81,7 @@
 |---|---|
 | 阶段 playbook | `design-stage` / `delivery-stage` / `feedback-stage` 只写本阶段入口、检查、出口与交接；生命周期图只在 README 维护 |
 | 会话边界 | 一个工作包一个会话；切换前写一页 handoff；状态先落盘，临时推理不落盘 |
+| 并行写 | 一个 worktree 一个写者；合并的是分支不是目录；共享接口/配置指定 owner |
 | 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
 | P0 / P1 | 只表示**验收优先级**：P0 必须通过，P1 可后置 |
 | 代码问题级别 | `必须修 / 建议修 / 可选`，不要用 P0/P1 表示代码问题 |
@@ -112,10 +118,10 @@ cp -r docs-core game-docs <project>/.agents/skills/
 
 > `game-docs` 依赖 `docs-core`，需一并安装：两个目录都要在 `.agents/skills/` 下。其他 skill 可单独安装。
 
-阶段 playbook、连续执行与边界设计可按需安装：
+阶段 playbook、会话边界、并行工作区、连续执行与边界设计可按需安装：
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff parallel-worktree execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。
