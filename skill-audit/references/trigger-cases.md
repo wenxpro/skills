@@ -8,6 +8,8 @@
 |---|---|---|
 | 「新模块/新系统怎么设计，先定什么」 | design-stage | delivery-stage、code-review |
 | 「设计阶段该补哪些输入、按什么轨道做」 | design-stage | delivery-stage、code-review |
+| 「动态对象的生命周期怎么画图」 | design-stage | delivery-stage、code-review |
+| 「类图/上下文地图够不够证明生命周期」 | design-stage | delivery-stage、code-review |
 | 「设计确认了，怎么组织实现、审查和提交」 | delivery-stage | design-stage、review、execution-loop |
 | 「交付阶段该拆哪些工作包、跑哪些检查」 | delivery-stage | code-review、execution-loop |
 | 「试玩/测试完了，怎么回流到规划或设计」 | feedback-stage | delivery-stage、execution-loop |
@@ -40,6 +42,8 @@
 | 「梳理一下这个项目的演进和模块细节」 | code-digest | responsibility-design、topic-research |
 | 「模块边界太乱，先修哪条依赖」 | responsibility-design | code-digest、experience-architecture |
 | 「新模块的职责边界和依赖方向怎么定」 | responsibility-design | code-digest、design-stage |
+| 「动态对象由谁创建/注册/清理」 | responsibility-design | docs-audit、delivery-stage |
+| 「上下文地图为什么没发现生命周期问题」 | responsibility-design | docs-audit、code-review |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
 | 「提交并推送」 | git-commit | execution-loop、parallel-worktree、multi-repo-commit |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
