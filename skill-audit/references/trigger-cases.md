@@ -8,12 +8,12 @@
 |---|---|---|
 | 「新模块/新系统怎么设计，先定什么」 | design-stage | delivery-stage、code-review |
 | 「设计阶段该补哪些输入、按什么轨道做」 | design-stage | delivery-stage、code-review |
-| 「设计确认了，怎么组织实现、审查和提交」 | delivery-stage | design-stage、review |
+| 「设计确认了，怎么组织实现、审查和提交」 | delivery-stage | design-stage、review、execution-loop |
 | 「交付阶段该拆哪些工作包、跑哪些检查」 | delivery-stage | code-review、execution-loop |
 | 「试玩/测试完了，怎么回流到规划或设计」 | feedback-stage | delivery-stage、execution-loop |
 | 「验收失败/文档过时，下一步怎么处理」 | feedback-stage | implementation-track、docs-audit |
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
-| 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning |
+| 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning、delivery-stage |
 | 「验收项做到哪了？偏差怎么记」 | implementation-track | execution-loop、roadmap-planning |
 | 「评审一下这个方案，能不能过」 | review | docs-audit、code-review、experience-architecture |
 | 「审一下这次改动有没有坑」 | code-review | review、docs-audit |

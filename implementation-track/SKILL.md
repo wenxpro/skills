@@ -1,6 +1,6 @@
 ---
 name: implementation-track
-description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段式偏差、证据阶梯、最小 fake 接口。适用于 MVP/M1 的实现推进与进度汇报；不适用于 Spec/验收创建（game-docs）、规划（roadmap-planning）、连续执行（execution-loop）。
+description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段式偏差、证据阶梯、最小 fake 接口。适用于 MVP/M1 的实现推进与进度汇报；不适用于 Spec/验收创建（game-docs）、规划（roadmap-planning）、结果分类/回流（feedback-stage）、连续执行（execution-loop）。
 ---
 
 # 实现跟踪（验收 + 偏差）
@@ -86,6 +86,7 @@ description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段
 - 验收矩阵由 `game-docs` 创建；本 skill 只更新状态与偏差，不重写 `02` / `03`
 - 代码审查/合并前检查结果由 `code-review` 产出；本 skill 只更新状态与偏差
 - 连续执行到目标用 `execution-loop`；本 skill 负责状态与偏差
+- 结果分类/回流用 `feedback-stage`；本 skill 只更新状态与偏差
 - 跨版本规划由 `roadmap-planning` 负责；本 skill 不排期
 - 偏差若改变设计结论，回到 `game-docs/workflow.md` 的「变更与维护」流程，再回写
 

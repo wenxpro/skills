@@ -1,6 +1,6 @@
 ---
 name: execution-loop
-description: 连续执行闭环：一次确认目标/DoD/约束，之后连续执行、自测、提交、更新跟踪，只在真实阻塞时停。适用于「做到 X 再汇报」「别每步问」「连续执行到验收」；不适用于规划（roadmap-planning）、Spec 创建（game-docs）、单点问答。
+description: 连续执行闭环：一次确认目标/DoD/约束，之后连续执行、自测、提交、更新跟踪，只在真实阻塞时停。适用于「做到 X 再汇报」「别每步问」「连续执行到验收」；不适用于规划（roadmap-planning）、Spec 创建（game-docs）、阶段与交付流程（delivery-stage）、单点问答。
 ---
 
 # 连续执行闭环
@@ -113,6 +113,7 @@ description: 连续执行闭环：一次确认目标/DoD/约束，之后连续�
 ## 交接
 
 - 交付阶段：由 `delivery-stage` 组织
+- 阶段/交付流程：`delivery-stage`
 - 目标/分期：`roadmap-planning`
 - 验收状态/偏差：`implementation-track`
 - 规则文档与 Spec：`docs-core` / `game-docs`
