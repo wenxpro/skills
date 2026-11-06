@@ -1,100 +1,78 @@
-# LLM 集成偏好（示例，可替换）
+# LLM 集成领域约定
 
-> 本文件是偏好层：运行时、模型档、预算与记录路径。通用流程见 `SKILL.md`；换项目时整体替换，不影响通用层。
+> 与供应商无关的领域约定。具体运行时、模型、字段、命令与延迟示例在 `examples/`；换项目时替换示例，不改本文件。
 
-## 运行时
+## 角色与所有权
 
-- 当前使用 LM Studio（应用名 `Bionic`）+ OpenAI 兼容端点：`http://127.0.0.1:1234/v1`。
-- AMD RDNA1（如 RX 5700 XT，8 GB）使用 **Vulkan** runtime；ROCm 不支持 `gfx1010`。
-- 一次只驻留一个模型；会话开始时 pin 模型 id，中途不切换。
+| 角色 | 拥有 | 不拥有 |
+|---|---|---|
+| 业务侧 | 决策点、允许集合、最终合法性 | 模型选择、提示措辞、重试 |
+| 适配层 | 模型档、提示、约束生成、预校验、降级、观测 | 业务状态修改、最终裁决 |
+| 模型档 | 端点、模型、能力、采样、预算 | 业务规则、会话状态 |
+| 降级策略 | 确定性选择、降级标记 | 模型调用 |
+
+依赖方向固定：业务侧 → 适配层 → 模型档；适配层不反向修改业务状态。
+
+## 模型档
+
+一个模型档至少声明：
+
+- **身份**：档位 id、传输方式、端点、模型标识
+- **能力**：受约束输出、随机种子、多模态、上下文长度
+- **采样**：温度、随机种子、是否保留推理
+- **预算**：超时、输出预算、重试次数
+- **用途**：高频、内容验证、对照、降级
+
+规则：
+
+- 一次运行只有一个活动档；中途不切换。
+- 未知档或缺少必需能力 → 启动前失败，不静默回退。
+- 档位是数据，不是代码分支；换模型只改配置。
+- 每次运行记录档位 id 与能力快照。
+
+## 决策记录
+
+每次决策至少记录：
+
+- 决策标识与序号
+- 观察指纹（规范化后的输入）
+- 提示与约束指纹
+- 选择结果与校验状态
+- 尝试次数与降级标记
+- 用量、结束原因、延迟
+- 模型档 id 与能力快照
+
+规则：
+
+- 一次运行一个隔离位置；不跨运行追加。
+- 原始响应可选保存；默认只存指纹与摘要。
+- 降级、非法、超时分别计数，不合并成一个失败率。
+- 凭据、完整端点、原始提示不进入记录。
+
+## 预算策略
+
+- **高频**：优先低延迟、低推理；输出预算只够结果本身；超时短，失败直接降级。
+- **内容验证**：可以接受更高延迟和推理；但仍要有超时与降级。
+- **重试**：只用于修复格式/结构/语义错误；超时不重试。
+- **降级**：必须是确定性的、可复现的，且不依赖模型。
+- **对比**：延迟、用量、时间戳不参与行为一致性比较。
+
+具体数值、运行时命令与实测延迟见 `examples/`。
+
+## 回放
+
+- 主键：运行种子 + 决策序号；校验：观察指纹。
+- 严格模式：指纹不一致立即停，用于排查。
+- 宽松模式：继续执行但标记偏离与过期，不参与结论对比。
+- 回放不加载模型；命中失败按降级处理，不崩溃。
+
+## 安全
+
+- 模型端点默认只绑定本机回环；不暴露到局域网。
+- 业务进程不持有云端凭据；凭据只经环境变量注入适配层。
 - 单客户端、单飞行；不把决策请求并发化。
+- 记录与报告脱敏；不落原始凭据。
 
-## 模型档示例
+## 示例
 
-| profile id | 模型 | Q4 大小 | 实测 | 用途 |
-|---|---|---|---|---|
-| `local-qwen3-4b-2507` | Qwen3-4B-Instruct-2507 | 2.33 GB | 0.76–0.79 s/次 | 高频主力；非 thinking |
-| `local-gemma4-e4b` | Gemma 4 E4B | 4.64 GB | 0.6–12.1 s/次 | 低频对照；thinking 不能可靠关闭，需 20 s 预算 |
-| `local-ministral3-3b` | Ministral 3 3B Instruct | 2.00 GB | 待测 | 新一档高频候选；非 thinking |
-| `rule-bot` | 无模型 | — | 毫秒级 | 基线、CI、fallback |
-
-> 以上是当前机器的示例，不作为通用推荐。换硬件/任务时重新测。
-
-## 探测请求示例（PowerShell）
-
-```powershell
-$body = @{
-  model = "<model-id>"
-  messages = @(
-    @{ role = "system"; content = "Return only the JSON object required by the schema." },
-    @{ role = "user"; content = "<realistic decision prompt with allowed options>" }
-  )
-  response_format = @{
-    type = "json_schema"
-    json_schema = @{
-      name = "action"
-      strict = $true
-      schema = @{
-        type = "object"
-        properties = @{ option_id = @{ type = "string"; enum = @("<id-a>", "<id-b>") } }
-        required = @("option_id")
-        additionalProperties = $false
-      }
-    }
-  }
-  temperature = 0
-  max_tokens = 96
-}
-$sw = [System.Diagnostics.Stopwatch]::StartNew()
-$r = Invoke-RestMethod -Uri "http://127.0.0.1:1234/v1/chat/completions" `
-  -Method Post -ContentType "application/json" -Body ($body | ConvertTo-Json -Depth 10) -TimeoutSec 60
-$sw.Stop()
-"latency_ms=$($sw.ElapsedMilliseconds)"
-"content=[$($r.choices[0].message.content)]"
-"reasoning=[$($r.choices[0].message.reasoning_content)]"
-"finish=$($r.choices[0].finish_reason) usage=$($r.usage.prompt_tokens)+$($r.usage.completion_tokens)"
-```
-
-## 预算
-
-| 场景 | timeout | max_tokens | retries |
-|---|---|---|---|
-| 高频、非 thinking | 8 s | 96–128 | 1 |
-| thinking 模型 | 20 s | 768 | 1 |
-| 单局总时长 | 10 min | — | — |
-
-- 单次决策超时：先标记结束，再取消请求；迟到响应丢弃。
-- 重试只用于修复坏 JSON / schema / 非法动作；超时不重试，直接 fallback。
-- fallback 必须是确定性的规则策略，并在报告里单独计数。
-
-## 记录
-
-一次运行一个目录：
-
-```text
-artifacts/playtest/<run_id>/
-├─ run_manifest.json
-├─ decisions.jsonl
-├─ report.json
-└─ responses.jsonl   # 可选
-```
-
-`decisions.jsonl` 每行至少包含：`decision_id`、`seq`、`kind`、`obs_hash`、`prompt_hash`、`schema_hash`、`provenance`、`action`、`validation`、`attempts`、`fallback`、`source`、`latency_ms`、`finish_reason`、`usage`。
-
-## 下载与校验
-
-- Hugging Face 直连不稳定时用镜像：`https://hf-mirror.com/<owner>/<repo>/resolve/main/<file>`。
-- 下载后校验 SHA256；LM Studio 模型目录结构必须严格：
-
-```text
-<LM Studio models>/<publisher>/<repo>/<file>.gguf
-```
-
-- 纯文本决策不需要 `mmproj`；视觉输入再补。
-- `lms ls` / `lms ps` 确认模型 id 与加载状态；`lms load <id> --gpu max -c <ctx> -y`。
-
-## thinking 处理
-
-- 不同 provider/模型的开关不一致；不要假设 `enable_thinking=false`、`/no_think`、`reasoning_effort=none` 一定生效。
-- 先看响应里的 `reasoning_content` / reasoning token；若 content 为空且 finish=length，按 thinking 处理。
-- 可靠做法：换非 thinking 的 instruct 变体；不能换时给足 max_tokens 和 timeout，并接受更高延迟。
+运行环境、模型候选、具体字段名、请求样例与延迟记录都在 `examples/`，并明确标注为示例。不要把示例中的数值或产品名复制回本文件。
