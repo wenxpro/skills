@@ -8,8 +8,8 @@
 - **delivery-stage** — 交付阶段 playbook：入口确认 → 工作包执行 → 代码审查与改动检查 → 提交 → 验收状态
 - **feedback-stage** — 反馈阶段 playbook：证据收集与分类 → 状态/文档更新 → 评审/规划/设计回流
 - **session-handoff** — 会话边界与外部记忆：继续/新开判断、一页 handoff、记忆分层、并行/模型切换；不替代 execution-loop
-- **parallel-worktree** — 并行会话与 Git 工作树：独立 worktree + 短分支、合并顺序、冲突与清理；只做工作区隔离，不替代 git-commit/code-review
-- **multi-repo-commit** — 单会话多仓库提交：按仓库分组、分别提交推送、记录部分失败与跨仓库一致性；不替代 git-commit/parallel-worktree
+- **worktree-workflow** — 任务读写分流与 Git 工作树：只读讨论留主工作区，写任务默认独立 worktree + 短分支、合并顺序、冲突与清理；不替代 git-commit/code-review
+- **multi-repo-commit** — 单会话多仓库提交：按仓库分组、分别提交推送、记录部分失败与跨仓库一致性；不替代 git-commit/worktree-workflow
 - **docs-core** — 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查，可裁剪）、单一事实源、行为变更三件套、ADR 实施/归档、状态语义（不绑领域）
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含跨项目设计模式参考
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期、入口/退出与延后项；新增表面前的触发门
@@ -43,7 +43,8 @@
   回流 → design-stage（重新设计） / delivery-stage（修复）
 
 任一段的会话边界 ──▶ session-handoff（外部工作记忆）
-任一段的并行写   ──▶ parallel-worktree（独立 worktree + 分支）
+任一段的只读讨论 ──▶ 主工作区（不建 worktree）
+任一段的写任务   ──▶ worktree-workflow（独立 worktree + 分支）
 多仓库提交       ──▶ multi-repo-commit（逐仓库提交/推送）
 ```
 
@@ -58,9 +59,12 @@
 | 做完/试玩/测试后怎么回流到规划或设计 | **feedback-stage** |
 | 这个会话太长了，要不要开新窗口 | **session-handoff** |
 | 怎么把当前状态交接给新会话 | **session-handoff** |
-| 多个会话同时改一个仓库怎么隔离 | **parallel-worktree** |
-| 开 worktree/分支并行做两套方案 | **parallel-worktree** |
-| 多个 worktree/分支怎么合并 | **parallel-worktree** |
+| 只读讨论/调研要不要开 worktree | 不开；留在主工作区 |
+| 要改代码/文档/配置/资源，先做什么 | **worktree-workflow** |
+| 讨论完了开始写，什么时候建 worktree | **worktree-workflow** |
+| 多个会话同时改一个仓库怎么隔离 | **worktree-workflow** |
+| 开 worktree/分支并行做两套方案 | **worktree-workflow** |
+| 多个 worktree/分支怎么合并 | **worktree-workflow** |
 | 一次任务改了多个仓库怎么提交 | **multi-repo-commit** |
 | skills 和项目仓库都要提交 | **multi-repo-commit** |
 | 不同域名/凭据的仓库一起推 | **multi-repo-commit** |
@@ -87,6 +91,7 @@
 |---|---|
 | 阶段 playbook | `design-stage` / `delivery-stage` / `feedback-stage` 只写本阶段入口、检查、出口与交接；生命周期图只在 README 维护 |
 | 会话边界 | 一个工作包一个会话；切换前写一页 handoff；状态先落盘，临时推理不落盘 |
+| 读写分流 | 只读讨论/调研留主工作区；写代码/文档/配置/资源默认独立 worktree；主工作区只做集成/验证 |
 | 并行写 | 一个 worktree 一个写者；合并的是分支不是目录；共享接口/配置指定 owner |
 | 多仓库提交 | 每个仓库独立提交/推送/验证；没有跨仓库原子提交；部分失败分别记录 |
 | 文档类型 | `game-docs` 00~05、07 用 **game**（06 可选）；PRD + 各包 DESIGN.md 用 **software**；评审用 `review/profiles/` 下对应文件 |
@@ -126,10 +131,10 @@ cp -r docs-core game-docs <project>/.agents/skills/
 
 > `game-docs` 依赖 `docs-core`，需一并安装：两个目录都要在 `.agents/skills/` 下。其他 skill 可单独安装。
 
-阶段 playbook、会话边界、并行工作区、连续执行与边界设计可按需安装：
+阶段 playbook、会话边界、工作树读写分流、连续执行与边界设计可按需安装：
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff parallel-worktree multi-repo-commit execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow multi-repo-commit execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 更新：重新执行复制命令覆盖即可；卸载：删除对应目录。
