@@ -57,6 +57,10 @@
 | 「动态对象由谁创建/注册/清理」 | responsibility-design | docs-audit、delivery-stage |
 | 「上下文地图为什么没发现生命周期问题」 | responsibility-design | docs-audit、code-review |
 | 「调研一下终端 UI 生态」 | topic-research | code-digest |
+| 「把 LLM 接进游戏，JSON 总是不稳」 | llm-integration | design-stage、code-review |
+| 「本地模型返回空 content / 一直 thinking，怎么排查」 | llm-integration | topic-research |
+| 「LLM 调用怎么加 fallback 和回放」 | llm-integration | design-stage、execution-loop |
+| 「泛化调研 2026 小模型生态」 | topic-research | llm-integration |
 | 「提交并推送」 | git-commit | execution-loop、worktree-workflow、multi-repo-commit |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
 | 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |

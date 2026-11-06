@@ -12,6 +12,7 @@
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后要回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
+| 把 LLM 接入游戏/工具 | `llm-integration` |
 | 一次任务改多个仓库 | `multi-repo-commit` |
 | 会话太长或要交接 | `session-handoff` |
 | 文档集/术语/仓库审核 | `docs-audit` / `skill-audit` |
@@ -36,6 +37,7 @@
 | 会话边界 | `session-handoff` | 一个工作包一个会话；切换前写 handoff |
 | 读写分流 | `worktree-workflow` | 只读留主工作区；写任务独立 worktree |
 | 多仓库提交 | `multi-repo-commit` | 每个仓库独立提交、推送、验证 |
+| LLM 接入 | `llm-integration` | 先探测端点，再接业务；失败必须降级 |
 | Skill 维护 | `skill-audit` | 抽象分层、触发边界、术语与交叉引用 |
 
 ## Skill 索引
@@ -56,6 +58,10 @@
 - **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期与延后项
 - **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、生命周期所有权、边界违规与重构
+
+### 实现与集成
+
+- **llm-integration** — LLM 调用集成：模型档探测、结构化输出、失败降级、回放与高频选型
 
 ### 决策与规划
 
