@@ -42,6 +42,7 @@
 | 「审一下这次改动有没有坑」 | code-review | review、docs-audit |
 | 「合并前该跑哪些验证」 | code-review | execution-loop |
 | 「审核一下这套文档，有没有矛盾过时」 | docs-audit | review、code-review |
+| 「这套文档有旧版本/过时内容，顺手归档」 | docs-audit | review、game-docs、feedback-stage |
 
 ## 文档与代码
 
