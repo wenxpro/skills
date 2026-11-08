@@ -18,6 +18,7 @@
 | 一次任务改多个仓库 | `multi-repo-commit` |
 | 会话太长或要交接 | `session-handoff` |
 | 文档集/术语/仓库审核 | `docs-audit` / `skill-audit` |
+| 准备把 skills 改动合并到 main | `skill-audit`（默认自检门）+ `scripts/check-skills.sh` |
 
 ## 主流程
 
@@ -133,4 +134,5 @@ cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workfl
 - `description` 写清触发场景：何时用、何时不用
 - 设置 `disable-model-invocation: true` 后只能通过 `/` 命令手动调用
 - 仓库术语见 `skill-audit/references/terminology.md`；改完跑 `scripts/check-skills.sh`，废弃词零命中
+- **合并到 `main` 前默认自检**：跑一次 `skill-audit` + `scripts/check-skills.sh`；未通过不合并
 - 引用文件用相对路径，如 `standards.md`、`templates/foo.md`；不要写死本机绝对路径
