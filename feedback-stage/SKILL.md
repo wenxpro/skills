@@ -7,6 +7,8 @@ description: 反馈阶段 playbook：收集测试、试玩、审查与文档证�
 
 目标：让结果变成下一步决策，而不是停在“测试完了 / 试玩完了”。
 
+> 阶段顺序与交接见 [references/feedback-runbook.md](references/feedback-runbook.md)。
+
 ## 入口
 
 有结果需要解释和回流时进入：测试、试玩、发布、代码审查、文档审计、验收状态更新之后。

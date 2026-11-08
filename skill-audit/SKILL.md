@@ -1,6 +1,6 @@
 ---
 name: skill-audit
-description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用与职责重叠；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
+description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用、职责重叠与合并/拆分评估；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
 ---
 
 # Skill 仓库审核
@@ -101,6 +101,8 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 职责边界：两个 skill 的对象/触发是否冲突（如文档审核 vs 仓库审核；代码过时 vs 文档漂移）
 - 阶段 playbook skill（如 `design-stage`）只写本阶段入口、检查、出口与交接；不复制生命周期表或具体方法，避免和底层 skill 双重维护
 - 关系图与交接文字一致（如 roadmap 的下一步是否在两边都写了 execution-loop）
+
+> 多个 skill 总是同时触发时，按 [references/consolidation.md](references/consolidation.md) 判断关系类型与改造方式：同一职责可合并，阶段链路用 runbook，领域差异用 profile，名称混淆用改名；不要只按“前后出现”合并。
 
 ## 第五步：主动行为与干预策略
 

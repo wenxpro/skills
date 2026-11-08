@@ -1,6 +1,6 @@
 ---
 name: cross-project-integration
-description: 跨项目协作设计：一项能力由两个以上仓库、团队或发布节奏共同交付时，定义上下游、接口登记、依赖矩阵、冻结与集成计划、生产者/消费者检查与跨项目交接。适用于跨仓库/跨团队/多发布节奏的协作、迁移与集成；不适用于单仓库模块边界（responsibility-design）、单项目排期（roadmap-planning）、多仓库提交（multi-repo-commit）、单次会话交接（session-handoff）、LLM 供应商接入（llm-integration）。
+description: 跨项目协作设计：一项能力由两个以上仓库、团队或发布节奏共同交付时，定义上下游、接口登记、依赖矩阵、冻结与集成计划、生产者/消费者检查与跨项目交接。适用于跨仓库/跨团队/多发布节奏的协作、迁移与集成；不适用于单仓库模块边界（responsibility-design）、单项目排期（roadmap-planning）、多仓库提交（git-commit）、单次会话交接（session-handoff）、LLM 供应商接入（llm-integration）。
 ---
 
 # 跨项目协作设计
@@ -21,7 +21,7 @@ description: 跨项目协作设计：一项能力由两个以上仓库、团队�
 
 - 单仓库模块边界与依赖方向 → `responsibility-design`
 - 单项目里程碑与工作包排期 → `roadmap-planning`
-- 多个仓库的提交与推送 → `multi-repo-commit`
+- 多个仓库的提交与推送 → `git-commit`（多仓库模式）
 - 单次会话的交接与恢复 → `session-handoff`
 - 模型/供应商接入与失败降级 → `llm-integration`
 - 产品范围、取舍与验收决策 → `review` / `design-stage`
@@ -177,7 +177,7 @@ DSM 约定：
 - 本 skill 不决定产品范围、优先级或验收取舍；回 `review` / `design-stage`。
 - 不替代单项目模块设计；模块内部边界用 `responsibility-design`。
 - 不替代单项目排期；里程碑与工作包用 `roadmap-planning`。
-- 不替代提交编排；多仓库提交用 `multi-repo-commit`。
+- 不替代提交编排；多仓库提交用 `git-commit`（多仓库模式）。
 - 不替代会话交接；单次会话切换用 `session-handoff`。
 - 不强制所有项目都上重流程；只有跨项目、共享接口、需要并行或迁移时才用。
 
@@ -200,7 +200,7 @@ DSM 约定：
 | `responsibility-design` | 单项目上下文、模块所有权、依赖方向 |
 | `roadmap-planning` | 跨项目工作流进入里程碑与工作包 |
 | `delivery-stage` | 集成计划进入交付与合并前检查 |
-| `multi-repo-commit` | 按仓库提交、推送与部分失败处理 |
+| `git-commit` | 按仓库提交、推送与部分失败处理（多仓库模式） |
 | `session-handoff` | 跨项目会话边界与工作记忆 |
 | `llm-integration` | 模型接入、失败降级、回放与选型 |
 | `docs-core` / `docs-audit` | 接口登记与项目文档的单一事实源 |

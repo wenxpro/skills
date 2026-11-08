@@ -7,6 +7,8 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 
 目标：把已确认的设计变成可提交、可合并、可验收的改动。
 
+> 阶段顺序与交接见 [references/delivery-runbook.md](references/delivery-runbook.md)。
+
 ## 入口
 
 设计/评审/规划已确认后进入。开始前确认：
@@ -71,5 +73,5 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 - 执行与检查：`execution-loop` → `code-review` → `git-commit` → `implementation-track`
 - 会话切换/交接：`session-handoff`
 - 工作区/读写分流（写任务默认 worktree）：`worktree-workflow`
-- 多仓库提交：`multi-repo-commit`
+- 多仓库提交：`git-commit`（多仓库模式）
 - 跨项目接口与集成计划：`cross-project-integration`

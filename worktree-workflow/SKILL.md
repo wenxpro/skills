@@ -1,6 +1,6 @@
 ---
 name: worktree-workflow
-description: 任务读写分流与 Git 工作树：只读讨论/调研留主工作区，任何写任务默认独立 worktree + 短分支，主工作区只做集成与验证。适用于要改代码/文档/配置/资源、讨论后开始落盘、并行会话、长任务、实验分支、方案对比；不适用于纯只读讨论/调研、单仓库提交（git-commit）、多仓库提交编排（multi-repo-commit）、代码审查（code-review）。
+description: 任务读写分流与 Git 工作树：只读讨论/调研留主工作区，任何写任务默认独立 worktree + 短分支，主工作区只做集成与验证。适用于要改代码/文档/配置/资源、讨论后开始落盘、并行会话、长任务、实验分支、方案对比；不适用于纯只读讨论/调研、提交（git-commit）、代码审查（code-review）。
 ---
 
 # 工作树工作流
@@ -19,7 +19,7 @@ description: 任务读写分流与 Git 工作树：只读讨论/调研留主工�
 
 - 纯只读：阅读、讨论、调研、方案比较、代码解释
 - 提交信息与提交历史 → `git-commit`
-- 多仓库提交编排 → `multi-repo-commit`
+- 提交与推送 → `git-commit`（多仓库模式）
 - 代码审查 → `code-review`
 - 任务交接 → `session-handoff`
 
@@ -147,7 +147,7 @@ git -C <repo> worktree add -b <type>/<slug> <path> <base>
 |---|---|
 | `session-handoff` | 会话边界与工作记忆；本 skill 负责读写分流与工作区隔离 |
 | `git-commit` | 单仓库提交与推送；本 skill 负责分支/worktree 生命周期 |
-| `multi-repo-commit` | 跨多个独立仓库的提交编排 |
+| `git-commit` | 单仓库/多仓库提交与推送 |
 | `code-review` | 合并前检查 |
 | `execution-loop` | 工作包执行；写任务先建 worktree |
 | `delivery-stage` | 交付阶段入口；检查写任务已在独立 worktree |

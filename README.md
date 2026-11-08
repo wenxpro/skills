@@ -15,7 +15,7 @@
 | 测试/试玩/评审后要回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
 | 把 LLM 接入游戏/工具 | `llm-integration` |
-| 一次任务改多个仓库 | `multi-repo-commit` |
+| 一次任务改多个仓库 | `git-commit`（多仓库模式） |
 | 跨项目/跨仓库共同交付一项能力 | `cross-project-integration` |
 | 会话太长或要交接 | `session-handoff` |
 | 文档集/术语/仓库审核 | `docs-audit` / `skill-audit` |
@@ -41,7 +41,7 @@
 |---|---|---|
 | 会话边界 | `session-handoff` | 一个工作包一个会话；切换前写 handoff |
 | 读写分流 | `worktree-workflow` | 只读留主工作区；写任务独立 worktree |
-| 多仓库提交 | `multi-repo-commit` | 每个仓库独立提交、推送、验证 |
+| 多仓库提交 | `git-commit`（多仓库模式） | 每个仓库独立提交、推送、验证 |
 | 跨项目协作 | `cross-project-integration` | 上下游、接口登记、依赖矩阵、冻结与集成计划 |
 | LLM 接入 | `llm-integration` | 先探测端点，再接业务；失败必须降级 |
 | Skill 维护 | `skill-audit` | 抽象分层、触发边界、术语与交叉引用 |
@@ -79,14 +79,13 @@
 
 - **execution-loop** — 连续执行闭环：一次确认目标，批量执行、自测、提交、更新跟踪，只在真实阻塞时停
 - **code-review** — 代码审查与合并前检查：必须修/建议修/可选分级、改动类型 → 必跑检查、修复复跑
-- **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交
+- **git-commit** — Git 提交：分析变更、按 Conventional Commits 生成 message、执行提交；含单仓库与多仓库模式
 - **worktree-workflow** — 任务读写分流：只读留主工作区，写任务默认独立 worktree + 短分支、合并与清理
-- **multi-repo-commit** — 单会话多仓库提交：按仓库分组、分别提交推送、记录部分失败与跨仓库一致性
 
 ### 会话与维护
 
 - **session-handoff** — 会话边界与外部记忆：继续/新开判断、一页 handoff、记忆分层、并行/模型切换
-- **skill-audit** — Skill 仓库审核：抽象分层、触发边界、主动行为、术语一致性与交叉引用
+- **skill-audit** — Skill 仓库审核：抽象分层、触发边界、主动行为、术语一致性、交叉引用与合并/拆分评估
 
 ## 核心约定
 
@@ -127,7 +126,7 @@ cp -r docs-core game-docs <project>/.agents/skills/
 常用：
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow multi-repo-commit cross-project-integration execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow cross-project-integration execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 > `game-docs` 依赖 `docs-core`。更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。

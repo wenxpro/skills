@@ -8,6 +8,7 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 目标：把“要做什么”收敛成可评审、可排期、可验收的设计结论。
 
 > 图设计按风险选最小图集，详见 `references/diagram-playbook.md`；填写模板见 `templates/design-diagrams.md`。决策锁、Pre-mortem 与 Kill Criteria 见 `references/decision-locks.md`。
+> 阶段顺序与交接见 [references/design-runbook.md](references/design-runbook.md)。
 
 ## 入口
 

@@ -33,7 +33,7 @@
 | 「多个 worktree 怎么合并」 | worktree-workflow | git-commit、multi-repo-commit、code-review |
 | 「一个分支能不能开两个会话写」 | worktree-workflow | session-handoff、execution-loop |
 | 「一次任务改了多个仓库怎么提交」 | multi-repo-commit | git-commit、session-handoff |
-| 「skills 和项目仓库都要提交」 | multi-repo-commit | git-commit、worktree-workflow |
+| 「skills 和项目仓库都要提交」 | git-commit（多仓库模式） | worktree-workflow |
 | 「不同域名/凭据的仓库一起推」 | multi-repo-commit | worktree-workflow、git-commit |
 | 「接下来做什么？V1 和 V2 怎么拆」 | roadmap-planning | execution-loop、implementation-track |
 | 「做到 M1 验收全过再汇报，别每步问我」 | execution-loop | roadmap-planning、delivery-stage、session-handoff |
@@ -78,6 +78,8 @@
 | 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |
 | 「准备把 skills 改动合并到 main」 | `skill-audit`（语义审计）+ CI / pre-push 硬检查 | docs-audit |
 | 「改完 skill 直接 merge」 | 先确认 CI / pre-push 与 skill-audit；未通过不合并 | 直接 git merge |
+| 「这些 skill 总是前后一起用，能不能合并」 | skill-audit + `references/consolidation.md` | docs-audit、review |
+| 「这个 skill 该合并、拆分还是改名」 | skill-audit | review |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
 ## 多轮行为与干预策略
