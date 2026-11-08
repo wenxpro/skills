@@ -9,6 +9,8 @@
 | 只读讨论、调研、方案比较 | 主工作区；不建 worktree |
 | 要改代码/文档/配置/资源 | `worktree-workflow`：先建独立 worktree |
 | 新功能/新模块/新系统设计 | `design-stage` |
+| 设计里有不可逆决定，需要 pre-mortem / kill criteria | `design-stage` + `references/decision-locks.md` |
+| 游戏资源/随机/构筑/防错模式 | `game-docs` + `references/design-patterns.md` |
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后要回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
@@ -44,7 +46,7 @@
 
 ### 阶段 playbook
 
-- **design-stage** — 设计阶段 playbook：输入 → 体验架构/职责设计/图设计 → 文档规则 → 评审 → 规划；只写本阶段入口、检查与出口
+- **design-stage** — 设计阶段 playbook：输入 → 体验架构/职责设计/图设计 → 文档规则 → 评审 → 规划；含决策锁、Pre-mortem、Kill Criteria；只写本阶段入口、检查与出口
 - **delivery-stage** — 交付阶段 playbook：入口确认 → 工作包执行 → 代码审查 → 提交 → 验收状态
 - **feedback-stage** — 反馈阶段 playbook：证据收集与分类 → 状态/文档更新 → 评审/规划/设计回流
 
@@ -55,7 +57,7 @@
 - **docs-audit** — 文档集审核：交叉引用、术语一致性、版本锚点、重复与数字核对；含实现后漂移扫描与过时内容归档
 - **implementation-track** — 实现跟踪：验收项状态（◻/🔄/✅/❌）与偏差记录回写
 - **docs-core** — 通用文档体系规则：7 类文档、单一事实源、行为变更三件套、ADR 与状态语义
-- **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩
+- **game-docs** — 游戏文档体系（基于 docs-core）：Run Brief、Design Spec、验收矩阵、ADR、试玩；含防错/资源经济/随机性/构筑阶段等设计模式
 - **experience-architecture** — 产品体验架构：一页 Experience Map、屏幕/导航、状态所有权、生命周期与延后项
 - **responsibility-design** — 职责驱动设计：上下文地图、所有权、依赖方向、生命周期所有权、边界违规与重构
 

@@ -7,7 +7,7 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 
 目标：把“要做什么”收敛成可评审、可排期、可验收的设计结论。
 
-> 图设计按风险选最小图集，详见 `references/diagram-playbook.md`；填写模板见 `templates/design-diagrams.md`。
+> 图设计按风险选最小图集，详见 `references/diagram-playbook.md`；填写模板见 `templates/design-diagrams.md`。决策锁、Pre-mortem 与 Kill Criteria 见 `references/decision-locks.md`。
 
 ## 入口
 
@@ -79,6 +79,8 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 多条创建路径都有时序图或等价文字；跨上下文事件有发出者/监听者/顺序
 - 图与规则、验收、测试能互相对应；没有只画不用的图
 - 行为规则可判定，验收种子能转成验收项
+- 不可逆决定已标为单向门；有最小验证、回滚条件或评审结论
+- 已做 Pre-mortem；Kill Criteria 可观察、有 owner/时间盒
 - 未决项有 owner 与下一步
 
 ## 收敛与出口
@@ -102,6 +104,8 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 跳过职责设计直接实现，或把模块边界留到重构。
 - 用实现验证代替设计评审。
 - 把调研/代码梳理的事实直接当设计结论，事实与判断不分。
+- 把单向门当双向门：未验证就铺内容/美术/经济。
+- 只写“后续优化”，没有 Kill Criteria、owner 和时间盒。
 - 在设计阶段改代码。
 
 ## 交接
