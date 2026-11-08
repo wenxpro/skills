@@ -65,8 +65,8 @@
 | 「提交并推送」 | git-commit | execution-loop、worktree-workflow、multi-repo-commit |
 | 「审一下 skills 仓库的抽象分层」 | skill-audit | docs-audit |
 | 「检查一下 skills 仓库的术语是否统一」 | skill-audit | docs-audit |
-| 「准备把 skills 改动合并到 main」 | skill-audit（默认自检门）+ `scripts/check-skills.sh` | docs-audit |
-| 「改完 skill 直接 merge」 | 先跑 skill-audit；未通过不合并 | 直接 git merge |
+| 「准备把 skills 改动合并到 main」 | `skill-audit`（语义审计）+ CI / pre-push 硬检查 | docs-audit |
+| 「改完 skill 直接 merge」 | 先确认 CI / pre-push 与 skill-audit；未通过不合并 | 直接 git merge |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
 ## 多轮行为与干预策略
@@ -83,9 +83,9 @@
 | 只读讨论中用户说「开始改」 | 先建 worktree，再编辑；不继续在主工作区写 |
 | 用户说「只改一点/很快」 | 仍按写任务建 worktree；不按改动大小例外 |
 | 用户明确要求「就在主工作区改」 | 先说明影响，再遵从并记录例外 |
-| 准备合并 skills 改动到 main | 默认先跑 skill-audit + `scripts/check-skills.sh`；同一批只跑一次 |
-| 用户说「这次跳过 skills 自检」 | 不做默认门；记录“未审计”，不得声称通过 |
-| 未跑自检直接合并 skills main | 视为漏门；补跑并报告，不默认通过 |
+| 准备合并 skills 改动到 main | 默认先确认 CI / pre-push + 做 skill-audit；同一批只跑一次 |
+| 用户说「这次跳过 skills 自检」 | 不做默认检查；记录“未审计”，不得声称通过 |
+| 未跑检查直接合并 skills main | 视为漏检查；补跑并报告，不默认通过 |
 | 连续多轮无新证据 | 停止循环，升级为阻塞或换策略 |
 
 ## 使用方式

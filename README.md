@@ -18,6 +18,7 @@
 | 一次任务改多个仓库 | `multi-repo-commit` |
 | 会话太长或要交接 | `session-handoff` |
 | 文档集/术语/仓库审核 | `docs-audit` / `skill-audit` |
+| 准备把 skills 改动合并到 main | `skill-audit`（语义审计）+ CI / pre-push 硬检查 |
 | 准备把 skills 改动合并到 main | `skill-audit`（默认自检门）+ `scripts/check-skills.sh` |
 
 ## 主流程
@@ -127,6 +128,19 @@ cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workfl
 
 > `game-docs` 依赖 `docs-core`。更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。
 
+## 合并前检查
+
+机械检查由 CI / pre-push 硬检查负责：
+
+- **CI**：`.github/workflows/skills-check.yml` 在 push / PR 时跑 `bash scripts/check-skills.sh`
+- **本地 pre-push**：安装一次后，推送前自动跑同一脚本
+
+```sh
+bash scripts/install-git-hooks.sh
+```
+
+语义审计（抽象分层/触发边界/主动行为/职责重叠）仍由 `skill-audit` 负责；两者都通过才合并 `main`。
+
 ## 新增/维护 skill
 
 - 先过 `skill-audit`：通用规则放 `SKILL.md`，个人/团队偏好放引用文件，项目细节标注为示例
@@ -134,5 +148,5 @@ cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workfl
 - `description` 写清触发场景：何时用、何时不用
 - 设置 `disable-model-invocation: true` 后只能通过 `/` 命令手动调用
 - 仓库术语见 `skill-audit/references/terminology.md`；改完跑 `scripts/check-skills.sh`，废弃词零命中
-- **合并到 `main` 前默认自检**：跑一次 `skill-audit` + `scripts/check-skills.sh`；未通过不合并
+- **合并到 `main` 前默认自检**：确认 CI / pre-push 硬检查通过，并由 `skill-audit` 做语义审计；任一未通过不合并
 - 引用文件用相对路径，如 `standards.md`、`templates/foo.md`；不要写死本机绝对路径
