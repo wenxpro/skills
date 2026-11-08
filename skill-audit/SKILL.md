@@ -1,6 +1,6 @@
 ---
 name: skill-audit
-description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用与职责重叠。适用于新增/修改 skill 后、仓库发布前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
+description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用与职责重叠；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
 ---
 
 # Skill 仓库审核
@@ -11,9 +11,23 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 
 - 新增或修改 skill 后
 - 仓库发布前
+- 准备把 skills 仓库改动合并到 `main` 前（默认自检门）
 - 怀疑通用层混入项目细节（具体数值、文件格式、项目名、编号）
 
 不适用：项目文档集审核（用 `docs-audit`）、skill 内容的多角色评审（用 `review` + docs profile）。
+
+## 合并门（默认自检）
+
+对 skills 仓库的改动，**合并到 `main` 前默认执行一次本 skill**，不需要用户额外提醒：
+
+1. 跑结构/抽象分层/术语/交叉引用检查；
+2. 跑仓库根目录的 `scripts/check-skills.sh`；
+3. 输出「必须改 / 建议改 / 核对无误」报告；
+4. 未通过：**不合并**；修复后复跑；
+5. 用户明确要求跳过：记录“未审计”，不得声称通过。
+
+频率：同一批合并只跑一次；编辑过程中不打断。
+这是本 skill 唯一默认主动行为；其他时候保持被动。
 
 ## Skill 设计模型（审计判据来源）
 
@@ -27,6 +41,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 
 ## 操作顺序
 
+0. 合并 `main` 前：默认跑一次合并门
 1. 结构扫描
 2. 抽象分层扫描
 3. 术语一致性
@@ -108,7 +123,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 
 - **必须改**：违反抽象分层、引用断裂、frontmatter/目录不匹配、废弃术语未替换、主动行为缺少频率/拒绝后/降级规则
 - **建议改**：示例标注缺失、领域词未下沉、职责边界模糊、缺少多轮行为用例
-- **核对无误**：列出核对的 skill 与检查项
+- **核对无误**：列出核对的 skill 与检查项；附 `scripts/check-skills.sh` 结果
 
 ## 反例库（本仓库已实际发现）
 
@@ -119,6 +134,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 统一术语后只改 `SKILL.md`，README/模板仍留旧词——按 `references/terminology.md` 全库扫描，并跑 `scripts/check-skills.sh`
 - 只写「何时使用」，不写「何时主动提示、最多几次、用户拒绝后怎么办」——按 `references/behavior-policy.md` 补策略
 - 参考型 skill 频繁打断用户，或主动型 skill 在信息不足时直接建议切换——先声明主动/被动，再写触发与降级
+- 未跑 `skill-audit` / `scripts/check-skills.sh` 就直接合并 skills `main`——视为漏门
 
 这些模式应作为 grep 种子，每次扫描；行为策略类问题按 `references/behavior-policy.md` 逐项核对。
 
@@ -128,6 +144,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 报告先于修改：先输出三组清单，确认后再动文件
 - 不改变 skill 设计意图；修复优先下沉，不删除项目细节
 - 判据以本 skill 为准，README 只引用
+- 合并 `main` 前默认自检；用户明确跳过时标注未审计，不作为通过
 
 ## 与 README 的关系
 
