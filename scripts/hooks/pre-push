@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# skills 仓库 pre-push 门禁：推送前跑机械自检。
+set -euo pipefail
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+echo "[skills-check] running pre-push gate..."
+bash scripts/check-skills.sh
