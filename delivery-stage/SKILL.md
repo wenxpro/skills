@@ -16,6 +16,7 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 3. 需要跑的检查/测试已列出
 4. 写任务已进入独立 worktree；不在主工作区直接编辑
 5. 回滚或失败处理明确（如适用）
+6. 跨项目/跨仓库时，接口登记表、集成计划与合并顺序已确认
 
 任一不满足：回 `design-stage` / `review` / `roadmap-planning`，不用实现掩盖设计问题。
 
@@ -41,6 +42,7 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 | 状态 / 计时 / 随机 | 重开 / 恢复 / 随机复现一致性 + `code-review` |
 | 测试本身 | 断言质量、失败路径、`code-review` |
 | 文档 | `docs-core` 行为变更三件套；按需 `docs-audit` |
+| 跨项目接口 | 生产者检查 + 消费者检查 + 集成计划 + 跨项目交接 |
 | 每次提交 | `git-commit` |
 
 具体命令、阈值、样本量放项目规范，不写进本 skill。
@@ -70,3 +72,4 @@ description: 交付阶段 playbook：确认设计与规划入口，按工作包�
 - 会话切换/交接：`session-handoff`
 - 工作区/读写分流（写任务默认 worktree）：`worktree-workflow`
 - 多仓库提交：`multi-repo-commit`
+- 跨项目接口与集成计划：`cross-project-integration`

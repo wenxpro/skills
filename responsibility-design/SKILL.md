@@ -164,6 +164,7 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 - 设计阶段：`design-stage`；重构交付：`delivery-stage`
 - 代码现状：`code-digest`
 - 目标与分期：`roadmap-planning`
+- 跨项目上下游与接口登记：`cross-project-integration`
 - 连续执行：`execution-loop`
 - 验收状态：`implementation-track`
 - 规则文档：`docs-core` / `game-docs`
@@ -173,7 +174,8 @@ Presentation 只读 Application 的 ViewModel；Domain 不引用 UI。
 ## 边界
 
 - 本 skill 只定义职责与依赖，不写具体业务行为规则。
-- 不替代体验架构；屏幕/导航/产品状态归 `experience-architecture`，代码模块状态归本 skill。
+- 不替代体验架构；屏幕/导航/产品状态归 `experience-architecture`，代码模块状态归本 skill
+- 跨项目上下游、接口登记与集成计划不在此 skill；用 `cross-project-integration`。
 - 不替代 Spec / 验收；行为结论仍回项目规则文档。
 - 不强制完整 DDD；轻量方案优先。
 - 边界修正必须先能测试，再动手。

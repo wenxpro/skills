@@ -44,6 +44,17 @@
 | 「审核一下这套文档，有没有矛盾过时」 | docs-audit | review、code-review |
 | 「这套文档有旧版本/过时内容，顺手归档」 | docs-audit | review、game-docs、feedback-stage |
 
+## 跨项目协作
+
+| 输入 | 期望触发 | 不应触发 |
+|---|---|---|
+| 「两个仓库共同交付一个功能，怎么定接口和顺序」 | cross-project-integration | responsibility-design、roadmap-planning |
+| 「多个窗口/子代理并行改同一个仓库，怎么分写集」 | worktree-workflow + cross-project-integration | 直接并行写同一文件 |
+| 「LLM 迁移和游戏内容线怎么排期」 | cross-project-integration | roadmap-planning 单独排两套计划 |
+| 「只改一个仓库的模块边界」 | responsibility-design | cross-project-integration |
+| 「多仓库分别提交」 | multi-repo-commit | cross-project-integration、git-commit |
+| 「迁移新旧路径怎么切换」 | cross-project-integration | llm-integration、delivery-stage |
+
 ## 文档与代码
 
 | 输入 | 期望触发 | 不应触发 |

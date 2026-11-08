@@ -141,7 +141,7 @@ description: 会话边界与外部记忆：判断继续当前会话还是新开�
 3. 当前状态与下一步第一条命令
 4. 验证方式
 5. 未决问题与 owner
-6. 需要同步的长期记忆（docs/ADR/验收/提交）
+6. 需要同步的长期记忆（docs/ADR/验收/提交）；跨项目时附接口版本与双方仓库 HEAD
 
 ## 边界与反模式
 
@@ -163,6 +163,7 @@ description: 会话边界与外部记忆：判断继续当前会话还是新开�
 | `worktree-workflow` | 读写分流与写任务的工作区/分支隔离 |
 | `design-stage` / `delivery-stage` / `feedback-stage` | 阶段边界通常就是会话边界 |
 | `implementation-track` | 验收状态与偏差是 handoff 的事实源 |
+| `cross-project-integration` | 跨项目交接模板、接口版本、双方仓库 HEAD |
 | `git-commit` | 切换前提交/保存 |
 | `review` | 需要决策评审时使用 |
 | `docs-audit` | 检查长期记忆是否过期/漂移 |

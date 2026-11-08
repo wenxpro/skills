@@ -16,6 +16,7 @@
 | 当前里程碑/行为规则/验收 | `game-docs` |
 | 把 LLM 接入游戏/工具 | `llm-integration` |
 | 一次任务改多个仓库 | `multi-repo-commit` |
+| 跨项目/跨仓库共同交付一项能力 | `cross-project-integration` |
 | 会话太长或要交接 | `session-handoff` |
 | 文档集/术语/仓库审核 | `docs-audit` / `skill-audit` |
 | 准备把 skills 改动合并到 main | `skill-audit`（语义审计）+ CI / pre-push 硬检查 |
@@ -41,6 +42,7 @@
 | 会话边界 | `session-handoff` | 一个工作包一个会话；切换前写 handoff |
 | 读写分流 | `worktree-workflow` | 只读留主工作区；写任务独立 worktree |
 | 多仓库提交 | `multi-repo-commit` | 每个仓库独立提交、推送、验证 |
+| 跨项目协作 | `cross-project-integration` | 上下游、接口登记、依赖矩阵、冻结与集成计划 |
 | LLM 接入 | `llm-integration` | 先探测端点，再接业务；失败必须降级 |
 | Skill 维护 | `skill-audit` | 抽象分层、触发边界、术语与交叉引用 |
 
@@ -66,6 +68,7 @@
 ### 实现与集成
 
 - **llm-integration** — LLM 调用集成：模型档探测、受约束输出、失败降级、回放与高频选型
+- **cross-project-integration** — 跨项目协作设计：上下游、接口登记、依赖矩阵、冻结与集成计划、生产者/消费者检查与跨项目交接
 
 ### 决策与规划
 
@@ -93,6 +96,7 @@
 | 会话边界 | 一个工作包一个会话；切换前写一页 handoff；状态先落盘 |
 | 并行写 | 一个 worktree 一个写者；合并的是分支不是目录 |
 | 多仓库提交 | 每个仓库独立提交/推送/验证；没有跨仓库原子提交 |
+| 跨项目协作 | 接口登记、依赖矩阵、冻结点、集成 owner；见 `cross-project-integration` |
 | 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review；规划只排期，跟踪只更新状态 |
 | 状态 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
 | 文档类型 | `game-docs` 00~05、07 用 game；PRD + 各包 DESIGN.md 用 software |
@@ -123,7 +127,7 @@ cp -r docs-core game-docs <project>/.agents/skills/
 常用：
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow multi-repo-commit execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow multi-repo-commit cross-project-integration execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
 ```
 
 > `game-docs` 依赖 `docs-core`。更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。
