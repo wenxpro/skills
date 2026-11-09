@@ -124,7 +124,7 @@ git -C <repo> worktree add -b <type>/<slug> <path> <base>
 - 构建与索引：`xcodebuild`、`swift build`、`tsc --watch`、`vite`、`gradle --continuous`、Spotlight（`mds`）
 - 后台任务：测试 watcher、模拟器相关进程、编辑器插件
 
-**判据**：`git worktree list` 无该条目、目录仍存在 = 进程占用，不是 Git 记录损坏。此时不要反复 `rm -rf` 或 `worktree prune`。
+**判据**：`git worktree list` 无该条目、目录仍存在 = 有进程在写，不是 Git 记录损坏。此时不要反复 `rm -rf` 或 `worktree prune`。
 
 **诊断**（按顺序）：
 
@@ -134,9 +134,11 @@ lsof -p <pid>                            # 该进程的完整持有清单
 ps -o pid,ppid,lstart,command -p <pid>   # 起始时间与父进程
 ```
 
+`lsof +D` 有输出只说明文件被打开：只读句柄（`MODE` 为 `r`）不影响删除，写句柄或周期性写入才会让目录重建。先看 `lsof -p <pid>` 的 `MODE`，再删一次看目录是否重现，再决定要不要停进程。
+
 **处理顺序**：
 
-1. 先停持有者：关闭打开该目录的编辑器窗口/工作区，或 `kill <pid>`；语言服务器被 kill 后编辑器会按需重启。
+1. 先停写入方：只有只读句柄时直接删即可；报错或目录重建时，关闭打开该目录的编辑器窗口/工作区，或 `kill <pid>`（语言服务器被 kill 后编辑器会按需重启）。
 2. 再删目录：`git worktree remove <worktree-path>`；确认无未提交改动后才可加 `--force`。
 3. 复核：`lsof +D <worktree-path>` 无输出、`ls <worktree-path>` 不存在、`git worktree list` 无残留。
 4. 只剩失效记录时才 `git worktree prune`。
