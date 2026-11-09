@@ -82,6 +82,17 @@
 | 「这个 skill 该合并、拆分还是改名」 | skill-audit | review |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
+## 软件文档、后端与 UI
+
+| 输入 | 期望触发 | 不应触发 |
+|---|---|---|
+| 「给新软件项目建一套文档」 | software-docs | game-docs、docs-core、docs-audit |
+| 「什么内容写进 PRD/架构/接口/数据/安全/运行手册」 | software-docs | backend-design、docs-core |
+| 「新服务的边界/接口/数据/安全/可靠性怎么设计」 | backend-design | responsibility-design、software-docs |
+| 「多个服务怎么定接口版本和幂等」 | backend-design | cross-project-integration（跨仓库登记时再加） |
+| 「前端 UI 规范、组件状态、平台规范、无障碍」 | ui-baseline | experience-architecture、code-review |
+| 「验收怎么分类、证据要到什么程度」 | docs-core（`references/acceptance-taxonomy.md`） | implementation-track、software-docs |
+
 ## 多轮行为与干预策略
 
 | 场景 | 期望行为 |

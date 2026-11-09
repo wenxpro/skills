@@ -14,14 +14,16 @@
 | 证据 | `05-reviews/`（试玩结论并入评审；`06-playtests/` 可选） |
 | 检查 | `07-checklists/` |
 
-## Software（PRD + 包 DESIGN.md）
+## Software（`docs/00-README.md` + 01~07 + 08-adr + 09-reviews + 10-evidence；配合 software-docs）
 
 | 槽位 | 文件 |
 |---|---|
-| 入口 | 设计总纲 / README |
-| 假设 | PRD 4.x |
-| 规则 | PRD + 各包 DESIGN.md |
-| 验收 | 论证文档验证清单、验收编号（如 M1-M20） |
-| 决策 | 设计约束（如 A1/A5） |
-| 证据 | 评审记录、测试结果 |
-| 检查 | 设计总纲第五部分自检项 |
+| 入口 | `docs/00-README.md` |
+| 假设 | `docs/01-PRD.md` |
+| 规则 | `docs/02-ARCHITECTURE.md`、`03-INTERFACE.md`、`04-DATA.md`、`05-SECURITY.md`、`06-RUNBOOK.md` |
+| 验收 | `docs/07-ACCEPTANCE.md` |
+| 决策 | `docs/08-adr/` |
+| 证据 | `docs/09-reviews/`、`docs/10-evidence/` |
+| 检查 | `docs/07-ACCEPTANCE.md` 的 DoD；`docs/00-README.md` 的状态 |
+
+裁剪：单机小工具可只用 `00 / 01 / 07`；有服务端或数据库再补 `02 / 03 / 04`；涉及账号、支付、PII、对外接口再补 `05` 与 `06`。

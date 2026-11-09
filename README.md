@@ -9,6 +9,9 @@
 | 只读讨论、调研、方案比较 | 主工作区，不建 worktree |
 | 要改代码/文档/配置/资源 | `worktree-workflow` |
 | 新功能/模块/系统设计 | `design-stage` |
+| 新软件项目 / 服务设计 | `design-stage` + `software-docs` + `backend-design` |
+| 前端 / UI 规范与评审 | `ui-baseline` |
+| 验收类别与证据 | `docs-core` + `references/acceptance-taxonomy.md` |
 | 设计中有不可逆决定（pre-mortem / kill criteria） | `design-stage` + `references/decision-locks.md` |
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后回流 | `feedback-stage` |
@@ -30,7 +33,7 @@
 | 反馈 | `feedback-stage`：证据 → 分类 → 状态/文档更新 | 回流设计或交付 |
 
 - 设计输入：`topic-research` / `code-digest` / `docs-audit` / `implementation-track`
-- 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `docs-core`
+- 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `docs-core` / `software-docs` / `backend-design` / `ui-baseline`
 
 ## 横切能力
 
@@ -57,8 +60,11 @@
 
 | Skill | 定位 |
 |---|---|
-| `docs-core` | 文档槽位规则、单一事实源、变更三件套、状态语义 |
+| `docs-core` | 文档槽位规则、单一事实源、变更三件套、状态语义、验收类别 |
 | `game-docs` | 游戏文档体系（基于 docs-core）+ 游戏设计模式 |
+| `software-docs` | 软件项目文档体系：PRD、架构、接口、数据、安全、运行手册、验收、ADR |
+| `backend-design` | 后端/服务设计：边界、接口、数据、安全、可靠性 |
+| `ui-baseline` | 前端/UI 基线：token、组件状态、屏幕规格、平台规范、无障碍 |
 | `experience-architecture` | 产品体验架构：Experience Map、屏幕/导航、状态所有权 |
 | `responsibility-design` | 职责驱动设计：上下文地图、依赖方向、边界违规、重构 |
 
@@ -99,10 +105,19 @@
 | 不可逆操作 | force push、删分支/数据、部署、密钥操作必须先问 |
 | 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review；规划只排期，跟踪只更新状态 |
 | 状态 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
-| 文档类型 | `game-docs` 00~05、07 用 game；PRD + 各包 DESIGN.md 用 software |
-| 验收 ID | `AC-<类别>-<序号>`；跟踪 skill 直接引用，不另起编号 |
+| 文档类型 | `game-docs` 00~05、07 用 game；`software-docs` 00~10 用 software；其他项目按 `docs-core` 槽位裁剪 |
+| 验收 ID | `AC-<类别>-<序号>`；类别与证据见 `docs-core/references/acceptance-taxonomy.md` |
+| 领域扩展 | 垂直领域按 design / review / acceptance 三件套挂到现有阶段，不新增阶段 skill |
 | 优先级 | P0/P1 只表示验收优先级；代码问题用必须修/建议修/可选；功能/包用 High/Medium/Low |
 | 术语 | 规则 / 合并前检查 / 必须修 / 基准值；详见 `skill-audit/references/terminology.md` |
+
+## 领域扩展
+
+- 三层协议：设计 → 评审 → 验收；规划、交付、反馈是外围阶段，不塞进三层。
+- 垂直领域用三件套挂接：`design`（方法/默认值/失败模式）、`review`（角色/否决/证据）、`acceptance`（AC 类别/证据/样例）。
+- 当前切片：`game-docs`（游戏）、`software-docs`（软件文档）、`backend-design`（后端）、`ui-baseline`（前端/UI）。
+- 验收类别与证据阶梯统一在 `docs-core/references/acceptance-taxonomy.md`；垂直 skill 只引用，不重复维护。
+- 新增垂直领域时先判断能否复用现有切片；只有在触发边界独立时才新建 skill。
 
 ## 安装
 
@@ -115,6 +130,12 @@ mkdir -p ~/.agents/skills
 cp -r docs-core game-docs ~/.agents/skills/
 ```
 
+软件项目最小：
+
+```sh
+cp -r docs-core software-docs ~/.agents/skills/
+```
+
 项目级：
 
 ```sh
@@ -125,10 +146,10 @@ cp -r docs-core game-docs <project>/.agents/skills/
 常用：
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow cross-project-integration execution-loop responsibility-design experience-architecture code-review ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow cross-project-integration execution-loop responsibility-design experience-architecture code-review software-docs backend-design ui-baseline ~/.agents/skills/
 ```
 
-> `game-docs` 依赖 `docs-core`。更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。
+> `game-docs` / `software-docs` 依赖 `docs-core`。`backend-design` 与 `ui-baseline` 的输出落到 `software-docs` 定义的槽位，但可独立使用。更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。
 
 ## 维护与合并检查
 
