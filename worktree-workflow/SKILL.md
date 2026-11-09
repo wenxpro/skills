@@ -1,6 +1,6 @@
 ---
 name: worktree-workflow
-description: 任务读写分流与 Git 工作树：只读讨论/调研留主工作区，任何写任务默认独立 worktree + 短分支，主工作区只做集成与验证。适用于要改代码/文档/配置/资源、讨论后开始落盘、并行会话、长任务、实验分支、方案对比；不适用于纯只读讨论/调研、提交（git-commit）、代码审查（code-review）。
+description: 任务读写分流与 Git 工作树：只读讨论/调研留主工作区，任何写任务默认独立 worktree + 短分支，主工作区只做集成与验证。适用于要改代码/文档/配置/资源、讨论后开始落盘、并行会话、长任务、实验分支、方案对比、worktree 删除失败与目录自动恢复排查；不适用于纯只读讨论/调研、提交（git-commit）、代码审查（code-review）。
 ---
 
 # 工作树工作流
@@ -67,7 +67,7 @@ description: 任务读写分流与 Git 工作树：只读讨论/调研留主工�
 1. **确认是写任务**：只读讨论不要提前建 worktree。
 2. **同步基线**：拉取集成分支，避免从过期基线开分支。
 3. **建短分支**：按 `standards.md` 的命名建一个分支；一个分支一件事。
-4. **建 worktree**：优先用 harness 的 worktree 工具；不可用时用 `git worktree add`。路径放在仓库外或已忽略目录。
+4. **建 worktree**：优先用 harness 的 worktree 工具；不可用时用 `git worktree add`。路径放在仓库外或已忽略目录，并避开编辑器的扫描范围（见「目录删不掉：进程占用」）。
 5. **切换会话/目录**：需要把当前会话迁入时用 harness 的会话迁移工具；否则明确后续命令都在该目录执行。
 6. **记录边界**：分支、worktree 路径、owner、目标、验证命令写入 handoff 或任务记录。
 
@@ -110,9 +110,48 @@ git -C <repo> worktree add -b <type>/<slug> <path> <base>
 - 不 rebase 共享的集成分支；不 force push 共享分支。
 - 合并后主工作区复跑检查，确认集成分支结果一致。
 
+## 目录删不掉：进程占用
+
+**现象**：
+
+- `git worktree remove <worktree-path>` 报 `Directory not empty`
+- `rm -rf <worktree-path>` 之后目录重新出现，或残留少量文件
+- `git worktree list` 已无该条目，目录却还在
+
+**根因**：目录被删后仍有进程持有其下文件的句柄，进程继续写入即重建路径。常见持有者：
+
+- 语言服务器：`sourcekit-lsp`（Zed / VS Code）、`SourceKitService`（Xcode）、`typescript-language-server`、`rust-analyzer`、`pyright`、`gopls`
+- 构建与索引：`xcodebuild`、`swift build`、`tsc --watch`、`vite`、`gradle --continuous`、Spotlight（`mds`）
+- 后台任务：测试 watcher、模拟器相关进程、编辑器插件
+
+**判据**：`git worktree list` 无该条目、目录仍存在 = 进程占用，不是 Git 记录损坏。此时不要反复 `rm -rf` 或 `worktree prune`。
+
+**诊断**（按顺序）：
+
+```sh
+lsof +D <worktree-path>                  # 谁打开了该目录下的文件
+lsof -p <pid>                            # 该进程的完整持有清单
+ps -o pid,ppid,lstart,command -p <pid>   # 起始时间与父进程
+```
+
+**处理顺序**：
+
+1. 先停持有者：关闭打开该目录的编辑器窗口/工作区，或 `kill <pid>`；语言服务器被 kill 后编辑器会按需重启。
+2. 再删目录：`git worktree remove <worktree-path>`；确认无未提交改动后才可加 `--force`。
+3. 复核：`lsof +D <worktree-path>` 无输出、`ls <worktree-path>` 不存在、`git worktree list` 无残留。
+4. 只剩失效记录时才 `git worktree prune`。
+
+**预防**：
+
+- worktree 放在项目根目录之外（例如工具目录下的 `.worktrees/`），编辑器就不会把任务目录纳入扫描。
+- 必须在项目内建时，把该路径加入编辑器扫描排除项（Zed `file_scan_exclusions`，如 `"**/worktrees/**"`、`"**/.build/**"`），删除前关闭对应窗口。
+- 目录名带任务 slug，便于与 `worktree list`、`lsof` 输出对应。
+- 删除前先 `git status`；有未提交改动先问用户。
+
 ## 清理
 
 - 合并后删除 worktree 和已合并分支；用 harness 工具或 `git worktree remove`，再 `git branch -d`。
+- 删除报 `Directory not empty` 或目录自动恢复：先按「目录删不掉：进程占用」定位持有进程，不要反复删除。
 - 未提交、未合并的 worktree 不自动删。
 - 删除有未提交改动的 worktree 必须先问用户；不要默认 `--force`。
 - 定期 `git worktree prune` 清理失效记录。
@@ -139,6 +178,8 @@ git -C <repo> worktree add -b <type>/<slug> <path> <base>
 - 长分支长期不同步，最后一次性解决大量冲突。
 - 自动解决语义冲突，不跑检查就合并。
 - 删 worktree 前不检查未提交改动。
+- 把 worktree 建在编辑器扫描范围内，删不掉时反复 `rm -rf` 而不查进程占用。
+- 把「目录删了又出现」当成 Git 记录损坏，直接重建 worktree。
 - 把依赖、构建产物、日志、本机配置带进提交。
 
 ## 交接
