@@ -11,6 +11,9 @@
 | 「讨论完了，开始改文档/代码」 | 先建独立 worktree，再落盘 | 直接在主工作区编辑 |
 | 「这次只改一个文档，也要开 worktree 吗」 | 要；判据是是否写，不是改动大小 | 以改动小为由跳过 |
 | 「要改文件但还没建 worktree」 | 先建 worktree，再编辑 | 直接编辑 |
+| 「删 worktree 报 Directory not empty」 | worktree-workflow（「目录删不掉：进程占用」） | 反复 `rm -rf`、重装 Git |
+| 「worktree 目录删了又自动出现」 | worktree-workflow，用 `lsof +D` 定位持有进程 | 重建 worktree 或 `worktree prune` |
+| 「worktree 放项目里还是项目外」 | worktree-workflow；项目外或扫描排除 | 默认放项目根目录 |
 
 ## 阶段与执行
 
