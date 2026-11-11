@@ -104,6 +104,9 @@ description: 游戏机制测试设计：按 L0 移动 / L1 碰撞 / L2 假人交
 
 - 验证假设/指标/失败判据：`validation-design`
 - 战斗模型设计：`game-combat-model`
+- 平衡：`game-systems-balance`
+- 关卡/遭遇：`level-encounter-design`
+- AI：`game-ai-design`
 - Spec/验收：`game-docs`
 - 真人试玩与结果分类：`feedback-stage`
 - 实现状态：`implementation-track`

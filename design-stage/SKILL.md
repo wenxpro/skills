@@ -83,6 +83,7 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 图与规则、验收、测试能互相对应；没有只画不用的图
 - 行为规则可判定，验收种子能转成验收项
 - 验证计划有模型假设、失败判据、反事实与证据层级（`validation-design`）；游戏机制测试有 L0–L4 分层、testbed/fixture 与场景矩阵（`gameplay-test-design`）；战斗模型有角色差异与攻击时间轴（`game-combat-model`）
+- 平衡有目标区间/支配性检查（`game-systems-balance`）；地图/遭遇有对称性/路线/节奏判据（`level-encounter-design`）；AI 有公平性/反制/难度判据（`game-ai-design`）
 - 不可逆决定已标为单向门；有最小验证、回滚条件或评审结论
 - 已做 Pre-mortem；Kill Criteria 可观察、有 owner/时间盒
 - 未决项有 owner 与下一步
@@ -117,5 +118,6 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 上一阶段：`feedback-stage`（重新设计）或无
 - 下一阶段：`delivery-stage`；排期 `roadmap-planning`
 - 验证设计：`validation-design`；游戏机制测试分层/fixture：`gameplay-test-design`；游戏战斗模型：`game-combat-model`
+- 平衡：`game-systems-balance`；关卡/遭遇：`level-encounter-design`；AI：`game-ai-design`
 - 评审：`review`
 - 会话切换/交接：`session-handoff`
