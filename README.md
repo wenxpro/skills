@@ -16,6 +16,9 @@
 | 验证阶段/实验设计/验证审计 | `validation-design` |
 | 游戏机制测试场景/testbed/场景矩阵 | `gameplay-test-design` + `validation-design` |
 | 战斗/兵种/攻击/数值模型 | `game-combat-model` + `validation-design` |
+| 战斗/经济/成长/难度平衡 | `game-systems-balance` |
+| 地图/据点/路线/遭遇设计 | `level-encounter-design` |
+| 敌人 AI/难度/反制/公平性 | `game-ai-design` + `gameplay-test-design` |
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
@@ -74,6 +77,9 @@
 | `validation-design` | 验证阶段设计：假设、变量、指标、失败判据、反事实、证据层级、验证审计 |
 | `gameplay-test-design` | 游戏机制测试分层：L0 移动 / L1 碰撞 / L2 假人 / L3 AI 集成 / L4 真人；testbed、fixture、场景矩阵 |
 | `game-combat-model` | 战斗模型：角色差异、攻击时间轴、TTK、克制预算、对决矩阵、反事实 sim |
+| `game-systems-balance` | 系统平衡：TTK/胜率/克制、经济来源/消耗、成长曲线、难度、支配性与敏感性 |
+| `level-encounter-design` | 关卡/遭遇：目标/路线/出生/掩体/视野/节奏/180°对称/可读性 |
+| `game-ai-design` | 游戏 AI：感知、目标选择、推进/撤退、难度、反制、可读性、不作弊 |
 
 ### 输入与决策
 
