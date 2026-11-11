@@ -82,6 +82,7 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 - 多条创建路径都有时序图或等价文字；跨上下文事件有发出者/监听者/顺序
 - 图与规则、验收、测试能互相对应；没有只画不用的图
 - 行为规则可判定，验收种子能转成验收项
+- 验证计划有模型假设、失败判据、反事实与证据层级（`validation-design`）；战斗模型有角色差异与攻击时间轴（`game-combat-model`）
 - 不可逆决定已标为单向门；有最小验证、回滚条件或评审结论
 - 已做 Pre-mortem；Kill Criteria 可观察、有 owner/时间盒
 - 未决项有 owner 与下一步
@@ -115,5 +116,6 @@ description: 设计阶段 playbook：选择调研/代码/文档/验收输入，�
 
 - 上一阶段：`feedback-stage`（重新设计）或无
 - 下一阶段：`delivery-stage`；排期 `roadmap-planning`
+- 验证设计：`validation-design`；游戏战斗模型：`game-combat-model`
 - 评审：`review`
 - 会话切换/交接：`session-handoff`
