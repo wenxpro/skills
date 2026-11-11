@@ -92,6 +92,10 @@
 | 「验证阶段怎么设计，怎么算通过/失败」 | validation-design | game-docs、review |
 | 「现有验证计划只有成功截图，够不够」 | validation-design | docs-audit、game-docs |
 | 「怎么做反事实/消融验证」 | validation-design | code-review、feedback-stage |
+| 「移动/碰撞验证要不要引入敌人」 | gameplay-test-design + validation-design | game-combat-model、game-docs |
+| 「攻击验证要不要完整敌人 AI」 | gameplay-test-design + game-combat-model | game-docs、review |
+| 「怎么设计 testbed / 场景矩阵 / 假人」 | gameplay-test-design | validation-design（只做假设/判据时再用）、game-docs |
+| 「测试层级 L0–L4 和 fixture 怎么定」 | gameplay-test-design | implementation-track、code-review |
 | 「战斗/兵种/攻击模型怎么设计，为什么都同频率」 | game-combat-model + validation-design | game-docs、ui-baseline |
 | 「攻击力/频率/克制/ TTK 怎么定」 | game-combat-model | validation-design（只做验证计划时再用）、code-review |
 | 「1v1 能不能证明 2v2 战斗模型」 | validation-design + game-combat-model | game-docs、review |
