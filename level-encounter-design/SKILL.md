@@ -1,6 +1,6 @@
 ---
 name: level-encounter-design
-description: 关卡与遭遇设计：目标/路线/出生距离/掩体/视野/节奏/公平性；对局地图 180° 对称、单一目标、可读接战；避免装饰地形与不对称优势。适用于 RTS/关卡/遭遇/地图布局；不适用于纯 UI 布局（ui-baseline）、体验架构（experience-architecture）、完整 GDD（game-docs）。
+description: 关卡与遭遇设计：目标/路线/出生/掩体/视野/节奏；对局地图 180° 对称、单一目标、可读接战。适用于 RTS/关卡/遭遇/地图布局；不适用于 UI 布局（ui-baseline）、体验架构（experience-architecture）、完整 GDD（game-docs）。
 ---
 
 # 关卡与遭遇设计
@@ -55,7 +55,7 @@ description: 关卡与遭遇设计：目标/路线/出生距离/掩体/视野/�
 - 地图 brief：`templates/map-brief.md`
 - 对称性/节奏/路线检查
 - 遭遇矩阵：组合、接战角度、撤退路径、反制
-- 验证场景：`gameplay-test-design`
+- 验证场景：`validation-design`
 
 ## 反模式
 
@@ -69,7 +69,7 @@ description: 关卡与遭遇设计：目标/路线/出生距离/掩体/视野/�
 
 ## 交接
 
-- 测试分层：`gameplay-test-design`
+- 测试分层：`validation-design`
 - 平衡：`game-systems-balance`
 - 战斗模型：`game-combat-model`
 - Spec/验收：`game-docs`

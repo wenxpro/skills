@@ -1,6 +1,6 @@
 ---
 name: validation-design
-description: 验证阶段设计与审计：把模型假设、变量/控制、指标、失败判据、反事实、证据层级与决策规则写成可执行验证计划；检查现有验证是否只能证明可行性、不能区分模型。适用于战斗/数值/玩法/系统原型验证、实验设计、里程碑验证审计；不适用于完整 Spec/验收创建（game-docs）、代码审查（code-review）、文档集审核（docs-audit）、验收跟踪（implementation-track）。
+description: 验证阶段设计与游戏机制测试设计：模型假设、变量/控制、指标、失败判据、反事实、证据层级与决策规则；L0–L4 测试层、fixture、场景矩阵与 testbed。适用于原型/战斗/玩法/系统验证、验证审计与机制测试设计；不适用于完整 Spec/验收（game-docs）、代码审查（code-review）、文档集审核（docs-audit）、验收跟踪（implementation-track）。
 ---
 
 # 验证阶段设计
@@ -48,7 +48,7 @@ description: 验证阶段设计与审计：把模型假设、变量/控制、指
 8. **范围声明。** 明确“本阶段不能证明什么”。1v1 参数验证不能替代 2v2/地形/决策验证。
 9. **对局公平性优先。** 涉及对局（含 PvE）时，地图/出生/信息显示按 PvP 标准：180° 对称、双方路线/掩体/到点距离等价；S0 可只做单主通道，不要为了“有选择”加不对称第二路线。
 10. **决策验证要有最优解。** 在当前局势下，至少有一个可判定的最优/次优选择；多个等价选项只能证明“有路”，不能证明“会选择”。最优解应随局势变化（敌方位置、兵力、计时），否则地图/系统会被永久解开。
-11. **先选最低测试层。** 游戏机制测试按 L0 移动 / L1 碰撞 / L2 假人交互 / L3 AI 集成 / L4 真人分层；移动碰撞不引入敌人，攻击先用 dummy，敌人 AI 只做集成。测试场景与 fixture 用 `gameplay-test-design`。
+11. **先选最低测试层。** 游戏机制测试按 L0 移动 / L1 碰撞 / L2 假人交互 / L3 AI 集成 / L4 真人分层；移动碰撞不引入敌人，攻击先用 dummy，敌人 AI 只做集成。测试场景、fixture 与场景矩阵见 `references/gameplay-testing.md`。
 12. **决策规则。** 通过 / 迭代 / 停止；通过后下一步是什么，失败后改哪个变量。
 13. **记录反例。** 失败结果和意外结果比成功截图更有价值。
 
@@ -61,8 +61,7 @@ description: 验证阶段设计与审计：把模型假设、变量/控制、指
 - [ ] 测试能否区分目标模型和更简单的替代模型？
 - [ ] 变量是否隔离？有没有同时改多个东西？
 - [ ] 对局地图/信息是否按 PvP 公平性验证（含 PvE）？双方路线/掩体/到点距离是否等价？
-- [ ] 是否选用了最低可行测试层？移动/碰撞是否无必要地引入了敌人/AI？
-- [ ] fixture 是否固定、可 reset？场景矩阵是否一次只改一个变量？
+- [ ] 测试层是否最低可行、fixture 是否固定可 reset（详见 `references/gameplay-testing.md`）？
 - [ ] 是否定义了当前局势下的最优解/次优解？多个选项是否等价？
 - [ ] 最优解是否会随局势变化，而不是固定一条永远最优？
 - [ ] 指标是否可观察、可复现？
@@ -76,7 +75,7 @@ description: 验证阶段设计与审计：把模型假设、变量/控制、指
 
 - 验证计划：用 `templates/validation-plan.md`
 - 审计报告：按“发现 / 严重度 / 证据 / 行动项”输出；发现优先于修改
-- 游戏机制验证：读 `references/game-mechanics.md`；战斗模型细节交给 `game-combat-model`
+- 游戏机制验证：读 `references/game-mechanics.md`；测试层/fixture/场景矩阵见 `references/gameplay-testing.md`，模板 `templates/test-plan.md`、`templates/scenario-matrix.md`；战斗模型细节交给 `game-combat-model`
 
 ## 反模式
 
@@ -92,7 +91,6 @@ description: 验证阶段设计与审计：把模型假设、变量/控制、指
 ## 交接
 
 - 设计模型：`design-stage`；游戏战斗模型：`game-combat-model`
-- 游戏机制测试分层/fixture/场景矩阵：`gameplay-test-design`
 - 写 Spec/验收：`game-docs`
 - 多角色评审：`review`
 - 跟踪行动项/状态：`implementation-track`

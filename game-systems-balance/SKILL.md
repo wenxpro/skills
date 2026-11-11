@@ -1,13 +1,13 @@
 ---
 name: game-systems-balance
-description: 游戏系统平衡设计：战斗 TTK/胜率/克制预算、经济来源/消耗、成长曲线、难度曲线、支配性与敏感性分析；调参表、sim/bot 矩阵、基准值重定。适用于战斗/经济/成长/难度/掉落等系统平衡；不适用于单次数值微调、完整 GDD（game-docs）、代码审查（code-review）。
+description: 系统平衡设计：战斗/经济/成长/难度/掉落的基准值、P50/P90、支配性与敏感性分析、调参矩阵。适用于系统平衡与调参审计；不适用于单次数值微调、完整 GDD（game-docs）、代码审查（code-review）。
 ---
 
 # 游戏系统平衡
 
 目标：先定义**目标体验与基准值**，再调数字；避免“拍脑袋改数值”。
 
-本 skill 负责平衡方法与判据；战斗模型本身用 `game-combat-model`，验证实验用 `validation-design`，测试分层用 `gameplay-test-design`。
+本 skill 负责平衡方法与判据；战斗模型本身用 `game-combat-model`，验证实验与测试分层用 `validation-design`。
 
 ## 何时使用
 
@@ -77,7 +77,7 @@ description: 游戏系统平衡设计：战斗 TTK/胜率/克制预算、经济�
 
 - 战斗模型：`game-combat-model`
 - 验证实验：`validation-design`
-- 测试分层：`gameplay-test-design`
+- 测试分层：`validation-design`
 - Spec/验收：`game-docs`
 - 试玩结果：`feedback-stage`
 

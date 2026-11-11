@@ -1,6 +1,7 @@
 ---
 name: skill-audit
 description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用、职责重叠与合并/拆分评估；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
+disable-model-invocation: true
 ---
 
 # Skill 仓库审核

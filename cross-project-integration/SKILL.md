@@ -1,6 +1,7 @@
 ---
 name: cross-project-integration
 description: 跨项目协作设计：一项能力由两个以上仓库、团队或发布节奏共同交付时，定义上下游、接口登记、依赖矩阵、冻结与集成计划、生产者/消费者检查与跨项目交接。适用于跨仓库/跨团队/多发布节奏的协作、迁移与集成；不适用于单仓库模块边界（responsibility-design）、单项目排期（roadmap-planning）、多仓库提交（git-commit）、单次会话交接（session-handoff）、LLM 供应商接入（llm-integration）。
+disable-model-invocation: true
 ---
 
 # 跨项目协作设计

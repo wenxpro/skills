@@ -1,13 +1,13 @@
 ---
 name: game-ai-design
-description: 游戏 AI 设计：感知、目标选择、推进/撤退、难度、反制、可读性与公平性；AI 不锁血/不偷资源/不超视野；行为可解释、可反制。适用于 RTS/动作/对手 AI；不适用于 LLM 接入（llm-integration）、动画/VFX、完整 GDD（game-docs）。
+description: 游戏 AI 设计：感知、目标选择、推进/撤退、难度、反制与可读性；不锁血/不偷资源/不超视野。适用于对手/敌方/Boss AI；不适用于 LLM 接入（llm-integration）、动画/VFX、完整 GDD（game-docs）。
 ---
 
 # 游戏 AI 设计
 
 目标：AI 应制造**可归因、可反制**的压力，而不是靠作弊或随机送。
 
-本 skill 负责 AI 行为与公平性；LLM 接入用 `llm-integration`，平衡用 `game-systems-balance`，测试分层用 `gameplay-test-design`。
+本 skill 负责 AI 行为与公平性；LLM 接入用 `llm-integration`，平衡用 `game-systems-balance`，测试分层见 `validation-design`。
 
 ## 何时使用
 
@@ -71,7 +71,7 @@ description: 游戏 AI 设计：感知、目标选择、推进/撤退、难度�
 
 ## 交接
 
-- 测试分层：`gameplay-test-design`
+- 测试分层：`validation-design`
 - 平衡/难度：`game-systems-balance`
 - 地图/遭遇：`level-encounter-design`
 - 战斗模型：`game-combat-model`
