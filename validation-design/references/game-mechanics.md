@@ -1,6 +1,7 @@
 # Profile — 游戏机制验证
 
 > 这是 `validation-design` 的游戏领域 profile，不是通用规则。具体数值和项目规则写进项目文档。
+> 测试层、fixture、dummy、场景矩阵与 testbed 规范见 `gameplay-test-design`；本 profile 只写验证对象与证据。
 
 ## 常见验证对象
 
