@@ -85,6 +85,18 @@
 | 「这个 skill 该合并、拆分还是改名」 | skill-audit | review |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
+## 验证设计与战斗模型
+
+| 输入 | 期望触发 | 不应触发 |
+|---|---|---|
+| 「验证阶段怎么设计，怎么算通过/失败」 | validation-design | game-docs、review |
+| 「现有验证计划只有成功截图，够不够」 | validation-design | docs-audit、game-docs |
+| 「怎么做反事实/消融验证」 | validation-design | code-review、feedback-stage |
+| 「战斗/兵种/攻击模型怎么设计，为什么都同频率」 | game-combat-model + validation-design | game-docs、ui-baseline |
+| 「攻击力/频率/克制/ TTK 怎么定」 | game-combat-model | validation-design（只做验证计划时再用）、code-review |
+| 「1v1 能不能证明 2v2 战斗模型」 | validation-design + game-combat-model | game-docs、review |
+| 「验收矩阵怎么写」 | game-docs | validation-design、docs-core |
+
 ## 软件文档、后端与 UI
 
 | 输入 | 期望触发 | 不应触发 |

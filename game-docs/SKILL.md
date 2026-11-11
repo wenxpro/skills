@@ -26,6 +26,7 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 5. **不复制其他项目的内容**：模板只给结构，内容必须项目自己填。
 6. **写进目标项目的 `docs/`**，不写进 skill 目录。
 7. **多屏幕/入口先画体验架构。** 涉及首页、配置、暂停、结算、设置、试炼等产品表面时，先用 `experience-architecture` 写一页 Experience Map；游戏内容仍由本 skill 负责。
+8. **验证设计先于验收。** 模型假设、失败判据、反事实与证据层级用 `validation-design`；游戏战斗模型用 `game-combat-model`；验收矩阵只写可执行判定。
 
 ## 文档结构
 

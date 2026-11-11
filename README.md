@@ -13,6 +13,8 @@
 | 前端 / UI 规范与评审 | `ui-baseline` |
 | 验收类别与证据 | `docs-core` + `references/acceptance-taxonomy.md` |
 | 设计中有不可逆决定（pre-mortem / kill criteria） | `design-stage` + `references/decision-locks.md` |
+| 验证阶段/实验设计/验证审计 | `validation-design` |
+| 战斗/兵种/攻击/数值模型 | `game-combat-model` + `validation-design` |
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
@@ -34,6 +36,7 @@
 
 - 设计输入：`topic-research` / `code-digest` / `docs-audit` / `implementation-track`
 - 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `docs-core` / `software-docs` / `backend-design` / `ui-baseline`
+- 验证方法：`validation-design`（假设/失败判据/反事实/证据层级）；游戏战斗模型：`game-combat-model`
 
 ## 横切能力
 
@@ -67,6 +70,8 @@
 | `ui-baseline` | 前端/UI 基线：token、组件状态、屏幕规格、平台规范、无障碍 |
 | `experience-architecture` | 产品体验架构：Experience Map、屏幕/导航、状态所有权 |
 | `responsibility-design` | 职责驱动设计：上下文地图、依赖方向、边界违规、重构 |
+| `validation-design` | 验证阶段设计：假设、变量、指标、失败判据、反事实、证据层级、验证审计 |
+| `game-combat-model` | 战斗模型：角色差异、攻击时间轴、TTK、克制预算、对决矩阵、反事实 sim |
 
 ### 输入与决策
 
