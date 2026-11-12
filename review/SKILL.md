@@ -32,7 +32,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 2. **角色来自 profile。** 游戏、软件、文档、架构的角色不同，不要把一个 profile 的角色集复制到所有领域。
 3. **每个角色必须给出：通过 / 有条件通过 / 否决 + 理由。** 「大家觉得不错」不是结论。
 4. **条件必须可执行。** 每条条件有 ID、负责人、写入位置、截止时间。
-5. **证据优先。** Spec、验收、ADR、测试、试玩、监控数据；没有证据就不算通过。
+5. **证据优先。** Spec、验收、ADR、测试、试用/用户测试、监控数据；没有证据就不算通过。
 6. **当前有效 vs 历史归档分开。** 废案、被取代的方案移出 active 评审，不留在当前约束里。
 7. **评审记录 1~2 页。** 角色意见用表格，不写长篇独白。
 8. **不替用户拍板。** 评审可以建议，最终结论由决策人确认。
@@ -58,7 +58,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 | `architecture` | 架构、基础设施、上线 | 业务负责人、架构师、安全、运维、开发、QA |
 | `experience` | 产品表面、导航、App Shell | 新用户、回访用户、UX、技术负责人、QA |
 
-没有合适 profile 时，先定义一个最小角色集，不要直接套游戏角色。
+没有合适 profile 时，先定义一个最小角色集，不要直接套其他领域的角色。
 
 ## Output contract
 
