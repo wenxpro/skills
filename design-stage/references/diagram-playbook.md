@@ -18,9 +18,9 @@
 |---|---|---|---|
 | 上下文/组件图 | 边界、所有权、依赖方向、共享内核 | 新模块、新上下文、依赖方向变化 | 不能证明运行时创建/注册/清理 |
 | 生命周期状态图 | 对象有哪些状态、允许哪些转换、结束条件 | 新增有状态对象、异步、池化、重试、持久化 | 不能展示具体调用顺序 |
-| 时序图 | 一次流程的参与者、调用、事件顺序、失败路径 | 多条创建路径、跨上下文事件、注册/奖励/清理 | 不能展示类型结构 |
+| 时序图 | 一次流程的参与者、调用、事件顺序、失败路径 | 多条创建路径、跨上下文事件、注册/副作用/清理 | 不能展示类型结构 |
 | 所有权/生命周期表 | 谁创建、谁注册、谁结束、谁清理、作用域 | 所有动态对象 | 不能替代状态转换图 |
-| 事件/信号表 | 谁发出、谁监听、顺序、是否幂等 | 跨上下文事件、广播、奖励/统计 | 不能展示类型依赖 |
+| 事件/信号表 | 谁发出、谁监听、顺序、是否幂等 | 跨上下文事件、广播、副作用/统计 | 不能展示类型依赖 |
 | 类图/接口图 | 类型、接口、继承、静态依赖 | 新抽象、新接口、多态扩展 | 不能证明生命周期接线 |
 
 ### 2.1 类图的局限
@@ -29,9 +29,9 @@
 
 - 对象在哪条路径被创建；
 - 创建后有没有注册；
-- 死亡信号谁接；
-- 奖励由谁发；
-- 重开时谁清理。
+- 结束信号谁接；
+- 副作用由谁发；
+- 重载时谁清理。
 
 所以：**类图可以定类型边界，不能单独证明生命周期正确。**
 
@@ -51,26 +51,26 @@
 |---|---|---|
 | 低 | 新类型、无动态创建、无跨上下文事件 | 类图/组件图 + 一句生命周期说明 |
 | 中 | 新增对象、单条创建路径、简单结束 | 上下文/组件图 + 主路径时序图 + 所有权表 |
-| 高 | 多创建路径、动态生成、事件奖励、池化、异步、持久化、重开清理 | 上下文/组件图 + 生命周期状态图 + 每条创建路径时序图 + 所有权/生命周期表 + 事件表 |
+| 高 | 多创建路径、动态生成、事件副作用、池化、异步、持久化、重载清理 | 上下文/组件图 + 生命周期状态图 + 每条创建路径时序图 + 所有权/生命周期表 + 事件表 |
 
 高风险触发词：
 
 - 派生生成、事件生成、动态生成、批量创建；
 - 事件、信号、回调、异步、延迟；
 - 池化、复用、热重载；
-- 存档、回放、固定种子、重开；
-- 奖励、掉落、统计；
-- 死亡、回收、超时、切场景、清理。
+- 持久化、回放、固定种子、重载；
+- 副作用、状态变化、统计；
+- 结束、回收、超时、场景切换、清理。
 
 ## 4. 必须画的情况
 
 出现以下任一情况，设计阶段必须先有图或等价文字，再进入实现：
 
 1. 新增有生命周期的对象，且对象不止“创建后一直存在”。
-2. 同一对象有多条创建路径：正常生成、派生生成、事件生成、测试、试玩。
+2. 同一对象有多条创建路径：正常生成、派生生成、事件生成、测试、试用。
 3. 对象创建后需要注册到别的上下文，或需要发事件给别的上下文。
-4. 对象有死亡、回收、超时、重开、切场景中的任意一种结束方式。
-5. 对象带奖励、掉落、统计、持久化或回放。
+4. 对象有结束、回收、超时、重载、场景切换中的任意一种结束方式。
+5. 对象带副作用、状态变化、统计、持久化或回放。
 6. 对象会被池化、复用或热重载。
 
 ## 5. 画法
@@ -85,20 +85,20 @@
 - 作用域（run / session / global）；
 - 允许和禁止的依赖方向。
 
-示例（游戏）：
+示例：
 
 ```text
-Run / Encounter
-  └─ EnemySpawnService（唯一创建入口，run scope）
-       ├─ creates Enemy
-       └─ emits enemy_spawned
+Run / Feature
+  └─ CreationService（唯一创建入口，run scope）
+       ├─ creates Entity
+       └─ emits entity_created
 Run / EventRouter
-  └─ listens enemy_spawned
-       ├─ registers died/damaged
-       └─ owns XP/drop/statistics
-Enemies
-  └─ owns AI/attributes/signals
-       └─ must not instantiate enemy scenes directly
+  └─ listens entity_created
+       ├─ registers lifecycle events
+       └─ owns shared state/metrics
+Entities
+  └─ owns domain state/signals
+       └─ must not instantiate other entities directly
 ```
 
 ### 5.2 生命周期状态图
@@ -108,27 +108,27 @@ Enemies
 - 初始状态；
 - 注册状态；
 - 活跃状态；
-- 结束/死亡状态；
+- 结束/终止状态；
 - 清理状态；
-- 异常路径（创建失败、未注册、重复死亡）。
+- 异常路径（创建失败、未注册、重复结束）。
 
 ```mermaid
 stateDiagram-v2
     [*] --> Created
-    Created --> Registered: spawn service
+    Created --> Registered: creation service
     Created --> Discarded: validation failed
     Registered --> Active: activate
-    Active --> Dying: hp <= 0 / despawn
-    Dying --> Despawned: emit once + cleanup
-    Despawned --> [*]
+    Active --> Ending: end condition / release
+    Ending --> Ended: emit once + cleanup
+    Ended --> [*]
 ```
 
 检查问题：
 
 - 有没有“创建了但没注册”的合法状态？通常不应该有。
-- 重复死亡会不会发两次奖励？
-- 回收/超时和死亡是不是同一种结束语义？
-- 暂停/重开时处于哪个状态？
+- 重复结束会不会发两次副作用？
+- 回收/超时和结束是不是同一种终止语义？
+- 暂停/重载时处于哪个状态？
 
 ### 5.3 时序图
 
@@ -137,23 +137,23 @@ stateDiagram-v2
 - 创建者；
 - 创建入口；
 - 注册/事件；
-- 奖励/统计；
+- 副作用/统计；
 - 结束/清理；
 - 失败路径。
 
 ```mermaid
 sequenceDiagram
     participant C as Creator
-    participant S as SpawnService
+    participant S as CreationService
     participant R as EventRouter
-    participant E as Enemy
-    C->>S: spawn(scene, position, overrides)
+    participant E as Entity
+    C->>S: create(entity, context, overrides)
     S->>E: instantiate + configure
-    S-->>R: enemy_spawned
-    R->>E: register died/damaged
-    E-->>R: died
-    R->>R: reward + statistics
-    R->>E: despawn/cleanup
+    S-->>R: entity_created
+    R->>E: register lifecycle events
+    E-->>R: ended
+    R->>R: side effects + metrics
+    R->>E: release/cleanup
 ```
 
 如果图上出现“创建 → 直接结束”，中间没有注册/事件，就要明确这是有意隔离还是漏接线。
@@ -168,7 +168,7 @@ sequenceDiagram
 
 - 一个对象只有一个权威 owner。
 - 创建入口和注册方式不能分叉。
-- 结束条件要区分死亡、回收、超时、切场景。
+- 结束条件要区分正常结束、回收、超时、场景切换。
 - 清理方式要写清信号、计时器、池化、容器。
 
 ### 5.5 事件/信号表
@@ -183,7 +183,7 @@ sequenceDiagram
 - 有没有重复注册？
 - 监听者被销毁后还会不会收到事件？
 - 事件在对象初始化前还是初始化后发？
-- 事件是否改变 RNG/存档/回放？
+- 事件是否改变随机数/持久化/回放？
 
 ## 6. 评审问题
 
@@ -192,8 +192,8 @@ sequenceDiagram
 1. 这个对象的生命周期有哪些状态？
 2. 所有创建路径都走同一个入口吗？
 3. 创建后谁负责注册？注册失败怎么办？
-4. 死亡、回收、超时、重开分别走哪条路径？
-5. 奖励/统计/UI 谁负责？会不会重复？
+4. 结束、回收、超时、重载分别走哪条路径？
+5. 副作用/统计/表现层谁负责？会不会重复？
 6. 哪张图能证明上述路径？对应哪个测试？
 7. 如果新增第二种创建方式，哪张图会先坏？
 

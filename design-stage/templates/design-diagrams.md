@@ -33,9 +33,9 @@ stateDiagram-v2
     [*] --> Created
     Created --> Registered
     Registered --> Active
-    Active --> Dying
-    Dying --> Despawned
-    Despawned --> [*]
+    Active --> Ending
+    Ending --> Ended
+    Ended --> [*]
 ```
 
 | 状态 | 进入条件 | 允许的转换 | 退出/清理 |
@@ -47,7 +47,7 @@ stateDiagram-v2
 - 创建失败：
 - 未注册：
 - 重复结束：
-- 暂停/重开：
+- 暂停/重载：
 
 ## 3. 关键时序
 
@@ -58,12 +58,12 @@ stateDiagram-v2
 ```mermaid
 sequenceDiagram
     participant C as Creator
-    participant S as SpawnService
+    participant S as CreationService
     participant R as Registry/Router
     participant O as Object
     C->>S: create/request
     S->>O: instantiate/configure
-    S-->>R: spawned
+    S-->>R: created
     R->>O: register
     O-->>R: ended
     R->>O: cleanup
@@ -120,7 +120,7 @@ classDiagram
 
 - [ ] 所有创建路径都已列出
 - [ ] 每条路径都有注册/结束/清理
-- [ ] 奖励/统计/UI 有唯一 owner
-- [ ] 失败、回收、超时、重开路径已画
+- [ ] 副作用/统计/表现层有唯一 owner
+- [ ] 失败、回收、超时、重载路径已画
 - [ ] 图能指向规则/验收/测试
 - [ ] 类图没有被当成生命周期证明
