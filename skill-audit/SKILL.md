@@ -1,6 +1,6 @@
 ---
 name: skill-audit
-description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用、职责重叠与合并/拆分评估；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
+description: Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用、职责重叠、合并/拆分评估，以及行为评估/证伪；skills 项目合并到 main 前默认自检。适用于新增/修改 skill 后、仓库发布前、合并 skills main 前、验证 skill 是否合理有效；不适用于项目文档集审核（docs-audit）与 skill 内容评审（review）。
 ---
 
 # Skill 仓库审核
@@ -13,6 +13,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 仓库发布前
 - 准备把 skills 仓库改动合并到 `main` 前（默认自检门）
 - 怀疑通用层混入项目细节（具体数值、文件格式、项目名、编号）
+- 怀疑 skill 触发不对、加载后无效，或需要对抗测试/证伪
 
 不适用：项目文档集审核（用 `docs-audit`）、skill 内容的多角色评审（用 `review` + docs profile）。
 
@@ -25,8 +26,9 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 1. **CI / pre-push 硬检查**：`.github/workflows/skills-check.yml` 和本地 `scripts/hooks/pre-push` 负责跑 `scripts/check-skills.sh`；机械检查不可绕过。
 2. **语义审计**：本 skill 负责抽象分层、触发边界、主动行为、职责重叠；不重复维护机械检查规则。
 3. **默认流程**：确认 CI / pre-push 已通过（本地无 hook 时手动跑一次脚本）→ 做语义审计 → 输出「必须改 / 建议改 / 核对无误」→ 未通过不合并。
-4. 用户明确要求跳过：记录“未审计”，不得声称通过。
-5. 频率：同一批合并只跑一次；编辑过程中不打断。
+4. **行为评估**：涉及 description、触发边界、职责重叠或核心规则时，按 `references/evaluation.md` 跑最小评估；只有结构证据时，只能声明“未评估有效性”。
+5. 用户明确要求跳过：记录“未审计”，不得声称通过。
+6. 频率：同一批合并只跑一次；编辑过程中不打断。
 
 这是本 skill 唯一默认主动行为；其他时候保持被动。
 
@@ -48,7 +50,8 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 3. 术语一致性
 4. 交叉引用与职责边界
 5. 主动行为与干预策略
-6. 输出报告
+6. 高风险/触发重叠：行为评估（有效性）
+7. 输出报告
 
 ## 第一步：结构扫描
 
@@ -120,7 +123,21 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 
 多轮行为用例见 `references/trigger-cases.md` 的「多轮行为与干预策略」；详细判据见 `references/behavior-policy.md`。
 
-## 第六步：输出报告
+## 第六步：行为评估（有效性）
+
+结构审计回答「写得对不对」，行为评估回答「加载后是否更好」。涉及 `description`、触发边界、职责重叠或核心规则时，合并前按 `references/evaluation.md` 至少跑 L1 + L2；要声明「有效」时到 L3/L4。
+
+最小要求：
+
+- 用例覆盖 positive / negative / ambiguous / conflict，留 holdout；
+- with / without / competing 三组变体，盲评；
+- 记录 skill 调用、任务成功、质量、token / 延迟；
+- 有失败判据；失败用例回写 `references/trigger-cases.md` 或 `description`；
+- 报告用 `templates/eval-report.md`。
+
+只有结构检查、没有行为证据时，只能写「未评估有效性」，不能写「通过」或「有效」。
+
+## 第七步：输出报告
 
 沿用 `docs-audit` 的三组格式：
 
@@ -138,6 +155,8 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 只写「何时使用」，不写「何时主动提示、最多几次、用户拒绝后怎么办」——按 `references/behavior-policy.md` 补策略
 - 参考型 skill 频繁打断用户，或主动型 skill 在信息不足时直接建议切换——先声明主动/被动，再写触发与降级
 - 未跑 `skill-audit` / `scripts/check-skills.sh` 就直接合并 skills `main`——视为漏门
+- 只跑结构检查就宣称 skill 有效——按 `references/evaluation.md` 补触发回归/消融；没有行为证据只能写“未评估”
+- 只用正例、没有 holdout/对照，或用写 skill 的同一模型自评——按评估层级补 negative/conflict 与盲评
 
 这些模式应作为 grep 种子，每次扫描；行为策略类问题按 `references/behavior-policy.md` 逐项核对。
 
@@ -148,6 +167,8 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 不改变 skill 设计意图；修复优先下沉，不删除项目细节
 - 判据以本 skill 为准，README 只引用
 - 合并 `main` 前默认自检；用户明确跳过时标注未审计，不作为通过
+- 结构审计 ≠ 行为有效；没有行为证据时只声明“未评估”
+- 行为评估的成本/样本有限；结论要写证据层级和限制
 
 ## 与 README 的关系
 

@@ -83,6 +83,8 @@
 | 「改完 skill 直接 merge」 | 先确认 CI / pre-push 与 skill-audit；未通过不合并 | 直接 git merge |
 | 「这些 skill 总是前后一起用，能不能合并」 | skill-audit + `references/consolidation.md` | docs-audit、review |
 | 「这个 skill 该合并、拆分还是改名」 | skill-audit | review |
+| 「这个 skill 到底有没有用/加载后是否更好」 | skill-audit（行为评估） | code-review、review |
+| 「怎么对抗测试 skill 的触发/边界」 | skill-audit（行为评估） | docs-audit、review |
 | 「检查一下文档里的术语是否统一」 | docs-audit | skill-audit |
 
 ## 验证、战斗与游戏系统设计
