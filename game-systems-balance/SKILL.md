@@ -7,7 +7,7 @@ description: 系统平衡设计：战斗/经济/成长/难度/掉落的基准值
 
 目标：先定义**目标体验与基准值**，再调数字；避免“拍脑袋改数值”。
 
-本 skill 负责平衡方法与判据；战斗模型本身用 `game-combat-model`，验证实验与测试分层用 `validation-design`。
+本 skill 负责平衡方法与判据；战斗模型本身用 `game-combat-model`，验证实验与测试分层用 `validation-design`，AI 行为与公平性用 `game-ai-design`。
 
 ## 何时使用
 
@@ -38,7 +38,7 @@ description: 系统平衡设计：战斗/经济/成长/难度/掉落的基准值
 5. **消融/反事实。** 去掉一个机制后结果不变，机制可能只是装饰。
 6. **经济看来源、消耗、转换。** 只有来源没有 sink = 通胀；只有 sink 没有来源 = 卡死。
 7. **成长看相对战力。** 成长应改变打法，而不是只放大数值；检查战力膨胀与内容追赶。
-8. **难度看可归因失败。** 玩家失败应能说出原因；不要用数值墙/作弊制造难度。
+8. **难度看可归因失败。** 玩家失败应能说出原因；不要用数值墙/作弊制造难度。AI 行为层面的公平性见 `game-ai-design`。
 9. **一次只改一个变量。** 改完跑 sim/bot/回归，再改下一个。
 10. **基准值要版本化。** 记录 build、seed、样本量、P50/P90，避免用旧基准证明新版本。
 
@@ -76,8 +76,8 @@ description: 系统平衡设计：战斗/经济/成长/难度/掉落的基准值
 ## 交接
 
 - 战斗模型：`game-combat-model`
-- 验证实验：`validation-design`
-- 测试分层：`validation-design`
+- 验证/测试：`validation-design`
+- AI 行为/难度公平性：`game-ai-design`
 - Spec/验收：`game-docs`
 - 试玩结果：`feedback-stage`
 
