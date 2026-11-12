@@ -1,6 +1,6 @@
 ---
 name: validation-design
-description: 验证阶段设计与游戏机制测试设计：模型假设、变量/控制、指标、失败判据、反事实、证据层级与决策规则；L0–L4 测试层、fixture、场景矩阵与 testbed。适用于原型/战斗/玩法/系统验证、验证审计与机制测试设计；不适用于完整 Spec/验收（game-docs）、代码审查（code-review）、文档集审核（docs-audit）、验收跟踪（implementation-track）。
+description: 验证阶段设计与游戏机制测试设计：模型假设、变量/控制、指标、失败判据、反事实、证据层级与决策规则；L0–L4 测试层、fixture、场景矩阵与 testbed。适用于原型/战斗/玩法/机制的验证设计与验证审计；系统平衡/经济/难度调参用 game-systems-balance；不适用于完整 Spec/验收（game-docs）、代码审查（code-review）、文档集审核（docs-audit）、验收跟踪（implementation-track）。
 ---
 
 # 验证阶段设计
@@ -27,6 +27,7 @@ description: 验证阶段设计与游戏机制测试设计：模型假设、变�
 不适用：
 
 - 完整 GDD / Spec / 验收矩阵 → `game-docs`
+- 系统平衡 / 经济 / 难度调参 → `game-systems-balance`
 - 代码审查 / 合并前检查 → `code-review`
 - 文档集交叉引用审核 → `docs-audit`
 - 验收状态跟踪 → `implementation-track`

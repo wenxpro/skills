@@ -100,7 +100,7 @@
 | 「测试层级 L0–L4 和 fixture 怎么定」 | validation-design（gameplay-testing） | implementation-track、code-review |
 | 「战斗/兵种/攻击模型怎么设计，为什么都同频率」 | game-combat-model + validation-design | game-docs、ui-baseline |
 | 「攻击力/频率/克制/ TTK 怎么定」 | game-combat-model + game-systems-balance | validation-design（只做验证计划时再用）、code-review |
-| 「经济来源/消耗/成长/难度怎么定」 | game-systems-balance | game-combat-model、game-docs |
+| 「经济来源/消耗/成长/难度怎么定」 | game-systems-balance | validation-design（只做验证计划时再用）、game-combat-model、game-docs |
 | 「地图/据点/路线/低墙/遭遇怎么设计」 | level-encounter-design | ui-baseline、game-docs |
 | 「AI 为什么很蠢/作弊/没有反制」 | game-ai-design + validation-design | llm-integration、code-review |
 | 「AI 难度怎么调才公平」 | game-ai-design + game-systems-balance | game-docs、review |
