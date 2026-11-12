@@ -110,7 +110,7 @@
 | Skill | 触发 | 定位 |
 |---|---|---|
 | `session-handoff` | 自动 | 会话边界与外部记忆 |
-| `skill-audit` | 自动 | skills 仓库审核与合并门 |
+| `skill-audit` | 自动 | skills 仓库审核、行为评估与合并前检查 |
 
 ## 核心约定
 
@@ -171,6 +171,7 @@ cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workfl
 ## 维护与合并检查
 
 - 新增/修改 skill 先过 `skill-audit`：通用规则放 `SKILL.md`，个人/团队偏好放引用文件，项目细节标注为示例
+- 高风险/触发重叠改动加行为评估：按 `skill-audit/references/evaluation.md` 跑触发回归 + 消融，报告用 `skill-audit/templates/eval-report.md`
 - 目录名 = skill 名；`SKILL.md` 的 `name` 必须与目录名一致；`description` 写清何时用、何时不用
 - 触发边界靠 `description` 的「适用/不适用」与负面清单；不要用手动开关代替触发设计
 - 引用文件用相对路径，如 `standards.md`、`templates/foo.md`；不要写死本机绝对路径
