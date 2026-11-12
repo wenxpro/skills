@@ -20,7 +20,8 @@
 | 战斗/兵种/攻击/数值模型 | `game-combat-model` + `validation-design` |
 | 战斗/经济/成长/难度平衡 | `game-systems-balance` |
 | 地图/据点/路线/遭遇设计 | `level-encounter-design` |
-| 敌人 AI/难度/反制/公平性 | `game-ai-design` + `validation-design` |
+| 敌人 AI/反制/公平性 | `game-ai-design` + `validation-design` |
+| AI/系统难度调参 | `game-ai-design` + `game-systems-balance` |
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
@@ -79,7 +80,7 @@
 | `validation-design` | 自动 | 验证阶段设计与测试设计：假设、变量、指标、失败判据、反事实、证据层级；L0–L4 测试层、testbed、fixture、场景矩阵 |
 | `game-combat-model` | 自动 | 战斗模型：角色差异、攻击时间轴、TTK、克制预算、对决矩阵、反事实 sim |
 | `game-systems-balance` | 自动 | 系统平衡：TTK/胜率/克制、经济来源/消耗、成长曲线、难度、支配性与敏感性 |
-| `level-encounter-design` | 自动 | 关卡/遭遇：目标/路线/出生/掩体/视野/节奏/180°对称/可读性 |
+| `level-encounter-design` | 自动 | 关卡/遭遇：目标/路线/出生/掩体/视野/节奏/旋转对称（默认 180°）/可读性 |
 | `game-ai-design` | 自动 | 游戏 AI：感知、目标选择、推进/撤退、难度、反制、可读性、不作弊 |
 
 ### 输入与决策
