@@ -1,6 +1,6 @@
 ---
 name: game-docs
-description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位定义见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、多屏幕体验架构（experience-architecture）、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
+description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定。槽位定义见 docs-core。适用于新游戏立项、写/重构 GDD、定义验收、记录试玩；不适用于纯代码、多屏幕体验架构（experience-architecture）、纯叙事/剧本文档（narrative-docs）、文档集审核（docs-audit）、规划（roadmap-planning）、跟踪（implementation-track）。Game docs / GDD / spec / acceptance / playtest.
 ---
 
 # Game Docs
@@ -15,7 +15,7 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 - 记录和分析试玩
 - 变更行为但不让 spec 漂移
 
-不适用：纯代码修复、一次性设计问答、只想要代码、当前里程碑之后的内容。
+不适用：纯代码修复、一次性设计问答、只想要代码、当前里程碑之后的内容、纯故事/剧本/世界观文档（用 `narrative-docs`）。
 
 ## 核心规则
 
@@ -50,3 +50,4 @@ description: 游戏项目文档体系：Run Brief、Design Spec、验收矩阵�
 - 不把项目内容写进 skill（skill 只读）
 - 结构变更后跑 `check-docs.ps1` 并报告结果
 - 设计阶段：`design-stage`；评审 `review`；规划 `roadmap-planning`
+- 故事/剧本/世界观文档用 `narrative-docs`；本 skill 只负责玩法、关卡、数值与游戏验收

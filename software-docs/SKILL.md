@@ -1,6 +1,6 @@
 ---
 name: software-docs
-description: 软件项目文档体系与模板：PRD、架构、接口、数据、安全、运行手册、验收、ADR 与证据；槽位规则见 docs-core。适用于新软件项目立项、重构设计文档、定义验收、准备设计评审与交接；不适用于游戏文档（game-docs）、具体接口/数据/安全设计方法（backend-design）、UI 规范（ui-baseline）、纯代码修复、文档集审核（docs-audit）、排期（roadmap-planning）、验收跟踪（implementation-track）。
+description: 软件项目文档体系与模板：PRD、架构、接口、数据、安全、运行手册、验收、ADR 与证据；槽位规则见 docs-core。适用于新软件项目立项、重构设计文档、定义验收、准备设计评审与交接；不适用于游戏文档（game-docs）、长篇小说/剧本等叙事项目（narrative-docs）、具体接口/数据/安全设计方法（backend-design）、UI 规范（ui-baseline）、纯代码修复、文档集审核（docs-audit）、排期（roadmap-planning）、验收跟踪（implementation-track）。
 ---
 
 # Software Docs
@@ -18,6 +18,7 @@ description: 软件项目文档体系与模板：PRD、架构、接口、数据�
 不适用：
 
 - 游戏项目 → `game-docs`
+- 长篇小说 / 剧本 / 视觉小说等叙事项目 → `narrative-docs`
 - 纯代码修复、重构、性能优化 → `delivery-stage` / `code-review`
 - 单个方法或页面排版问答
 - 文档集一致性审核 → `docs-audit`

@@ -25,6 +25,7 @@
 | 设计已确认，准备实现 | `delivery-stage` |
 | 测试/试玩/评审后回流 | `feedback-stage` |
 | 当前里程碑/行为规则/验收 | `game-docs` |
+| 长剧本/叙事项目的故事文档 | `narrative-docs` + `review`（narrative profile） |
 | 游戏资源/随机/构筑/防错模式 | `game-docs` + `references/design-patterns.md` |
 | 把 LLM 接入项目 | `llm-integration` |
 | 一次任务改多个仓库 | `git-commit`（多仓库模式） |
@@ -42,7 +43,7 @@
 | 反馈 | `feedback-stage`：证据 → 分类 → 状态/文档更新 | 回流设计或交付 |
 
 - 设计输入：`topic-research` / `code-digest` / `docs-audit` / `implementation-track`
-- 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `docs-core` / `software-docs` / `backend-design` / `ui-baseline`
+- 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `narrative-docs` / `docs-core` / `software-docs` / `backend-design` / `ui-baseline`
 - 验证方法：`validation-design`（假设/失败判据/反事实/证据层级）；游戏战斗模型：`game-combat-model`
 
 ## 横切能力
@@ -72,6 +73,7 @@
 |---|---|---|
 | `docs-core` | 自动 | 文档槽位规则、单一事实源、变更三件套、状态语义、验收类别 |
 | `game-docs` | 自动 | 游戏文档体系（基于 docs-core）+ 游戏设计模式 |
+| `narrative-docs` | 自动 | 长剧本/叙事项目文档：Story Brief、世界观、人物、结构、场景卡、语气、连续性、试读 |
 | `software-docs` | 自动 | 软件项目文档体系：PRD、架构、接口、数据、安全、运行手册、验收、ADR |
 | `backend-design` | 自动 | 后端/服务设计：边界、接口、数据、安全、可靠性 |
 | `ui-baseline` | 自动 | 前端/UI 基线：token、组件状态、屏幕规格、平台规范、无障碍 |
@@ -120,7 +122,7 @@
 | 不可逆操作 | force push、删分支/数据、部署、密钥操作必须先问 |
 | 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review；规划只排期，跟踪只更新状态 |
 | 状态 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
-| 文档类型 | `game-docs` 00~05、07 用 game；`software-docs` 00~10 用 software；其他项目按 `docs-core` 槽位裁剪 |
+| 文档类型 | `game-docs` 00~05、07 用 game；`narrative-docs` 00~11 用 narrative；`software-docs` 00~10 用 software；其他项目按 `docs-core` 槽位裁剪 |
 | 验收 ID | `AC-<类别>-<序号>`；类别与证据见 `docs-core/references/acceptance-taxonomy.md` |
 | 优先级 | P0/P1 只表示验收优先级；代码问题用必须修/建议修/可选；功能/包用 High/Medium/Low |
 | 术语 | 规则 / 合并前检查 / 必须修 / 基准值；详见 `skill-audit/references/terminology.md` |
@@ -129,7 +131,7 @@
 
 - 三层协议：设计 → 评审 → 验收；规划、交付、反馈是外围阶段，不塞进三层。
 - 垂直领域用三件套挂接：`design`（方法/默认值/失败模式）、`review`（角色/否决/证据）、`acceptance`（AC 类别/证据/样例）。
-- 当前切片：`game-docs`（游戏）、`software-docs`（软件文档）、`backend-design`（后端）、`ui-baseline`（前端/UI）。
+- 当前切片：`game-docs`（游戏）、`narrative-docs`（长剧本/叙事）、`software-docs`（软件文档）、`backend-design`（后端）、`ui-baseline`（前端/UI）。
 - 验收类别与证据阶梯统一在 `docs-core/references/acceptance-taxonomy.md`；垂直 skill 只引用，不重复维护。
 - 新增垂直领域时先判断能否复用现有切片；只有在触发边界独立时才新建 skill。
 
@@ -151,6 +153,13 @@ mkdir -p ~/.agents/skills
 cp -r docs-core software-docs ~/.agents/skills/
 ```
 
+**最小（叙事）**
+
+```sh
+mkdir -p ~/.agents/skills
+cp -r docs-core narrative-docs review ~/.agents/skills/
+```
+
 **项目级**
 
 ```sh
@@ -161,11 +170,11 @@ cp -r docs-core game-docs <project>/.agents/skills/
 **常用**
 
 ```sh
-cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow cross-project-integration execution-loop responsibility-design experience-architecture code-review software-docs backend-design ui-baseline ~/.agents/skills/
+cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workflow cross-project-integration execution-loop responsibility-design experience-architecture code-review software-docs narrative-docs backend-design ui-baseline ~/.agents/skills/
 ```
 
 > 所有 skill 都通过 `description` 自动判断是否加载；需要时可用 `@skill-id` 显式指定。
-> `game-docs` / `software-docs` 依赖 `docs-core`。`backend-design` 与 `ui-baseline` 的输出落到 `software-docs` 定义的槽位，但可独立使用。
+> `game-docs` / `narrative-docs` / `software-docs` 依赖 `docs-core`。`narrative-docs` 的评审角色在 `review/profiles/narrative.md`。`backend-design` 与 `ui-baseline` 的输出落到 `software-docs` 定义的槽位，但可独立使用。
 > 更新时覆盖目录；卸载时删除目录。`game-docs` 脚本为 PowerShell；非 Windows 可手动复制 `references/templates/` 或使用 PowerShell 7。
 
 ## 维护与合并检查

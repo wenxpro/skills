@@ -53,6 +53,7 @@ It does **not** invent decisions. It forces the right questions and makes the ou
 | Profile | 适用 | 角色 |
 |---|---|---|
 | `game` | 游戏设计、玩法、里程碑 | 目标玩家、游戏设计师、技术负责人、美术/UX、制作人、QA |
+| `narrative` | 长篇小说、剧本、视觉小说、叙事游戏 | 目标读者、故事编辑、连续性编辑、台词/语气编辑、制作/QA、作者/决策人 |
 | `software` | 软件产品、API、平台 | 用户/客户、产品、技术负责人、UX、PM、QA/安全 |
 | `docs` | 文档体系、规范、教程 | 目标读者、领域专家、技术写作、维护者、PM、QA |
 | `architecture` | 架构、基础设施、上线 | 业务负责人、架构师、安全、运维、开发、QA |

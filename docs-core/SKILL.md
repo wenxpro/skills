@@ -1,6 +1,6 @@
 ---
 name: docs-core
-description: 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查）、单一事实源、行为变更三件套、状态语义、验收类别。适用于建立/重构任何项目的文档体系、判断内容归属时；具体游戏模板用 game-docs，软件模板用 software-docs，产品表面/导航用 experience-architecture，评审用 review，文档集审核用 docs-audit。
+description: 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查）、单一事实源、行为变更三件套、状态语义、验收类别。适用于建立/重构任何项目的文档体系、判断内容归属时；具体游戏模板用 game-docs，长剧本/叙事模板用 narrative-docs，软件模板用 software-docs，产品表面/导航用 experience-architecture，评审用 review，文档集审核用 docs-audit。
 ---
 
 # 文档体系核心规则
@@ -112,6 +112,7 @@ ADR 不是写完就结束。实施后补一行/一节：
 ## 导航
 
 - 游戏项目文档模板 → `game-docs`
+- 长剧本/叙事项目文档模板 → `narrative-docs`
 - 软件项目文档模板 → `software-docs`
 - 后端/接口/数据/安全/可靠性设计 → `backend-design`
 - 前端/UI 基线 → `ui-baseline`
