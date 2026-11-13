@@ -14,7 +14,7 @@
 | 证据 | `05-reviews/`（试玩结论并入评审；`06-playtests/` 可选） |
 | 检查 | `07-checklists/` |
 
-## Narrative（00~11；配合 narrative-docs）
+## Narrative（00~12；配合 narrative-docs）
 
 | 槽位 | 文件 |
 |---|---|
@@ -23,7 +23,7 @@
 | 规则 | `02-world-bible.md`、`03-characters.md`、`04-structure.md`、`05-scene-cards.md`、`06-voice-guide.md`、`07-continuity.md` |
 | 验收 | `08-readthrough.md` |
 | 决策 | `10-adr/` |
-| 证据 | `09-readthroughs/` |
+| 证据 | `09-readthroughs/`、`12-revision-log.md` |
 | 检查 | `11-checklists/` |
 
 裁剪：短篇可只保留 `00 / 01 / 04 / 08`；长篇或分支剧本建议全量。

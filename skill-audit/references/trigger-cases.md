@@ -118,6 +118,19 @@
 | 「前端 UI 规范、组件状态、平台规范、无障碍」 | ui-baseline | experience-architecture、code-review |
 | 「验收怎么分类、证据要到什么程度」 | docs-core（`references/acceptance-taxonomy.md`） | implementation-track、software-docs |
 
+## 叙事文档
+
+| 输入 | 期望触发 | 不应触发 |
+|---|---|---|
+| 「给新长篇剧本建一套叙事文档」 | narrative-docs | software-docs、game-docs |
+| 「人物前后矛盾、台词分不清，帮我把设定收敛」 | narrative-docs | software-docs、game-docs |
+| 「长篇小说的 Story Brief / 人物 / 场景卡怎么写」 | narrative-docs | software-docs |
+| 「剧本的验收矩阵怎么写」 | narrative-docs（读者体验判据） | game-docs、software-docs |
+| 「给新游戏建一套设计文档」 | game-docs | narrative-docs、software-docs |
+| 「叙事游戏的故事文档和玩法文档怎么分」 | narrative-docs + game-docs | software-docs |
+| 「给新软件项目建 PRD」 | software-docs | narrative-docs、game-docs |
+| 「产品有哪些屏幕、怎么导航」 | experience-architecture | narrative-docs、game-docs |
+
 ## 多轮行为与干预策略
 
 | 场景 | 期望行为 |

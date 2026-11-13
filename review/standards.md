@@ -39,7 +39,7 @@ ID | 条件/行动 | 负责人 | 写入位置 | 截止
 
 ## Active / Archive
 
-> game profile 的目录结构如下；software 等其他 profile 按项目约定放置。
+> game profile 的目录结构如下；software / narrative 等其他 profile 按项目约定放置。
 
 ```text
 05-reviews/

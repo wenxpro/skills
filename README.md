@@ -122,7 +122,7 @@
 | 不可逆操作 | force push、删分支/数据、部署、密钥操作必须先问 |
 | 单一事实源 | 行为在 Spec，验收在 Acceptance，证据在 Review；规划只排期，跟踪只更新状态 |
 | 状态 | `◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败` |
-| 文档类型 | `game-docs` 00~05、07 用 game；`narrative-docs` 00~11 用 narrative；`software-docs` 00~10 用 software；其他项目按 `docs-core` 槽位裁剪 |
+| 文档类型 | `game-docs` 00~05、07 用 game；`narrative-docs` 00~12 用 narrative；`software-docs` 00~10 用 software；其他项目按 `docs-core` 槽位裁剪 |
 | 验收 ID | `AC-<类别>-<序号>`；类别与证据见 `docs-core/references/acceptance-taxonomy.md` |
 | 优先级 | P0/P1 只表示验收优先级；代码问题用必须修/建议修/可选；功能/包用 High/Medium/Low |
 | 术语 | 规则 / 合并前检查 / 必须修 / 基准值；详见 `skill-audit/references/terminology.md` |

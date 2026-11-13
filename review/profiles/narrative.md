@@ -35,7 +35,7 @@
 - Voice Guide
 - Continuity
 - Read-through 记录
-- Revision Log
+- Revision Log（`12-revision-log.md`）
 - ADR
 
 ## 文档
