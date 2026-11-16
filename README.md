@@ -18,6 +18,9 @@
 | 验证阶段/实验设计/验证审计 | `validation-design` |
 | 游戏机制测试场景/testbed/场景矩阵 | `validation-design`（`references/gameplay-testing.md`） |
 | 战斗/兵种/攻击/数值模型 | `game-combat-model` + `validation-design` |
+| 打击反馈/hitstop/震屏/闪白/trail | `game-feel` + `game-combat-model` |
+| 3D 角色/骨骼/重定向/脚底接触 | `game-animation-rig` |
+| Godot 运行时/headless/音频总线/设置持久化 | `godot-game-runtime` |
 | 战斗/经济/成长/难度平衡 | `game-systems-balance` |
 | 地图/据点/路线/遭遇设计 | `level-encounter-design` |
 | 敌人 AI/反制/公平性 | `game-ai-design` + `validation-design` |
@@ -44,7 +47,7 @@
 
 - 设计输入：`topic-research` / `code-digest` / `docs-audit` / `implementation-track`
 - 设计方法：`experience-architecture` / `responsibility-design` / `game-docs` / `narrative-docs` / `docs-core` / `software-docs` / `backend-design` / `ui-baseline`
-- 验证方法：`validation-design`（假设/失败判据/反事实/证据层级）；游戏战斗模型：`game-combat-model`
+- 验证方法：`validation-design`（假设/失败判据/反事实/证据层级）；游戏战斗模型：`game-combat-model`；动画/反馈：`game-animation-rig` / `game-feel`
 
 ## 横切能力
 
@@ -84,6 +87,14 @@
 | `game-systems-balance` | 自动 | 系统平衡：TTK/胜率/克制、经济来源/消耗、成长曲线、难度、支配性与敏感性 |
 | `level-encounter-design` | 自动 | 关卡/遭遇：目标/路线/出生/掩体/视野/节奏/旋转对称（默认 180°）/可读性 |
 | `game-ai-design` | 自动 | 游戏 AI：感知、目标选择、推进/撤退、难度、反制、可读性、不作弊 |
+
+### 游戏实现
+
+| Skill | 触发 | 定位 |
+|---|---|---|
+| `godot-game-runtime` | 自动 | Godot 4.x 工程集成：配置、InputMap、AnimationTree 接口、AudioServer、`user://`、headless、截图与导入 |
+| `game-animation-rig` | 自动 | 3D 资产/重定向/脚底接触/AnimationTree/武器挂点/接触帧/移动转身表现 |
+| `game-feel` | 自动 | 打击反馈：contact 对齐、hitstop、震屏、闪白、trail、音效/震动分层与可读性预算 |
 
 ### 输入与决策
 

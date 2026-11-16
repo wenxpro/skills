@@ -91,6 +91,11 @@
 
 | 输入 | 期望触发 | 不应触发 |
 |---|---|---|
+| 「Godot headless 测试怎么搭 / 音频总线 / user:// 设置持久化」 | godot-game-runtime | game-animation-rig、game-feel、game-docs |
+| 「3D 模型脚底浮空/反向剑/重定向变形怎么查」 | game-animation-rig | game-combat-model、game-feel、godot-game-runtime |
+| 「命中反馈/hitstop/震屏/闪白怎么做才不糊」 | game-feel | game-combat-model、game-animation-rig、ui-baseline |
+| 「攻击频率/伤害/克制/TTK 怎么定」 | game-combat-model + game-systems-balance | game-feel、game-animation-rig |
+| 「已有 UI 规范的 token/组件/无障碍」 | ui-baseline | godot-game-runtime |
 | 「验证阶段怎么设计，怎么算通过/失败」 | validation-design | game-docs、review |
 | 「现有验证计划只有成功截图，够不够」 | validation-design | docs-audit、game-docs |
 | 「怎么做反事实/消融验证」 | validation-design | code-review、feedback-stage |
