@@ -19,10 +19,16 @@
 | 游戏机制测试场景/testbed/场景矩阵 | `validation-design`（`references/gameplay-testing.md`） |
 | 战斗/兵种/攻击/数值模型 | `game-combat-model` + `validation-design` |
 | 打击反馈/hitstop/震屏/闪白/trail | `game-feel` + `game-combat-model` |
+| 潜行/劫掠/追逃/风险资源 | `game-stealth` |
+| 选择/后果/回访/结局收敛 | `game-choice-consequence` + `narrative-docs` |
+| Roguelite 单局/构筑/进化/内容池 | `game-roguelite` + `game-systems-balance` |
 | 音频总线/混音/循环/音量持久化 | `game-audio` |
+| 音频配置/目录/候选库/安全应用 | `game-audio`（`references/audio-catalog.md`） |
 | 3D 角色/骨骼/重定向/脚底接触 | `game-animation-rig`（程序化代理见 `references/procedural-proxy.md`） |
 | Godot 运行时/headless/音频总线/设置持久化 | `godot-game-runtime` |
 | 截图矩阵/前后对比/视觉证据 | `validation-design`（`references/visual-evidence.md`） |
+| 性能预算/测量/回归 | `validation-design`（`references/performance-budget.md`） |
+| LLM 试玩协议/回放/评估 | `llm-integration`（`references/playtest-protocol.md`） |
 | Windows 编码/行尾/并行 Git | `git-commit`（`references/windows-hygiene.md`） |
 | 战斗/经济/成长/难度平衡 | `game-systems-balance` |
 | 地图/据点/路线/遭遇设计 | `level-encounter-design` |
@@ -99,6 +105,9 @@
 | `game-animation-rig` | 自动 | 3D 资产/重定向/脚底接触/AnimationTree/武器挂点/接触帧/移动转身表现；程序化代理见 reference |
 | `game-feel` | 自动 | 打击反馈：contact 对齐、hitstop、震屏、闪白、trail、音效/震动分层与可读性预算 |
 | `game-audio` | 自动 | 游戏音频：总线/路由、运行时合成音、循环、混音、voice 管理、音量/静音持久化、headless |
+| `game-stealth` | 自动 | 潜行与风险：检测模型、警戒状态、遮挡/噪音、风险资源、追逃与失败恢复 |
+| `game-choice-consequence` | 自动 | 选择与后果：选择节点、状态标记、信息差、回访、结局收敛 |
+| `game-roguelite` | 自动 | Roguelite 单局与构筑：单局节奏、奖励、构筑轴、进化、内容池、局内外进度 |
 
 ### 输入与决策
 

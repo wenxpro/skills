@@ -93,6 +93,12 @@
 |---|---|---|
 | 「Godot headless 测试怎么搭 / 音频总线 / user:// 设置持久化」 | godot-game-runtime | game-animation-rig、game-feel、game-docs |
 | 「游戏总线怎么分 / 音乐循环 / 音量静音持久化」 | game-audio | godot-game-runtime、game-feel、ui-baseline |
+| 「音频配置/候选库/应用撤销/一致性」 | game-audio（`references/audio-catalog.md`） | game-feel、ui-baseline |
+| 「潜行怎么设计，敌人视野/警戒/追逃」 | game-stealth | game-ai-design、game-combat-model、level-encounter-design |
+| 「选择/后果/回访/结局怎么收」 | game-choice-consequence | narrative-docs、game-docs、level-encounter-design |
+| 「Roguelite 单局节奏/构筑/进化/卡池」 | game-roguelite | game-systems-balance、level-encounter-design、game-combat-model |
+| 「性能预算/测量/回归阈值」 | validation-design（`references/performance-budget.md`） | ui-baseline、game-docs |
+| 「LLM 试玩协议/回放/多模型评估」 | llm-integration（`references/playtest-protocol.md`） | validation-design、game-docs |
 | 「多分辨率截图/前后对比/视觉证据矩阵怎么设计」 | validation-design（`references/visual-evidence.md`） | ui-baseline、game-docs |
 | 「程序化低模代理/护甲化/骨骼只提供位置」 | game-animation-rig（`references/procedural-proxy.md`） | game-combat-model、ui-baseline |
 | 「Windows 下中文乱码/CRLF/并行 git index.lock」 | git-commit（`references/windows-hygiene.md`） | worktree-workflow、code-review |

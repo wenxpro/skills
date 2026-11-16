@@ -108,6 +108,7 @@ description: 游戏音频架构：Master/分组总线、SFX 与音乐路由、�
 ## 输出
 
 - 总线/路由检查：`references/audio-bus-checklist.md`
+- 音频目录/安全应用：`references/audio-catalog.md`
 - 音频规格模板：`templates/audio-spec.md`
 - 结论分层：结构/自动/主观
 
