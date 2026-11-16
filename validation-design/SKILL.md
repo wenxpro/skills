@@ -77,6 +77,7 @@ description: 验证阶段设计与游戏机制测试设计：模型假设、变�
 - 验证计划：用 `templates/validation-plan.md`
 - 审计报告：按“发现 / 严重度 / 证据 / 行动项”输出；发现优先于修改
 - 游戏机制验证：读 `references/game-mechanics.md`；测试层/fixture/场景矩阵见 `references/gameplay-testing.md`，模板 `templates/test-plan.md`、`templates/scenario-matrix.md`；战斗模型细节交给 `game-combat-model`
+- 视觉证据：截图矩阵/前后对比/证据层级见 `references/visual-evidence.md`
 
 ## 反模式
 

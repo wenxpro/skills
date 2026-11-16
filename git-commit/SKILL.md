@@ -54,6 +54,7 @@ description: Git 提交（单仓库/多仓库）：按 Conventional Commits 生�
 ## 边界
 
 - 设计/方案确认后，提交与推送属于执行动作，直接做到目标，不逐次询问。
+- Windows/PowerShell/编码/行尾/并行 index 冲突见 `references/windows-hygiene.md`。
 - 仅在 message 有歧义、变更混入用户未提交的工作、或需要不可逆操作（force push、删分支）时询问。
 - 提交失败（pre-commit 钩子、lint 失败等）时报告错误，不擅自绕过。
 - 写任务默认在独立 worktree 内完成；分支/worktree 的创建、合并、清理见 `worktree-workflow`。

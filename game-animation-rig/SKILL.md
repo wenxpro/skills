@@ -117,6 +117,7 @@ description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向�
 
 - 资产合同/重定向检查：`references/asset-contract.md`
 - 常见失败模式：`references/failure-modes.md`
+- 程序化低模代理/护甲：`references/procedural-proxy.md`
 - 修正记录：现象 / 判断 / 修复 / 回写
 - 需要数值/预算时交给 `game-combat-model` 或 `game-feel`
 
