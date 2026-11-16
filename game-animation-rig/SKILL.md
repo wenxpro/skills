@@ -1,6 +1,6 @@
 ---
 name: game-animation-rig
-description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向、Hips Y、脚底接触、AnimationTree 状态机、武器挂点、接触帧事件、移动/转身表现。适用于人形或 Boss 动画接入、动画错位/滑步/反向脚/武器朝向排查、动画状态与玩法状态对齐；不适用于战斗数值（game-combat-model）、打击反馈预算（game-feel）、Godot 工程/CLI（godot-game-runtime）或 UI（ui-baseline）。
+description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向、Hips Y、脚底接触、动画状态机、武器挂点、接触帧事件、移动/转身表现。适用于人形或 Boss 动画接入、动画错位/滑步/反向脚/武器朝向排查、动画状态与玩法状态对齐；不适用于战斗数值（game-combat-model）、打击反馈预算（game-feel）、引擎工程/CLI（godot-game-runtime）或 UI（ui-baseline）。
 ---
 
 # 游戏动画与骨骼管线
@@ -21,7 +21,7 @@ description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向�
 
 - 战斗数值、攻击时间轴、TTK、克制预算 → `game-combat-model`
 - hitstop、震屏、闪白、trail 的预算与验证 → `game-feel`
-- Godot 工程配置、headless、音频总线 → `godot-game-runtime`
+- 引擎工程配置、headless、音频总线 → `godot-game-runtime`
 - UI token、组件、无障碍 → `ui-baseline`
 
 ## 行为
@@ -63,7 +63,7 @@ description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向�
 ### 5. 状态机：玩法状态与动画状态分离
 
 - 玩法状态决定「该播什么」；动画层决定「怎么播」。
-- 状态名保持稳定；外部只通过适配层方法设置，不直接改内部节点。Godot 参数路径/工程集成由 `godot-game-runtime` 负责；本 skill 定义状态语义与资产规则。
+- 状态名保持稳定；外部只通过适配层方法设置，不直接改内部节点。具体引擎参数路径/工程集成由 `godot-game-runtime` 负责；本 skill 定义状态语义与资产规则。
 - windup/strike/recovery 用自定义时间轴时，明确哪一段定格、哪一段播放、哪一段被玩法时长截断。
 - 时间缩放/BlendTree 输出连接要可读回；没有输出连接的混合树会「状态在、姿势不动」。
 - 同帧多请求要有优先级，避免攻击/受击/死亡互相覆盖。
@@ -137,7 +137,7 @@ description: 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向�
 
 - 战斗时间轴/数值/克制 → `game-combat-model`
 - hitstop/震屏/闪白/trail → `game-feel`
-- Godot 工程、CLI、AudioServer、导入 → `godot-game-runtime`
+- 引擎工程、CLI、音频总线、导入 → `godot-game-runtime`
 - 验证计划/证据层级 → `validation-design`
 - 项目动画规范/验收 → `game-docs`
 

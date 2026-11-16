@@ -1,6 +1,6 @@
 ---
 name: game-feel
-description: 游戏打击与反馈：contact 帧对齐、hitstop、镜头震动、闪白、trail、音效/震动分层与可读性预算。适用于近战/射击命中反馈、Boss 起手与收招表现、轻重攻击差异化；不适用于战斗数值/克制（game-combat-model）、动画资产与重定向（game-animation-rig）、UI 视觉规范（ui-baseline）或 Godot 工程/CLI（godot-game-runtime）。
+description: 游戏打击与反馈：contact 帧对齐、hitstop、镜头震动、闪白、trail、音效/震动分层与可读性预算。适用于近战/射击命中反馈、Boss 起手与收招表现、轻重攻击差异化；不适用于战斗数值/克制（game-combat-model）、动画资产与重定向（game-animation-rig）、UI 视觉规范（ui-baseline）或引擎工程/CLI（godot-game-runtime）。
 ---
 
 # 游戏打击与反馈
@@ -19,7 +19,7 @@ description: 游戏打击与反馈：contact 帧对齐、hitstop、镜头震动�
 不适用：
 
 - 伤害公式、TTK、攻击时间轴、克制预算 → `game-combat-model`
-- 资产重定向、脚底接触、AnimationTree → `game-animation-rig`
+- 资产重定向、脚底接触、动画状态机 → `game-animation-rig`
 - UI 布局、字号、无障碍 → `ui-baseline`
 - 引擎音频总线/CLI/持久化 → `godot-game-runtime`
 

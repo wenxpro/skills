@@ -7,7 +7,7 @@ description: 游戏音频架构：Master/分组总线、SFX 与音乐路由、�
 
 目标：让声音**可路由、可调、可持久、可测试**，而不是把音量全部塞在 Master 上。
 
-本 skill 负责音频架构与混音规则；引擎 AudioServer/播放器实现用 `godot-game-runtime`，打击反馈的音效分层用 `game-feel`，音乐创作与编曲不在范围内。
+本 skill 负责音频架构与混音规则；引擎音频 API/播放器实现用 `godot-game-runtime`，打击反馈的音效分层用 `game-feel`，音乐创作与编曲不在范围内。
 
 ## 何时使用
 
@@ -19,7 +19,7 @@ description: 游戏音频架构：Master/分组总线、SFX 与音乐路由、�
 不适用：
 
 - 编曲、音色设计、母带处理 → 项目音频资产/音频设计师
-- Godot AudioServer API、headless、`user://` 实现 → `godot-game-runtime`
+- 引擎音频 API、headless、引擎持久化实现 → `godot-game-runtime`
 - hitstop/震屏/闪白/震动预算 → `game-feel`
 - UI 滑条布局/无障碍 → `ui-baseline`
 
@@ -124,7 +124,7 @@ description: 游戏音频架构：Master/分组总线、SFX 与音乐路由、�
 
 ## 交接
 
-- Godot AudioServer/播放器/headless/持久化 → `godot-game-runtime`
+- 引擎音频 API/播放器/headless/持久化 → `godot-game-runtime`
 - 打击反馈/音效分层预算 → `game-feel`
 - UI 滑条/设置菜单/无障碍 → `ui-baseline`
 - 项目音频规范/验收 → `game-docs`
