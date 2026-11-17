@@ -55,6 +55,10 @@ done < <(
     | grep -v -E '旧词|原词|迁移|替代|不要写|反例'
 )
 
+# 5. README 索引与 frontmatter 同步（生成器见 scripts/gen-readme-index.sh）
+bash scripts/gen-readme-index.sh --check >/dev/null 2>&1 \
+  || err "README skill index stale: run bash scripts/gen-readme-index.sh"
+
 if [ "$fail" -ne 0 ]; then
   echo "skills check failed"
   exit 1

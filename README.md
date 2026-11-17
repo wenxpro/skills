@@ -42,7 +42,7 @@
 | 把 LLM 接入项目 | `llm-integration` |
 | 一次任务改多个仓库 | `git-commit`（多仓库模式） |
 | 跨项目/跨仓库共同交付 | `cross-project-integration` |
-| 会话太长或要交接 | `session-handoff` |
+| 会话太长或要交接 | `session-handoff` 手改 |
 | 文档集/术语审核 | `docs-audit` |
 | skills 仓库审核与合并 | `skill-audit` + CI / pre-push |
 
@@ -62,7 +62,7 @@
 
 | 能力 | Skill | 规则 |
 |---|---|---|
-| 会话边界 | `session-handoff` | 一个工作包一个会话；切换前写 handoff |
+| 会话边界 | `session-handoff` 手改 | 一个工作包一个会话；切换前写 handoff |
 | 读写分流 | `worktree-workflow` | 只读留主工作区；写任务独立 worktree |
 | 多仓库提交 | `git-commit`（多仓库模式） | 每个仓库独立提交、推送、验证 |
 | 跨项目协作 | `cross-project-integration` | 接口登记、依赖矩阵、冻结点、集成 owner |
@@ -71,72 +71,77 @@
 
 ## Skill 索引
 
+> 本节由 `scripts/gen-readme-index.sh` 从各 SKILL.md 的 description 首句生成，勿手改。分类映射在脚本内维护；新增 skill 需登记后运行 `bash scripts/gen-readme-index.sh` 重新生成，CI 会校验同步。
+
+<!-- BEGIN GENERATED: skill-index -->
 ### 阶段
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `design-stage` | 自动 | 设计阶段 playbook：输入、检查、出口；决策锁、pre-mortem、kill criteria |
-| `delivery-stage` | 自动 | 交付阶段 playbook：执行、代码审查、提交、验收状态 |
-| `feedback-stage` | 自动 | 反馈阶段 playbook：证据收集、分类、回流 |
+| Skill | 定位 |
+|---|---|
+| `design-stage` | 设计阶段 playbook：选择调研/代码/文档/验收输入，定体验架构、职责边界、图设计（上下文/生命周期/时序）与文档规则，过评审后交给规划 |
+| `delivery-stage` | 交付阶段 playbook：确认设计与规划入口，按工作包实现，过代码审查和改动检查后提交，并更新验收状态 |
+| `feedback-stage` | 反馈阶段 playbook：收集测试、试玩、审查与文档证据，区分通过/失败/偏差/过时，更新验收状态并回流到设计、规划或修复 |
 
 ### 基础与方法
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `docs-core` | 自动 | 文档槽位规则、单一事实源、变更三件套、状态语义、验收类别 |
-| `game-docs` | 自动 | 游戏文档体系（基于 docs-core）+ 游戏设计模式 |
-| `narrative-docs` | 自动 | 长剧本/叙事项目文档：Story Brief、世界观、人物、结构、场景卡、语气、连续性、试读 |
-| `software-docs` | 自动 | 软件项目文档体系：PRD、架构、接口、数据、安全、运行手册、验收、ADR |
-| `backend-design` | 自动 | 后端/服务设计：边界、接口、数据、安全、可靠性 |
-| `ui-baseline` | 自动 | 前端/UI 基线：token、组件状态、屏幕规格、平台规范、无障碍 |
-| `experience-architecture` | 自动 | 产品体验架构：Experience Map、屏幕/导航、状态所有权 |
-| `responsibility-design` | 自动 | 职责驱动设计：上下文地图、依赖方向、边界违规、重构 |
-| `validation-design` | 自动 | 验证阶段设计与测试设计：假设、变量、指标、失败判据、反事实、证据层级；L0–L4 测试层、testbed、fixture、场景矩阵 |
-| `game-combat-model` | 自动 | 战斗模型：角色差异、攻击时间轴、TTK、克制预算、对决矩阵、反事实 sim |
-| `game-systems-balance` | 自动 | 系统平衡：TTK/胜率/克制、经济来源/消耗、成长曲线、难度、支配性与敏感性 |
-| `level-encounter-design` | 自动 | 关卡/遭遇：目标/路线/出生/掩体/视野/节奏/旋转对称（默认 180°）/可读性 |
-| `game-ai-design` | 自动 | 游戏 AI：感知、目标选择、推进/撤退、难度、反制、可读性、不作弊 |
+| Skill | 定位 |
+|---|---|
+| `docs-core` | 通用文档体系规则：7 类文档（入口/假设/规则/验收/决策/证据/检查）、单一事实源、行为变更三件套、状态语义、验收类别 |
+| `game-docs` | 游戏项目文档体系：Run Brief、Design Spec、验收矩阵、ADR、试玩；含 M0/M1/M2 与 P0/P1 约定 |
+| `narrative-docs` | 长剧本/叙事项目文档体系：Story Brief、World Bible、Character Bible、Structure、Scene Cards、Voice Guide、Continuity、Revision、Read-through；基于 docs-core 的 7 类槽位 |
+| `software-docs` | 软件项目文档体系与模板：PRD、架构、接口、数据、安全、运行手册、验收、ADR 与证据；槽位规则见 docs-core |
+| `backend-design` | 后端/服务运行时设计：部署与故障域、对外接口约定、数据模型、威胁建模、可靠性 |
+| `ui-baseline` | 前端/UI 设计基线：语义 token、组件状态、屏幕规格、平台规范、无障碍与评审检查表 |
+| `experience-architecture` | 产品体验架构：用一页 Experience Map 定义屏幕、导航、状态所有权、生命周期、入口/退出与延后项；在新增模式/屏幕/入口前做触发检查 |
+| `responsibility-design` | 职责驱动设计：设计阶段定义上下文、模块所有权、依赖方向、接口与状态边界；实现/重构阶段识别边界违规、组合根膨胀与行为保持重构；轻量 DDD，不默认聚合根/仓储/事件总线 |
+| `validation-design` | 验证阶段设计与游戏机制测试设计：模型假设、变量/控制、指标、失败判据、反事实、证据层级与决策规则；L0–L4 测试层、fixture、场景矩阵与 testbed |
+| `game-combat-model` | 战斗模型设计：角色差异化、攻击时间轴、TTK/命中数、克制预算、对决矩阵、支配性与确定性模拟 |
+| `game-systems-balance` | 系统平衡设计：战斗/经济/成长/难度/掉落的基准值、P50/P90、支配性与敏感性分析、调参矩阵 |
+| `level-encounter-design` | 关卡与遭遇设计：目标/路线/出生/掩体/视野/节奏；对局地图优先旋转对称（默认 180°）、首个可玩切片单一目标、可读接战 |
+| `game-ai-design` | 游戏 AI 设计：感知、目标选择、推进/撤退、难度、反制与可读性；不锁血/不偷资源/不超视野 |
 
 ### 游戏实现
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `godot-game-runtime` | 自动 | Godot 4.x 工程集成：配置、InputMap、AnimationTree 接口、AudioServer、`user://`、headless、截图与导入 |
-| `game-animation-rig` | 自动 | 3D 资产/重定向/脚底接触/AnimationTree/武器挂点/接触帧/移动转身表现；程序化代理见 reference |
-| `game-feel` | 自动 | 打击反馈：contact 对齐、hitstop、震屏、闪白、trail、音效/震动分层与可读性预算 |
-| `game-audio` | 自动 | 游戏音频：总线/路由、运行时合成音、循环、混音、voice 管理、音量/静音持久化、headless |
-| `game-stealth` | 自动 | 潜行与风险：检测模型、警戒状态、遮挡/噪音、风险资源、追逃与失败恢复 |
-| `game-choice-consequence` | 自动 | 选择与后果：选择节点、状态标记、信息差、回访、结局收敛 |
-| `game-roguelite` | 自动 | Roguelite 单局与构筑：单局节奏、奖励、构筑轴、进化、内容池、局内外进度 |
+| Skill | 定位 |
+|---|---|
+| `godot-game-runtime` | Godot 4.x 运行时与工程集成：项目配置、InputMap、AnimationTree 接口、AudioServer 总线、user:// 持久化、headless CLI、测试场景、截图入口与导入/UID 管理 |
+| `game-animation-rig` | 3D 角色/骨骼/动画管线：资产坐标与 scale、重定向、Hips Y、脚底接触、动画状态机、武器挂点、接触帧事件、移动/转身表现 |
+| `game-feel` | 游戏打击与反馈：contact 帧对齐、hitstop、镜头震动、闪白、trail、音效/震动分层与可读性预算 |
+| `game-audio` | 游戏音频架构：Master/分组总线、SFX 与音乐路由、运行时合成音、循环接缝、混音与音量/静音持久化、voice 管理、headless 跳过 |
+| `game-stealth` | 潜行与风险设计：检测模型、警戒状态、遮挡/噪音、潜行手段、风险资源、追逃与失败恢复、可读性 |
+| `game-choice-consequence` | 选择与后果系统：选择节点、状态标记、信息差、延迟回访、结局收敛、道德/经济后果、内容表 |
+| `game-roguelite` | Roguelite 单局与构筑：单局节奏、奖励/升级、构筑轴、进化条件、内容池、局内/局外进度、确定性种子 |
 
 ### 输入与决策
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `topic-research` | 自动 | 外部调研：生态全景、交叉验证、证据分级 |
-| `code-digest` | 自动 | 代码库梳理：演进时间线、技术细节、编号决策核对 |
-| `docs-audit` | 自动 | 文档集审核：引用、术语、时效、漂移、ID 覆盖 |
-| `implementation-track` | 自动 | 验收跟踪与偏差记录 |
-| `review` | 自动 | 多角色评审：结论、条件、行动项、证据 |
-| `roadmap-planning` | 自动 | 跨版本规划：MVP/V1/V2、M/W 映射、优先级与落点 |
+| Skill | 定位 |
+|---|---|
+| `topic-research` | 外部课题调研：生态全景、多入口交叉验证、假设与验证分离、证据分级 |
+| `code-digest` | 代码库梳理：git 历史 + 语义记录建演进时间线，文档先行读源码，防遗漏防过时，编号决策核对 |
+| `docs-audit` | 文档集审核：交叉引用、术语一致性、翻译腔、版本锚点、验证表述、图表、重复、数字、实现后漂移、ID 覆盖、过时内容归档 |
+| `implementation-track` | 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段式偏差、证据阶梯、最小 fake 接口 |
+| `review` | 通用多角色评审：决策问题、角色意见、条件与行动项、证据、active/archive 索引 |
+| `roadmap-planning` | 跨版本演进规划：设计结论按依赖链归入 MVP/V1/V2 或 M0/M1/M2，含 M/W 两层映射，定优先级与落点 |
 
 ### 交付与集成
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `execution-loop` | 自动 | 连续执行闭环：一次确认目标，批量执行到验收 |
-| `code-review` | 自动 | 代码审查：分级、必跑检查、修复复跑 |
-| `git-commit` | 自动 | Conventional Commits；单仓库与多仓库 |
-| `worktree-workflow` | 自动 | 读写分流与 worktree 生命周期 |
-| `llm-integration` | 自动 | LLM 集成：模型探测、受约束输出、降级、回放 |
-| `cross-project-integration` | 自动 | 跨项目协作：接口登记、依赖矩阵、冻结与集成计划 |
+| Skill | 定位 |
+|---|---|
+| `execution-loop` | 连续执行闭环：一次确认目标/DoD/约束，之后连续执行、自测、提交、更新跟踪，只在真实阻塞时停 |
+| `code-review` | 代码审查与合并前检查：审查 diff/实现，输出必须修/建议修/可选的问题与测试结果；按改动类型列出必须跑的检查（配置校验、重开一致性、UI 数量与刷新频率、内容表、性能），修复后复跑 |
+| `git-commit` | Git 提交（单仓库/多仓库）：按 Conventional Commits 生成 message，直接提交推送；多仓库按仓库分组、分别提交推送、记录部分失败与跨仓库一致性 |
+| `worktree-workflow` | 任务读写分流与 Git 工作树：只读讨论/调研留主工作区，任何写任务默认独立 worktree + 短分支，主工作区只做集成与验证 |
+| `llm-integration` | LLM 调用集成：模型档探测、受约束输出、失败降级、回放与高频选型 |
+| `cross-project-integration` | 跨项目协作设计：一项能力由两个以上仓库、团队或发布节奏共同交付时，定义上下游、接口登记、依赖矩阵、冻结与集成计划、生产者/消费者检查与跨项目交接 |
 
 ### 会话与维护
 
-| Skill | 触发 | 定位 |
-|---|---|---|
-| `session-handoff` | 自动 | 会话边界与外部记忆 |
-| `skill-audit` | 自动 | skills 仓库审核、行为评估与合并前检查 |
+| Skill | 定位 |
+|---|---|
+| `session-handoff` | 会话边界与外部记忆：判断继续当前会话还是新开窗口，用一页 handoff 外置目标、状态、决策、下一步、约束与验证；新会话先复述再验证 |
+| `skill-audit` | Skills 仓库审核：抽象分层、结构、触发边界、主动行为/干预策略、术语一致性、交叉引用、职责重叠、合并/拆分评估，以及行为评估/证伪；skills 项目合并到 main 前默认自检 |
+
+<!-- END GENERATED: skill-index -->
 
 ## 核心约定
 
@@ -209,6 +214,7 @@ cp -r design-stage delivery-stage feedback-stage session-handoff worktree-workfl
 - 触发边界靠 `description` 的「适用/不适用」与负面清单；不要用手动开关代替触发设计
 - 引用文件用相对路径，如 `standards.md`、`templates/foo.md`；不要写死本机绝对路径
 - 仓库术语见 `skill-audit/references/terminology.md`；改完跑 `scripts/check-skills.sh`，废弃词零命中
+- 新增/改名 skill 或改 description 后，在 `scripts/gen-readme-index.sh` 登记分类并运行它重建索引；README 索引节勿手改
 
 合并 `main` 前必须同时通过：
 
