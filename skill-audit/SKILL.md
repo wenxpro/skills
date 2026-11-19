@@ -85,7 +85,7 @@ description: Skills 仓库审核：抽象分层、结构、触发边界、主动
 - 文件格式与引擎概念：`.tres`、`.tscn`、Godot / Unity / Unreal
 - 项目专有名词：具体包名、孤立编号（如 `09`）、功能名（HUD、升级表、奖励发放）
 - 专属工具名：`check-docs`、`check-review`（保留时加「如」或移到 standards）
-- 示例编号：`A1/A5`、`M1-M20`（应标注为示例或移到 profile）
+- 示例编号：决策号（如 `A1/A5`）、里程碑号（如 `M1`）——应标注为示例或移到 profile
 
 判定后给下沉建议：移到 `standards.md` 的 profile 节，或加「示例」标注。**优先下沉而不是删除**——项目细节是资产，放对层即可。
 

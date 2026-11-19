@@ -79,7 +79,8 @@ ADR 不是写完就结束。实施后补一行/一节：
 
 ## 状态语义
 
-- 文档状态：`Draft / Proposed / Accepted / Conditional / Superseded`
+- 文档状态：`Draft / Proposed / Accepted / Conditional / Deferred / Superseded`
+- `Deferred`：设计保留、当前不启用；必须写重启条件，不能只写「以后再说」
 - 验收状态：`◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败`
 - 评审结论：`通过 / 有条件通过 / 否决`（归档：`Superseded / Archived`）
 - 优先级：P0/P1 只用于验收；功能/包优先级用 `High / Medium / Low`

@@ -35,9 +35,11 @@
 | 入口 | `docs/00-README.md` |
 | 假设 | `docs/01-PRD.md` |
 | 规则 | `docs/02-ARCHITECTURE.md`、`03-INTERFACE.md`、`04-DATA.md`、`05-SECURITY.md`、`06-RUNBOOK.md` |
-| 验收 | `docs/07-ACCEPTANCE.md` |
+| 验收 | `docs/07-ACCEPTANCE.md`（或 `00-README` 声明的 PRD 验收章节） |
 | 决策 | `docs/08-adr/` |
 | 证据 | `docs/09-reviews/`、`docs/10-evidence/` |
 | 检查 | `docs/07-ACCEPTANCE.md` 的 DoD；`docs/00-README.md` 的状态 |
 
 裁剪：单机小工具可只用 `00 / 01 / 07`；有服务端或数据库再补 `02 / 03 / 04`；涉及账号、支付、PII、对外接口再补 `05` 与 `06`。
+
+软件项目的规则文档可按层或按主题切分，二选一写进 `00-README`；切分规则见 `software-docs`。

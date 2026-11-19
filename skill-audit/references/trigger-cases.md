@@ -2,6 +2,8 @@
 
 改过任何 skill 的 `description` 后，用这些句子验证触发是否正确。
 
+> 2026-11-19 新增 3 条（验收编号 / 切分轴 / 论证文）；尚未跑 L1/L2 行为评估，当前属结构检查。
+
 ## 读写分流
 
 | 输入 | 期望 | 不期望 |
@@ -132,6 +134,9 @@
 | 「多个服务怎么定接口版本和幂等」 | backend-design | cross-project-integration（跨仓库登记时再加） |
 | 「前端 UI 规范、组件状态、平台规范、无障碍」 | ui-baseline | experience-architecture、code-review |
 | 「验收怎么分类、证据要到什么程度」 | docs-core（`references/acceptance-taxonomy.md`） | implementation-track、software-docs |
+| 「验收项用什么编号，M1 这类门号还算验收吗」 | docs-core（验收编号与聚合视图） | implementation-track、roadmap-planning |
+| 「软件文档按层切还是按主题切」 | software-docs（规则文档的切分轴） | docs-core、design-stage |
+| 「写一份设计论证，讲清为什么这么设计」 | design-stage（`templates/design-rationale.md`） | software-docs、topic-research |
 
 ## 叙事文档
 
