@@ -52,7 +52,7 @@ description: 软件项目文档体系与模板：PRD、架构、接口、数据�
 | 规则 | `docs/04-DATA.md` | 数据所有权、schema、索引、一致性、迁移、保留、PII |
 | 规则 | `docs/05-SECURITY.md` | 资产、角色、信任边界、威胁模型、认证授权、密钥 |
 | 规则 | `docs/06-RUNBOOK.md` | SLO、告警、发布/回滚、备份恢复、故障处理 |
-| 验收 | `docs/07-ACCEPTANCE.md` | `AC-*` 矩阵、证据、DoD、状态 |
+| 验收 | `docs/07-ACCEPTANCE.md`（或 `00-README` 声明的 PRD 验收章节） | `AC-*` 矩阵、证据、DoD、状态 |
 | 决策 | `docs/08-adr/` | 不可逆或跨版本决策；一页一个决策 |
 | 证据 | `docs/09-reviews/` | 设计评审、代码审查、上线评审记录 |
 | 证据 | `docs/10-evidence/` | 测试报告、基准、威胁模型确认、迁移演练、截图 |
@@ -65,13 +65,29 @@ description: 软件项目文档体系与模板：PRD、架构、接口、数据�
 - UI 项目：在 `02-ARCHITECTURE.md` 引用 `docs/UI-SPEC.md`，不把视觉规范塞进架构文档。
 - 跨团队/跨仓库：接口登记另用 `cross-project-integration` 的表，`03-INTERFACE.md` 只保留本项目视角。
 
+## 规则文档的切分轴
+
+规则槽位按什么维度切是项目决策，二选一写进 `00-README`，同一项目内不混用。
+
+| 切分 | 适用 | 规则文档形态 | 验收归属 |
+|---|---|---|---|
+| **按层**（默认） | 业务系统、服务、有明确架构分层 | `02-ARCHITECTURE` / `03-INTERFACE` / `04-DATA` / `05-SECURITY` / `06-RUNBOOK` | `07-ACCEPTANCE.md` |
+| **按主题** | 内核、引擎、协议类，机制独立演进 | 每篇一个机制（循环、上下文、模型抽象、会话等），替代 `02-ARCHITECTURE` 作为规则归属 | `07-ACCEPTANCE.md` 或 PRD 验收章节（声明在 `00-README`） |
+
+共同约束：
+
+- 验收只在一个槽位：`07-ACCEPTANCE.md` 或 PRD 验收章节，声明在 `00-README`；规则文档不复制验收表。
+- 每篇规则文档结尾给验证清单，条目映射到 `AC-*`；清单是验收来源，不是验收表。
+- 一个机制一篇：主题文档不写范围、排期与发布节奏（属 PRD）。
+- 主题编号与验收编号分属两套，不要复用字母（决策 `M` 与验收 `M` 不得同系列）。
+
 ## 写作顺序
 
 1. **界定**：写 `01-PRD.md` 的问题、用户、范围、非目标、约束；明确不做什么。
 2. **边界**：写 `02-ARCHITECTURE.md` 的上下文、容器、依赖方向、部署与故障域；不可逆决定记 ADR。
 3. **接口与数据**：按需写 `03-INTERFACE.md` 和 `04-DATA.md`；先定所有权，再定字段。
 4. **安全与运行**：按需写 `05-SECURITY.md` 和 `06-RUNBOOK.md`；高风险项先做威胁模型。
-5. **验收**：写 `07-ACCEPTANCE.md`，按 `docs-core/references/acceptance-taxonomy.md` 分类并指定证据。
+5. **验收**：写 `07-ACCEPTANCE.md`（或 `00-README` 声明的 PRD 验收章节），按 `docs-core/references/acceptance-taxonomy.md` 分类并指定证据。
 6. **评审**：用 `review` 的 `profiles/software.md`；高风险追加安全/数据/SRE 角色。
 7. **交付**：交 `delivery-stage`；状态由 `implementation-track` 更新；证据回填 `10-evidence/`。
 
