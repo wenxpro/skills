@@ -16,7 +16,7 @@ description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段
 | 文档结构 | profile | 验收依据 |
 |---|---|---|
 | `docs/00-README.md` + 00~05、07 | **game** | `03-acceptance.md` 的验收跟踪 + `AC-*` 用例 |
-| PRD + 各包 `DESIGN.md` | **software** | PRD / DESIGN.md / 验证清单 |
+| PRD + 设计文档（可选包级 `DESIGN.md`） | **software** | PRD / 设计文档 / 验证清单 |
 | 不确定 | — | 先问用户，不要猜 |
 
 本 skill 只更新状态与偏差，不改验收判定标准。
@@ -47,20 +47,20 @@ description: 验收跟踪与偏差记录：状态（◻/🔄/✅/❌）、四段
 
 动手前先读，不凭记忆：
 
-1. 验收跟踪表（game：`03-acceptance.md` 的「验收跟踪」；software：PRD / DESIGN.md）——该验收项当前状态
-2. 对应 Spec / DESIGN.md 的规则与实现决策
-3. 验收判定标准（game：`03-acceptance.md` 的 `AC-*` 预期；software：论证文档的验证清单原文）
+1. 验收跟踪表（game：`03-acceptance.md` 的「验收跟踪」；software：PRD 验收章节，有包设计再看包级状态）——该验收项当前状态
+2. 对应 Spec / 设计文档的规则与实现决策
+3. 验收判定标准（game：`03-acceptance.md` 的 `AC-*` 预期；software：PRD 验收条目与设计文档验证清单原文）
 
 ## 第三步：实现与测试
 
-1. 实现遵循对应包 DESIGN.md（技术选型/架构已定）；实现级问题按第五步记录偏差
+1. 实现遵循对应设计文档（技术选型/架构已定）；实现级问题按第五步记录偏差
 2. 测试纪律（见 `standards.md`）：隔离环境、不读真实配置、全绿才算过
 3. 测试覆盖验收判定标准：先写能证明「验收项成立」的用例，再写边界
 
 ## 第四步：更新验收状态
 
 1. 状态标记：◻ 未开始 / 🔄 进行中 / ✅ 通过 / ❌ 失败（附原因）
-2. 更新位置：game 更新 `03-acceptance.md` 的「验收跟踪」；software 更新验收跟踪表 + 对应 DESIGN.md
+2. 更新位置：game 更新 `03-acceptance.md` 的「验收跟踪」；software 更新 PRD 验收章节（有包设计再更新包级状态）
 3. 部分覆盖时标 🔄 并注明已覆盖/未覆盖部分
 
 ## 第五步：记录偏差（实现与设计冲突时）

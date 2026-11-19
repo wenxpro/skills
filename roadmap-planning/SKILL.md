@@ -16,7 +16,7 @@ description: 跨版本演进规划：设计结论按依赖链归入 MVP/V1/V2 �
 | 文档结构 | profile | 读 `standards.md` 的 |
 |---|---|---|
 | `docs/00-README.md` + 00~05、07 | **game** | 「Game profile」 |
-| PRD + 各包 `DESIGN.md` | **software** | 「Software profile」 |
+| PRD + 设计文档（可选包级 `DESIGN.md`） | **software** | 「Software profile」 |
 | 不确定 | — | 先问用户，不要猜 |
 
 本 skill 只读设计结论，不重写 Spec / Acceptance。
